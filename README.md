@@ -1,2 +1,2 @@
-# XtrmAddons-.Net-Libraries-Wpf
-XtrmAddons .Net Libraries Wpf
+# XtrmAddons .Net Libraries Wpf
+.Net Libraries for XtrmAddons Wpf applications.
