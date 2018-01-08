@@ -5,8 +5,6 @@ VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XtrmAddons.Net.Common", "XtrmAddons.Net.Common\XtrmAddons.Net.Common.csproj", "{1FE7F4B3-4393-4752-88A6-B4B06EA96206}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XtrmAddons.Net.Controls", "XtrmAddons.Net.Controls\XtrmAddons.Net.Controls.csproj", "{76850F57-F462-4277-8358-5C1B59E11BD4}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XtrmAddons.Net.HttpWebServer", "XtrmAddons.Net.HttpWebServer\XtrmAddons.Net.HttpWebServer.csproj", "{7F85C20D-4F2B-4038-9696-52B1E89BD461}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XtrmAddons.Net.Picture", "XtrmAddons.Net.Image\XtrmAddons.Net.Picture.csproj", "{563F8623-42FC-41C4-ACD2-4E9400F8B660}"
@@ -21,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XtrmAddons.Net.SQLiteBundle
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XtrmAddons.Net.Application", "XtrmAddons.Net.Application\XtrmAddons.Net.Application.csproj", "{DC9CEFF7-1AEF-480F-81F6-4CDF4019FC82}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XtrmAddons.Net.SystemIO", "XtrmAddons.Net.SystemIO\XtrmAddons.Net.SystemIO.csproj", "{BE7BCD08-A522-46B2-B3E9-1F1442D7A071}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,10 +31,6 @@ Global
 		{1FE7F4B3-4393-4752-88A6-B4B06EA96206}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1FE7F4B3-4393-4752-88A6-B4B06EA96206}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1FE7F4B3-4393-4752-88A6-B4B06EA96206}.Release|Any CPU.Build.0 = Release|Any CPU
-		{76850F57-F462-4277-8358-5C1B59E11BD4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{76850F57-F462-4277-8358-5C1B59E11BD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{76850F57-F462-4277-8358-5C1B59E11BD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{76850F57-F462-4277-8358-5C1B59E11BD4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7F85C20D-4F2B-4038-9696-52B1E89BD461}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7F85C20D-4F2B-4038-9696-52B1E89BD461}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7F85C20D-4F2B-4038-9696-52B1E89BD461}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -63,6 +59,10 @@ Global
 		{DC9CEFF7-1AEF-480F-81F6-4CDF4019FC82}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DC9CEFF7-1AEF-480F-81F6-4CDF4019FC82}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DC9CEFF7-1AEF-480F-81F6-4CDF4019FC82}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE7BCD08-A522-46B2-B3E9-1F1442D7A071}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE7BCD08-A522-46B2-B3E9-1F1442D7A071}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE7BCD08-A522-46B2-B3E9-1F1442D7A071}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE7BCD08-A522-46B2-B3E9-1F1442D7A071}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

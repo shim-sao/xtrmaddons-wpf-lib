@@ -6,7 +6,7 @@ using XtrmAddons.Net.Application.Tools;
 namespace XtrmAddons.Net.SQLiteBundle
 {
     /// <summary>
-    /// Class to provide SQLite management using System.Data.SQLite.
+    /// Class XtrmAddons Net SQLite Bundle using System.Data.SQLite.
     /// </summary>
     public class WPFSQLiteData : IDisposable
     {
@@ -21,28 +21,21 @@ namespace XtrmAddons.Net.SQLiteBundle
         /// <summary>
         /// Variable database filename.
         /// </summary>
-        private string _database { get; set; }
-
-        /// <summary>
-        /// Variable SQLite database connection.
-        /// </summary>
-        private SQLiteConnection _conn { get; set; }
+        private string database;
 
         #endregion
+
 
 
         #region Properties
 
         /// <summary>
-        /// Accessors SQLite database connection.
+        /// Variable SQLite database connection.
         /// </summary>
-        public SQLiteConnection Db 
-        {
-            get => _conn;
-            set => _conn = value;
-        }
+        public SQLiteConnection Db { get; private set; }
 
         #endregion
+
 
 
         #region Methods
@@ -55,7 +48,7 @@ namespace XtrmAddons.Net.SQLiteBundle
         /// <param name="scheme">The path to the database scheme.</param>
         public WPFSQLiteData(string database, bool createFile = false, string scheme = "")
         {
-            _database = database;
+            this.database = database;
             CreateConnection(database, createFile, scheme);
         }
 
@@ -76,8 +69,8 @@ namespace XtrmAddons.Net.SQLiteBundle
 
                 log.Debug("WPFSQLiteData Connecting : Data Source=" + database + ";Version=3;");
 
-                _conn = new SQLiteConnection("Data Source=" + database + ";Version=3;");
-                _conn.Open();
+                Db = new SQLiteConnection("Data Source=" + database + ";Version=3;");
+                Db.Open();
 
                 if (createFile)
                 {

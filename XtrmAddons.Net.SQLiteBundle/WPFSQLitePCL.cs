@@ -7,9 +7,9 @@ using System.IO;
 namespace XtrmAddons.Net.SQLiteBundle
 {
     /// <summary>
-    /// Class to provide SQLite management using System.Data.SQLite.
+    /// Class XtrmAddons Net SQLite Bundle using SQLite.Net
     /// </summary>
-    abstract public class WPFSQLitePCL
+    public abstract class WPFSQLitePCL
     {
         #region Variables
 
@@ -22,35 +22,21 @@ namespace XtrmAddons.Net.SQLiteBundle
         /// <summary>
         /// Variable database filename.
         /// </summary>
-        private string _database { get; set; }
+        private string database;
+
+        #endregion
+
+
+
+        #region Properties
 
         /// <summary>
         /// Variable SQLite database connection.
         /// </summary>
-        private SQLiteConnection _conn { get; set; }
+        public SQLiteConnection Db { get; private set; }
 
-        #endregion Variables
+        #endregion
 
-
-        #region Accessors
-
-        /// <summary>
-        /// Accessors SQLite database connection.
-        /// </summary>
-        public SQLiteConnection Db
-        {
-            get
-            {
-                return _conn;
-            }
-
-            set
-            {
-                _conn = value;
-            }
-        }
-
-        #endregion Accessors
 
 
         #region Methods
@@ -63,7 +49,7 @@ namespace XtrmAddons.Net.SQLiteBundle
         /// <param name="scheme">The path to the database scheme.</param>
         public WPFSQLitePCL(string database, bool createFile = false, string scheme = "")
         {
-            _database = database;
+            this.database = database;
             _createConnection(database, createFile, scheme);
         }
         
@@ -90,7 +76,7 @@ namespace XtrmAddons.Net.SQLiteBundle
             {
                 log.Debug(@"WPFSQLitePCL connecting : Data Source=" + database + ";Version=3;FailIfMissing=False;UTF8Encoding=True;");
 
-                _conn = new SQLiteConnection(new SQLitePlatformWin32(), @"Data Source="+database+ ";Version=3;FailIfMissing=False;UTF8Encoding=True;", SQLiteOpenFlags.Create | SQLiteOpenFlags.ReadWrite | SQLiteOpenFlags.ProtectionNone);
+                Db = new SQLiteConnection(new SQLitePlatformWin32(), @"Data Source="+database+ ";Version=3;FailIfMissing=False;UTF8Encoding=True;", SQLiteOpenFlags.Create | SQLiteOpenFlags.ReadWrite | SQLiteOpenFlags.ProtectionNone);
                 
                 if (createFile)
                 {
@@ -149,10 +135,10 @@ namespace XtrmAddons.Net.SQLiteBundle
         }
 
         /// <summary>
-        /// Method to initialize database data.
+        /// Method to initialize database data on file creation.
         /// </summary>
         abstract protected void InitializeSetting();
 
-        #endregion Methods
+        #endregion
     }
 }

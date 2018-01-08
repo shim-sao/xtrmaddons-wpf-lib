@@ -1,11 +1,11 @@
 ﻿using System.Windows.Controls;
 
-namespace XtrmAddons.Net.Controls.ListView.Extensions
+namespace XtrmAddons.Net.Windows.Controls.Extensions
 {
     /// <summary>
     /// Class XtrmAddons Net Controls ListView Extensions.
     /// </summary>
-    public static class ListViewExtensions
+    public static class TreeViewItemExtensions
     {
         /// <summary>
         /// Method to get tree view root as TreeViewItem for an TreeViewItem.

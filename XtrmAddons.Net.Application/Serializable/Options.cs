@@ -6,7 +6,7 @@ namespace XtrmAddons.Net.Application.Serializable
     /// <summary>
     /// Class XtrmAddons Net Application Serializable Options.
     /// </summary>
-    [XmlRootAttribute("Options", Namespace="http://www.shim-sao.fr", IsNullable = false)]
+    [XmlRootAttribute("Options", Namespace="http://www.xtrmaddons.com/", IsNullable = false)]
     public class Options
     {
         #region Properties
