@@ -21,6 +21,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XtrmAddons.Net.Application"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XtrmAddons.Net.SystemIO", "XtrmAddons.Net.SystemIO\XtrmAddons.Net.SystemIO.csproj", "{BE7BCD08-A522-46B2-B3E9-1F1442D7A071}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XtrmAddons.Net.NotifyIcons", "XtrmAddons.Net.NotifyIcon\XtrmAddons.Net.NotifyIcons.csproj", "{D5B48FE5-5F28-4E6B-BA87-6DACF5078042}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XtrmAddons.Net.Xml", "XtrmAddons.Net.Xml\XtrmAddons.Net.Xml.csproj", "{FD46B6A9-883C-4FC5-971D-9ADF6C2B77DD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +67,14 @@ Global
 		{BE7BCD08-A522-46B2-B3E9-1F1442D7A071}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BE7BCD08-A522-46B2-B3E9-1F1442D7A071}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BE7BCD08-A522-46B2-B3E9-1F1442D7A071}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D5B48FE5-5F28-4E6B-BA87-6DACF5078042}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5B48FE5-5F28-4E6B-BA87-6DACF5078042}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5B48FE5-5F28-4E6B-BA87-6DACF5078042}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5B48FE5-5F28-4E6B-BA87-6DACF5078042}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD46B6A9-883C-4FC5-971D-9ADF6C2B77DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD46B6A9-883C-4FC5-971D-9ADF6C2B77DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD46B6A9-883C-4FC5-971D-9ADF6C2B77DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD46B6A9-883C-4FC5-971D-9ADF6C2B77DD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

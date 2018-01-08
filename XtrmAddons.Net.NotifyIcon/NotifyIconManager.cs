@@ -4,10 +4,10 @@ using System.IO;
 using System.Windows;
 using System.Windows.Forms;
 
-namespace WPFXA.Net.NotifyIcons
+namespace XtrmAddons.Net.NotifyIcons
 {
     /// <summary>
-    /// Class provided to manage notify icon.
+    /// Class XtrmAddons Net Notify icon Manager.
     /// </summary>
     public class NotifyIconManager
     {
@@ -23,7 +23,7 @@ namespace WPFXA.Net.NotifyIcons
         /// </summary>
         private static NotifyIcon _nIcon = new NotifyIcon();
 
-        #endregion Variables
+        #endregion
 
 
         #region Methods
@@ -69,6 +69,6 @@ namespace WPFXA.Net.NotifyIcons
             _nIcon.Dispose();
         }
 
-        #endregion Methods
+        #endregion
     }
 }

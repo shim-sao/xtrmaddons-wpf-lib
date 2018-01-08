@@ -7,8 +7,8 @@
     <ProjectGuid>{D5B48FE5-5F28-4E6B-BA87-6DACF5078042}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WPFXA.Net.NotifyIcons</RootNamespace>
-    <AssemblyName>WPFXA.Net.NotifyIcons</AssemblyName>
+    <RootNamespace>XtrmAddons.Net.NotifyIcons</RootNamespace>
+    <AssemblyName>XtrmAddons.Net.NotifyIcons</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ShouldCreateLogs>True</ShouldCreateLogs>

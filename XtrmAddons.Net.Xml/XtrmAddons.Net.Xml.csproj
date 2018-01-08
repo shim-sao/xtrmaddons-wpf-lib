@@ -7,8 +7,8 @@
     <ProjectGuid>{FD46B6A9-883C-4FC5-971D-9ADF6C2B77DD}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WPFXA.Net.Xml</RootNamespace>
-    <AssemblyName>WPFXA.Net.Xml</AssemblyName>
+    <RootNamespace>XtrmAddons.Net.Xml</RootNamespace>
+    <AssemblyName>XtrmAddons.Net.Xml</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
