@@ -26,7 +26,7 @@ namespace XtrmAddons.Net.Network
         {
             await Task.Run(() =>
             {
-                AddAddress(address);
+                NetshAddAddress(address);
             });
         }
 
