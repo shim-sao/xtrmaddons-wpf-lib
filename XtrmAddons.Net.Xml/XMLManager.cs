@@ -2,7 +2,7 @@
 using System.IO;
 using System.Xml;
 
-namespace WPFXA.Net.Xml
+namespace XtrmAddons.Net.Xml
 {
     public class XMLManager
     {
