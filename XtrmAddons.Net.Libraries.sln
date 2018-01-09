@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XtrmAddons.Net.Common", "Xt
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XtrmAddons.Net.HttpWebServer", "XtrmAddons.Net.HttpWebServer\XtrmAddons.Net.HttpWebServer.csproj", "{7F85C20D-4F2B-4038-9696-52B1E89BD461}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XtrmAddons.Net.Picture", "XtrmAddons.Net.Image\XtrmAddons.Net.Picture.csproj", "{563F8623-42FC-41C4-ACD2-4E9400F8B660}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XtrmAddons.Net.Math", "XtrmAddons.Net.Math\XtrmAddons.Net.Math.csproj", "{B9F0F929-F539-494C-BB1F-4145EC785F0A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XtrmAddons.Net.Memory", "XtrmAddons.Net.Memory\XtrmAddons.Net.Memory.csproj", "{374E673C-7F72-47A4-BE44-B986DD80C745}"
@@ -25,6 +23,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XtrmAddons.Net.NotifyIcons"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XtrmAddons.Net.Xml", "XtrmAddons.Net.Xml\XtrmAddons.Net.Xml.csproj", "{FD46B6A9-883C-4FC5-971D-9ADF6C2B77DD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XtrmAddons.Net.Picture", "XtrmAddons.Net.Picture\XtrmAddons.Net.Picture.csproj", "{563F8623-42FC-41C4-ACD2-4E9400F8B660}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XtrmAddons.Net.Windows", "XtrmAddons.Net.Windows\XtrmAddons.Net.Windows.csproj", "{EEB21BEF-1037-430D-ABBC-0E34961BD615}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,10 +41,6 @@ Global
 		{7F85C20D-4F2B-4038-9696-52B1E89BD461}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7F85C20D-4F2B-4038-9696-52B1E89BD461}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7F85C20D-4F2B-4038-9696-52B1E89BD461}.Release|Any CPU.Build.0 = Release|Any CPU
-		{563F8623-42FC-41C4-ACD2-4E9400F8B660}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{563F8623-42FC-41C4-ACD2-4E9400F8B660}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{563F8623-42FC-41C4-ACD2-4E9400F8B660}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{563F8623-42FC-41C4-ACD2-4E9400F8B660}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B9F0F929-F539-494C-BB1F-4145EC785F0A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B9F0F929-F539-494C-BB1F-4145EC785F0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B9F0F929-F539-494C-BB1F-4145EC785F0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -75,6 +73,14 @@ Global
 		{FD46B6A9-883C-4FC5-971D-9ADF6C2B77DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FD46B6A9-883C-4FC5-971D-9ADF6C2B77DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FD46B6A9-883C-4FC5-971D-9ADF6C2B77DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{563F8623-42FC-41C4-ACD2-4E9400F8B660}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{563F8623-42FC-41C4-ACD2-4E9400F8B660}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{563F8623-42FC-41C4-ACD2-4E9400F8B660}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{563F8623-42FC-41C4-ACD2-4E9400F8B660}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EEB21BEF-1037-430D-ABBC-0E34961BD615}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EEB21BEF-1037-430D-ABBC-0E34961BD615}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EEB21BEF-1037-430D-ABBC-0E34961BD615}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EEB21BEF-1037-430D-ABBC-0E34961BD615}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
