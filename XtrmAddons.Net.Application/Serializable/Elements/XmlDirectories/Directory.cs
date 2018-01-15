@@ -10,6 +10,7 @@ namespace XtrmAddons.Net.Application.Serializable.Elements.XmlDirectories
     /// Class XtrmAddons Net Application Serializable Elements XML Directory.
     /// </summary>
     [Serializable]
+    [XmlRoot(ElementName = "Directory")]
     public class Directory : ElementBase
     {
         #region Properties

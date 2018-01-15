@@ -16,7 +16,12 @@ namespace XtrmAddons.Net.Application.Serializable.Elements.XmlDatabases
         /// <summary>
         /// Class XtrmAddons Net Application Serializable Elements XML Databases Constructor.
         /// </summary>
-        public Databases(List<Database> elements = null) : base(elements) { }
+        public Databases() : base() { }
+
+        /// <summary>
+        /// Class XtrmAddons Net Application Serializable Elements XML Databases Constructor.
+        /// </summary>
+        public Databases(List<Database> elements) : base(elements) { }
 
         #endregion
 

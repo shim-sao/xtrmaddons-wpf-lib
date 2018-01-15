@@ -16,9 +16,8 @@ namespace XtrmAddons.Net.Application.Serializable.Elements.XmlElementBase
 
         /// <summary>
         /// Property list of elements.
-        /// </summary>
-        [XmlElement(ElementName = nameof(T))]
-        public List<T> Elements { get; set; }
+        /// </summary
+        public virtual List<T> Elements { get; set; }
 
         #endregion
 
@@ -29,16 +28,17 @@ namespace XtrmAddons.Net.Application.Serializable.Elements.XmlElementBase
         /// <summary>
         /// Class XtrmAddons Net Application Serializable Elements XML Elements Base Constructor.
         /// </summary>
-        public ElementsBase(List<T> elements = null)
+        public ElementsBase()
         {
-            if(elements is null)
-            {
-                Elements = new List<T>();
-            }
-            else
-            {
-                Elements = elements;
-            }
+            Elements = new List<T>();
+        }
+
+        /// <summary>
+        /// Class XtrmAddons Net Application Serializable Elements XML Elements Base Constructor.
+        /// </summary>
+        public ElementsBase(List<T> elements)
+        {
+            Elements = elements;
         }
 
         #endregion

@@ -242,6 +242,35 @@ namespace XtrmAddons.Net.Application
         }
 
         /// <summary>
+        /// <para>Property to access to the application theme directory.</para>
+        /// <para>A new theme directory will be created on the first call if the directory is not found.</para>
+        /// </summary>
+        public static string ThemeDirectory
+        {
+            get
+            {
+                if (preferences.SpecialDirectories.Theme.IsNullOrWhiteSpace())
+                {
+                    preferences.SpecialDirectories.Theme = Path.Combine(BaseDirectory, SpecialDirectoriesName.Theme.Name());
+                    if (!System.IO.Directory.Exists(preferences.SpecialDirectories.Theme))
+                    {
+                        System.IO.Directory.CreateDirectory(preferences.SpecialDirectories.Theme);
+                    }
+                }
+                return preferences.SpecialDirectories.Theme;
+            }
+            set
+            {
+                if (!System.IO.Directory.Exists(value))
+                {
+                    System.IO.Directory.CreateDirectory(value);
+                }
+
+                preferences.SpecialDirectories.Theme = value;
+            }
+        }
+
+        /// <summary>
         /// Property to access to the default assets images directory.
         /// </summary>
         public static string AssetsImagesDefaultDirectory
@@ -305,7 +334,7 @@ namespace XtrmAddons.Net.Application
             serializer.UnknownAttribute += new XmlAttributeEventHandler(Serializer_UnknownAttribute);
 
             // A FileStream is needed to read the XML document.
-            using (FileStream fs = new FileStream(FilePreferencesXml, FileMode.Open))
+            using (FileStream fs = new FileStream(filename, FileMode.Open))
             {
                 // Use the Deserialize method to restore the object's state with data from the XML document.
                 return (T)serializer.Deserialize(fs);
@@ -379,25 +408,25 @@ namespace XtrmAddons.Net.Application
         {
             // Create an instance of the XmlSerializer class;
             // specify the type of object to serialize.
-            XmlSerializer serializerPreferences = new XmlSerializer(typeof(Preferences));
             using (TextWriter writer = new StreamWriter(FilePreferencesXml))
             {
+                XmlSerializer serializerPreferences = new XmlSerializer(typeof(Preferences));
                 serializerPreferences.Serialize(writer, preferences);
             }
 
             // Create an instance of the XmlSerializer class;
             // specify the type of object to serialize.
-            XmlSerializer serializerOptions = new XmlSerializer(typeof(Options));
             using (TextWriter writer = new StreamWriter(FileOptionsXml))
             {
+                XmlSerializer serializerOptions = new XmlSerializer(typeof(Options));
                 serializerOptions.Serialize(writer, options);
             }
 
             // Create an instance of the XmlSerializer class;
             // specify the type of object to serialize.
-            XmlSerializer serializerUi = new XmlSerializer(typeof(UserInterface));
             using (TextWriter writer = new StreamWriter(FileUiXml))
             {
+                XmlSerializer serializerUi = new XmlSerializer(typeof(UserInterface));
                 serializerUi.Serialize(writer, ui);
             }
         }

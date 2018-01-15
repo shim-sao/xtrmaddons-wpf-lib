@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Windows;
-using XtrmAddons.Net.Application.Serializable.Elements;
+using XtrmAddons.Net.Application.Serializable.Elements.XmlDirectories;
+using XtrmAddons.Net.Application.Serializable.Elements.XmlServerInfo;
 using XtrmAddons.Net.Network;
-using ServerData = XtrmAddons.Net.Application.Serializable.Elements.ServerInfo;
 
 namespace XtrmAddons.Net.Application.Examples
 {
@@ -41,8 +41,8 @@ namespace XtrmAddons.Net.Application.Examples
             ApplicationBase.Directories.Set("cfg.database", "Database", true, SpecialDirectoriesExtensions.RootDirectory(SpecialDirectoriesName.Config));
 
             // Retrieving application folders absolute path.
-            Console.WriteLine("cfg.server = " + ApplicationBase.Directories.Get("cfg.server").AbsolutePath);
-            Console.WriteLine("cfg.database = " + ApplicationBase.Directories.Get("cfg.database").AbsolutePath);
+            Console.WriteLine("cfg.server = " + ApplicationBase.Directories.Find("cfg.server").AbsolutePath);
+            Console.WriteLine("cfg.database = " + ApplicationBase.Directories.Find("cfg.database").AbsolutePath);
         }
 
         /// <summary>
@@ -52,7 +52,7 @@ namespace XtrmAddons.Net.Application.Examples
         {
             // Get default server in preferences.
             Console.WriteLine("Initializing HTTP server informations. Please wait...");
-            ServerData server = ApplicationBase.Options.Servers.Default();
+            ServerInfo server = ApplicationBase.Options.Servers.Default();
 
             // Create default server parameters if not exists.
             if (server == null || server.Key == null)
@@ -60,7 +60,7 @@ namespace XtrmAddons.Net.Application.Examples
                 server = ApplicationBase.Options.Servers.Set
                     (
                         "default",
-                        ServerType.Server,
+                        ServerInfoType.Server,
                         true,
                         NetworkInformations.GetLocalHostIp(),
                         NetworkInformations.GetAvailablePort(6666).ToString(),

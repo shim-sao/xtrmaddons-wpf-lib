@@ -15,7 +15,12 @@ namespace XtrmAddons.Net.Application.Serializable.Elements.XmlServerInfo
         /// <summary>
         /// Class XtrmAddons Net Application Serializable Elements XML Servers Informations Constructor.
         /// </summary>
-        public ServerInfos(List<ServerInfo> elements = null) : base(elements) { }
+        public ServerInfos() : base() { }
+
+        /// <summary>
+        /// Class XtrmAddons Net Application Serializable Elements XML Servers Informations Constructor.
+        /// </summary>
+        public ServerInfos(List<ServerInfo> elements) : base(elements) { }
 
         #endregion
 

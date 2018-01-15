@@ -7,7 +7,7 @@ namespace XtrmAddons.Net.Application.Serializable
     /// <summary>
     /// Class XtrmAddons Net Application Serializable Preferences.
     /// </summary>
-    [XmlRootAttribute("Configuration", Namespace= "http://www.xtrmaddons.com/", IsNullable = false)]
+    [XmlRoot("Configuration", Namespace= "http://www.xtrmaddons.com/", IsNullable = false)]
     public class Preferences
     {
         #region Properties

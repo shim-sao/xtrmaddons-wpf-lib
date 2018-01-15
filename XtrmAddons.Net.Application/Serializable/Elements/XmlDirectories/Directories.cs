@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Xml.Serialization;
 using XtrmAddons.Net.Application.Serializable.Elements.XmlElementBase;
 
 namespace XtrmAddons.Net.Application.Serializable.Elements.XmlDirectories
@@ -10,12 +11,29 @@ namespace XtrmAddons.Net.Application.Serializable.Elements.XmlDirectories
     [Serializable]
     public class Directories : ElementsBase<Directory>
     {
+        #region Properties
+
+        /// <summary>
+        /// Property list of Directory.
+        /// </summary>
+        //[XmlElement(ElementName = "Directory"]
+       // public override List<Directory> Elements { get; set; }
+
+        #endregion
+
+
+
         #region Constructors
 
         /// <summary>
         /// Class XtrmAddons Net Application Serializable Elements XML Directories Constructor.
         /// </summary>
-        public Directories(List<Directory> elements = null) : base (elements) { }
+        public Directories() : base() { }
+
+        /// <summary>
+        /// Class XtrmAddons Net Application Serializable Elements XML Directories Constructor.
+        /// </summary>
+        public Directories(List<Directory> elements) : base(elements) { }
 
         #endregion
 

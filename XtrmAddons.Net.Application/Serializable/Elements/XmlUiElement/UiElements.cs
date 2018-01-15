@@ -15,10 +15,12 @@ namespace XtrmAddons.Net.Application.Serializable.Elements.XmlUiElement
         /// <summary>
         /// Class XtrmAddons Net Application Serializable Elements UI Elements Constructor.
         /// </summary>
-        public UiElements()
-        {
-            Elements = new List<UiElement>();
-        }
+        public UiElements() : base() { }
+
+        /// <summary>
+        /// Class XtrmAddons Net Application Serializable Elements UI Elements Constructor.
+        /// </summary>
+        public UiElements(List<UiElement> elements) : base(elements) { }
 
         #endregion
 
