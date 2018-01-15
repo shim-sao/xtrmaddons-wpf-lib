@@ -32,27 +32,20 @@ namespace XtrmAddons.Net.Application.Serializable
         [XmlElement("Servers")]
         public ServerInfos Servers;
 
-        /// <summary>
-        /// Property list of UI Elements.
-        /// </summary>
-        [XmlElement("UI")]
-        public UiElements UI;
-
         #endregion
 
 
 
-        #region Methods
+        #region Constructors
 
         /// <summary>
-        /// Class XtrmAddons Net Application Serializable Options constructor.
+        /// Class XtrmAddons Net Application Serializable Options Constructor.
         /// </summary>
         public Options()
         {
             Databases = new Databases();
             Directories = new Directories();
             Servers = new ServerInfos();
-            UI = new UiElements();
         }
 
         #endregion

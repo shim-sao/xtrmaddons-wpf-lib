@@ -68,6 +68,7 @@
     <Compile Include="Serializable\Preferences.cs" />
     <Compile Include="Serializable\Elements\XmlDirectories\SpecialDirectories.cs" />
     <Compile Include="ApplicationBase.cs" />
+    <Compile Include="Serializable\UserInterface.cs" />
     <Compile Include="Tools\ApplicationTools.cs" />
   </ItemGroup>
   <ItemGroup>

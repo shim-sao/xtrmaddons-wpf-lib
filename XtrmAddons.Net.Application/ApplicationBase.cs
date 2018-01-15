@@ -35,55 +35,61 @@ namespace XtrmAddons.Net.Application
         /// <summary>
         /// Variable application serializable user interface.
         /// </summary>
-        private static UserInterface UI;
+        private static UserInterface ui;
 
         /// <summary>
-        /// 
+        /// Constant preferences XML file name. 
         /// </summary>
         private const string filePreferencesXmlName = "preferences.xml";
 
         /// <summary>
-        /// 
+        /// Constant options XML file name.
         /// </summary>
         private const string fileOptionsXmlName = "options.xml";
 
         /// <summary>
-        /// 
+        /// Constant user interface XML file name.
         /// </summary>
         private const string fileUiXmlName = "ui.xml";
 
-        #endregion Variables
+        #endregion
+
 
 
         #region Properties
 
         /// <summary>
-        /// Property access to directories preferences.
+        /// Property to access to the preferences directories.
         /// </summary>
         public static Directories Directories => preferences.Directories;
 
         /// <summary>
-        /// Property application options serializable.
+        /// Property to access to the application options.
         /// </summary>
         public static Options Options { get { return options; } }
 
         /// <summary>
-        /// Property default config directory.
+        /// Property to access to the application user interface.
+        /// </summary>
+        public static UserInterface UI { get { return ui; } }
+
+        /// <summary>
+        /// Property to access to the preferences directory file absolute path.
         /// </summary>
         private static string FilePreferencesXml => Path.Combine(UserMyDocumentsDirectory, filePreferencesXmlName);
 
         /// <summary>
-        /// Property default config directory.
+        /// Property to access to the options directory file absolute path.
         /// </summary>
         private static string FileOptionsXml => Path.Combine(ConfigDirectory, fileOptionsXmlName);
 
         /// <summary>
-        /// Property default config directory.
+        /// Property to access to the user interface directory file absolute path.
         /// </summary>
         private static string FileUiXml => Path.Combine(ConfigDirectory, fileUiXmlName);
 
         /// <summary>
-        /// Property default application directory.
+        /// Property to access to the application base directory.
         /// </summary>
         public static string BaseDirectory
         {
@@ -109,7 +115,7 @@ namespace XtrmAddons.Net.Application
         }
 
         /// <summary>
-        /// Property default application directory.
+        /// Property to access to the user defined language.
         /// </summary>
         public static string Language
         {
@@ -127,7 +133,8 @@ namespace XtrmAddons.Net.Application
         }
 
         /// <summary>
-        /// Property default cache directory.
+        /// <para>Property to access to the cache directory.</para>
+        /// <para>A new cache directory will be created on the first call if the directory is not found.</para>
         /// </summary>
         public static string CacheDirectory
         {
@@ -152,7 +159,8 @@ namespace XtrmAddons.Net.Application
         }
 
         /// <summary>
-        /// Property default application custom Config directory.
+        /// <para>Property to access to the application custom configuration directory.</para>
+        /// <para>A new config directory will be created on the first call if the directory is not found.</para>
         /// </summary>
         public static string ConfigDirectory
         {
@@ -167,13 +175,17 @@ namespace XtrmAddons.Net.Application
             set
             {
                 if (!System.IO.Directory.Exists(value))
+                {
                     System.IO.Directory.CreateDirectory(value);
+                }
+
                 preferences.SpecialDirectories.Config = value;
             }
         }
 
         /// <summary>
-        /// Property default data directory.
+        /// <para>Property to access to the application data directory.</para>
+        /// <para>A new data directory will be created on the first call if the directory is not found.</para>
         /// </summary>
         public static string DataDirectory
         {
@@ -183,21 +195,27 @@ namespace XtrmAddons.Net.Application
                 {
                     preferences.SpecialDirectories.Data = Path.Combine(BaseDirectory, SpecialDirectoriesName.Data.Name());
                     if (!System.IO.Directory.Exists(preferences.SpecialDirectories.Data))
+                    {
                         System.IO.Directory.CreateDirectory(preferences.SpecialDirectories.Data);
+                    }
                 }
                 return preferences.SpecialDirectories.Data;
             }
             set
             {
                 if (!System.IO.Directory.Exists(value))
+                {
                     System.IO.Directory.CreateDirectory(value);
+                }
+
                 preferences.SpecialDirectories.Data = value;
             }
         }
-        
+
         /// <summary>
-         /// Property default logs directory.
-         /// </summary>
+        /// <para>Property to access to the application logs directory.</para>
+        /// <para>A new logs directory will be created on the first call if the directory is not found.</para>
+        /// </summary>
         public static string LogsDirectory
         {
             get
@@ -206,20 +224,25 @@ namespace XtrmAddons.Net.Application
                 {
                     preferences.SpecialDirectories.Logs = Path.Combine(BaseDirectory, SpecialDirectoriesName.Logs.Name());
                     if (!System.IO.Directory.Exists(preferences.SpecialDirectories.Logs))
+                    {
                         System.IO.Directory.CreateDirectory(preferences.SpecialDirectories.Logs);
+                    }
                 }
                 return preferences.SpecialDirectories.Logs;
             }
             set
             {
                 if (!System.IO.Directory.Exists(value))
+                {
                     System.IO.Directory.CreateDirectory(value);
+                }
+
                 preferences.SpecialDirectories.Logs = value;
             }
         }
 
         /// <summary>
-        /// Property default assets images directory.
+        /// Property to access to the default assets images directory.
         /// </summary>
         public static string AssetsImagesDefaultDirectory
         {
@@ -227,7 +250,7 @@ namespace XtrmAddons.Net.Application
         }
 
         /// <summary>
-        /// Property default assets images directory.
+        /// Property to access to the default assets icons directory.
         /// </summary>
         public static string AssetsImagesIconsDirectory
         {
@@ -235,23 +258,14 @@ namespace XtrmAddons.Net.Application
         }
 
         /// <summary>
-        /// Method to get Window User My Documents path.
+        /// Property to get Window User My Documents path.
         /// </summary>
         /// <returns>The absolute path to Window User My Documents.</returns>
-        public static string UserMyDocumentsDirectory
-        {
-            get
-            {
-                return Path.Combine(
-                    Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
-                        ApplicationFriendlyName
-                    )
-                ;
-            }
-        }
+        public static string UserMyDocumentsDirectory 
+            => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), ApplicationFriendlyName);
 
         /// <summary>
-        /// Method to get the application friendly name.
+        /// <para>Method to get the application friendly name.</para>
         /// <para>This method remove extensions from file name.</para>
         /// </summary>
         /// <returns>The cleaned application friendly name.</returns>
@@ -271,43 +285,75 @@ namespace XtrmAddons.Net.Application
         {
             LoadPreferences();
             LoadOptions();
+            LoadUi();
         }
 
         /// <summary>
-        /// Method to load application preferences.
+        /// Method to load and deserialize an XML file.
+        /// </summary>
+        /// <typeparam name="T">The Class of object to deserialize.</typeparam>
+        /// <param name="filename">The file name, absolute file path.</param>
+        /// <returns>A deserialized XML object.</returns>
+        public static T Deserialize<T>(string filename) where T : class
+        {
+            // Create an instance of the XmlSerializer class;
+            // specify the type of object to serialize.
+            XmlSerializer serializer = new XmlSerializer(typeof(T));
+
+            // If the XML document has been altered with unknown nodes or attributes, handle them with the UnknownNode and UnknownAttribute events.
+            serializer.UnknownNode += new XmlNodeEventHandler(Serializer_UnknownNode);
+            serializer.UnknownAttribute += new XmlAttributeEventHandler(Serializer_UnknownAttribute);
+
+            // A FileStream is needed to read the XML document.
+            using (FileStream fs = new FileStream(FilePreferencesXml, FileMode.Open))
+            {
+                // Use the Deserialize method to restore the object's state with data from the XML document.
+                return (T)serializer.Deserialize(fs);
+            }
+        }
+
+        /// <summary>
+        /// Method to load the application user interface.
+        /// </summary>
+        public static void LoadUi()
+        {
+            if (!File.Exists(FileUiXml))
+            {
+                if (!System.IO.Directory.Exists(UserMyDocumentsDirectory))
+                {
+                    System.IO.Directory.CreateDirectory(UserMyDocumentsDirectory);
+                }
+
+                ui = new UserInterface();
+            }
+            else if (preferences == null)
+            {
+                ui = Deserialize<UserInterface>(FileUiXml);
+            }
+        }
+
+        /// <summary>
+        /// Method to load the application preferences.
         /// </summary>
         public static void LoadPreferences()
         {
             if (!File.Exists(FilePreferencesXml))
             {
                 if (!System.IO.Directory.Exists(UserMyDocumentsDirectory))
+                {
                     System.IO.Directory.CreateDirectory(UserMyDocumentsDirectory);
+                }
 
                 preferences = new Preferences();
             }
             else if (preferences == null)
             {
-                // Create an instance of the XmlSerializer class;
-                // specify the type of object to serialize.
-                XmlSerializer serializer = new XmlSerializer(typeof(Preferences));
-
-                /* If the XML document has been altered with unknown 
-                nodes or attributes, handle them with the 
-                UnknownNode and UnknownAttribute events.*/
-                serializer.UnknownNode += new XmlNodeEventHandler(Serializer_UnknownNode);
-                serializer.UnknownAttribute += new XmlAttributeEventHandler(Serializer_UnknownAttribute);
-
-                // A FileStream is needed to read the XML document.
-                using (FileStream fs = new FileStream(FilePreferencesXml, FileMode.Open))
-                {
-                    /* Use the Deserialize method to restore the object's state with data from the XML document. */
-                    preferences = (Preferences)serializer.Deserialize(fs);
-                }
+                preferences = Deserialize<Preferences>(FilePreferencesXml);
             }
         }
 
         /// <summary>
-        /// Method to load application options.
+        /// Method to load the application options.
         /// </summary>
         public static void LoadOptions()
         {
@@ -322,27 +368,12 @@ namespace XtrmAddons.Net.Application
             }
             else if (options == null)
             {
-                // Create an instance of the XmlSerializer class;
-                // specify the type of object to serialize.
-                XmlSerializer serializer = new XmlSerializer(typeof(Options));
-
-                /* If the XML document has been altered with unknown 
-                nodes or attributes, handle them with the 
-                UnknownNode and UnknownAttribute events.*/
-                serializer.UnknownNode += new XmlNodeEventHandler(Serializer_UnknownNode);
-                serializer.UnknownAttribute += new XmlAttributeEventHandler(Serializer_UnknownAttribute);
-
-                // A FileStream is needed to read the XML document.
-                using (FileStream fs = new FileStream(FileOptionsXml, FileMode.Open))
-                {
-                    /* Use the Deserialize method to restore the object's state with data from the XML document. */
-                    options = (Options)serializer.Deserialize(fs);
-                }
+                options = Deserialize<Options>(FileOptionsXml);
             }
         }
 
         /// <summary>
-        /// Method to save application preferences and options.
+        /// Method to save the application preferences, options and user interface.
         /// </summary>
         public static void Save()
         {
@@ -361,13 +392,21 @@ namespace XtrmAddons.Net.Application
             {
                 serializerOptions.Serialize(writer, options);
             }
+
+            // Create an instance of the XmlSerializer class;
+            // specify the type of object to serialize.
+            XmlSerializer serializerUi = new XmlSerializer(typeof(UserInterface));
+            using (TextWriter writer = new StreamWriter(FileUiXml))
+            {
+                serializerUi.Serialize(writer, ui);
+            }
         }
 
         /// <summary>
         /// Method to handle unknown-ed XML nodes.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">The object sender of the event</param>
+        /// <param name="e">XML node event arguments.</param>
         private static void Serializer_UnknownNode (object sender, XmlNodeEventArgs e)
         {
             Console.WriteLine("Unknown Node:" + e.Name + "\t" + e.Text);
@@ -376,8 +415,8 @@ namespace XtrmAddons.Net.Application
         /// <summary>
         /// Method to handle unknown-ed XML attributes.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">The object sender of the event</param>
+        /// <param name="e">XML node event arguments.</param>
         private static void Serializer_UnknownAttribute (object sender, XmlAttributeEventArgs e)
         {
             System.Xml.XmlAttribute attr = e.Attr;

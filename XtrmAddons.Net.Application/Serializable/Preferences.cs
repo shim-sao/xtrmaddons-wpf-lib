@@ -36,12 +36,6 @@ namespace XtrmAddons.Net.Application.Serializable
         [XmlElement("SpecialDirectories")]
         public SpecialDirectories SpecialDirectories;
 
-        /// <summary>
-        /// Property list of UI Elements.
-        /// </summary>
-        [XmlElement("UI")]
-        public UiElements UI;
-
         #endregion
 
 
@@ -54,7 +48,6 @@ namespace XtrmAddons.Net.Application.Serializable
         {
             SpecialDirectories = new SpecialDirectories();
             Directories = new Directories();
-            UI = new UiElements();
         }
 
         #endregion
