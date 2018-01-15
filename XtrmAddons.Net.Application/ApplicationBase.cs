@@ -23,14 +23,19 @@ namespace XtrmAddons.Net.Application
             log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         /// <summary>
-        /// Variable application preferences serializable.
+        /// Variable application serializable preferences.
         /// </summary>
         private static Preferences preferences;
 
         /// <summary>
-        /// Variable application options serializable.
+        /// Variable application serializable options.
         /// </summary>
         private static Options options;
+
+        /// <summary>
+        /// Variable application serializable user interface.
+        /// </summary>
+        private static UserInterface UI;
 
         /// <summary>
         /// 
@@ -41,6 +46,11 @@ namespace XtrmAddons.Net.Application
         /// 
         /// </summary>
         private const string fileOptionsXmlName = "options.xml";
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private const string fileUiXmlName = "ui.xml";
 
         #endregion Variables
 
@@ -66,6 +76,11 @@ namespace XtrmAddons.Net.Application
         /// Property default config directory.
         /// </summary>
         private static string FileOptionsXml => Path.Combine(ConfigDirectory, fileOptionsXmlName);
+
+        /// <summary>
+        /// Property default config directory.
+        /// </summary>
+        private static string FileUiXml => Path.Combine(ConfigDirectory, fileUiXmlName);
 
         /// <summary>
         /// Property default application directory.

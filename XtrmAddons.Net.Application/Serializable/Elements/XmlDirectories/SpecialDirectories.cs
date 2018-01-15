@@ -32,6 +32,12 @@ namespace XtrmAddons.Net.Application.Serializable.Elements.XmlDirectories
         /// </summary>
         [XmlAttribute(DataType = "string", AttributeName = "Logs")]
         public string Logs;
+
+        /// <summary>
+        /// Property application theme directory.
+        /// </summary>
+        [XmlAttribute(DataType = "string", AttributeName = "Theme")]
+        public string Theme;
     }
 
 
@@ -63,7 +69,13 @@ namespace XtrmAddons.Net.Application.Serializable.Elements.XmlDirectories
         /// Application logs special directory.
         /// </summary>
         [XmlEnum(Name = "Logs")]
-        Logs
+        Logs,
+
+        /// <summary>
+        /// Application logs special directory.
+        /// </summary>
+        [XmlEnum(Name = "Theme")]
+        Theme
     }
 
 
@@ -92,6 +104,9 @@ namespace XtrmAddons.Net.Application.Serializable.Elements.XmlDirectories
 
                 case SpecialDirectoriesName.Logs:
                     return "Logs";
+
+                case SpecialDirectoriesName.Theme:
+                    return "Theme";
             }
 
             return null;
@@ -116,7 +131,10 @@ namespace XtrmAddons.Net.Application.Serializable.Elements.XmlDirectories
                     return "{Data}";
 
                 case SpecialDirectoriesName.Logs:
-                    return "{Logs}";
+                    return "{Logs}"; ;
+
+                case SpecialDirectoriesName.Theme:
+                    return "{Theme}";
             }
 
             return null;
