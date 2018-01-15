@@ -3,14 +3,14 @@
 namespace XtrmAddons.Net.Application
 {
     /// <summary>
-    /// Class provided to manage application session.
-    /// Share accessibility to objects to all application components.
+    /// <para>Class XtrmAddons Net Application Session</para>
+    /// <para>This class can be used to manage global application objects.</para>
     /// </summary>
     public class ApplicationSession
     {
         /// <summary>
-        /// Variable application session properties key|value.
+        /// Property to access to the application session properties in dynamic key|value pair.
         /// </summary>
-        public static dynamic Properties = new ExpandoObject();
+        public static dynamic Properties { get; } = new ExpandoObject();
     }
 }
