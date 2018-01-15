@@ -1,13 +1,16 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Xml.Serialization;
+using XtrmAddons.Net.Application.Serializable.Elements.XmlElementBase;
 using XtrmAddons.Net.Common.Extensions;
 
-namespace XtrmAddons.Net.Application.Serializable.Elements
+namespace XtrmAddons.Net.Application.Serializable.Elements.XmlDirectories
 {
     /// <summary>
-    /// Class XtrmAddons Net Application Serializable Elements Directory.
+    /// Class XtrmAddons Net Application Serializable Elements XML Directory.
     /// </summary>
-    public class Directory : Element
+    [Serializable]
+    public class Directory : ElementBase
     {
         #region Properties
 
@@ -38,30 +41,41 @@ namespace XtrmAddons.Net.Application.Serializable.Elements
             get
             {
                 if(!IsRelative)
+                {
                     return RelativePath;
+                }
 
                 if (!RelativePath.IsNullOrWhiteSpace())
+                {
                     return Path.Combine(GetRootAbsolutePath(), RelativePath);
+                }
 
                 return null;
             }
         }
 
-        #endregion Properties
+        #endregion
+
 
 
         #region Methods
 
         /// <summary>
-        /// Class XtrmAddons Net Application Serializable Elements Directory constructor.
+        /// Class XtrmAddons Net Application Serializable Elements XML Directory Constructor.
         /// </summary>
-        public Directory() : base() {}
+        public Directory() : base() { }
+
+        #endregion
+
+
+
+        #region Methods
 
 
         /// <summary>
-        /// Method to get absolute path root directory.
+        /// Method to get the absolute path of the root of the directory.
         /// </summary>
-        /// <returns>The absolute path root directory.</returns>
+        /// <returns>The absolute path of the root of the directory.</returns>
         private string GetRootAbsolutePath()
         {
             switch (Root)
@@ -86,5 +100,5 @@ namespace XtrmAddons.Net.Application.Serializable.Elements
         }
     }
 
-    #endregion Methods
+    #endregion
 }

@@ -1,5 +1,8 @@
 ﻿using System.Xml.Serialization;
-using XtrmAddons.Net.Application.Serializable.Elements;
+using XtrmAddons.Net.Application.Serializable.Elements.XmlDatabases;
+using XtrmAddons.Net.Application.Serializable.Elements.XmlDirectories;
+using XtrmAddons.Net.Application.Serializable.Elements.XmlServerInfo;
+using XtrmAddons.Net.Application.Serializable.Elements.XmlUiElement;
 
 namespace XtrmAddons.Net.Application.Serializable
 {
@@ -27,9 +30,16 @@ namespace XtrmAddons.Net.Application.Serializable
         /// Property list of servers.
         /// </summary>
         [XmlElement("Servers")]
-        public Servers Servers;
+        public ServerInfos Servers;
 
-        #endregion Properties
+        /// <summary>
+        /// Property list of UI Elements.
+        /// </summary>
+        [XmlElement("UI")]
+        public UiElements UI;
+
+        #endregion
+
 
 
         #region Methods
@@ -41,9 +51,10 @@ namespace XtrmAddons.Net.Application.Serializable
         {
             Databases = new Databases();
             Directories = new Directories();
-            Servers = new Servers();
+            Servers = new ServerInfos();
+            UI = new UiElements();
         }
 
-        #endregion Methods
+        #endregion
     }
 }

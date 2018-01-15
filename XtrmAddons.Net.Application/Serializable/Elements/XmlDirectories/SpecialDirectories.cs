@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Xml.Serialization;
 
-namespace XtrmAddons.Net.Application.Serializable.Elements
+namespace XtrmAddons.Net.Application.Serializable.Elements.XmlDirectories
 {
     /// <summary>
-    /// Class XtrmAddons Net Application Serializable Elements Specials Directories.
+    /// Class XtrmAddons Net Application Serializable Elements XML Specials Directories.
     /// </summary>
+    [Serializable]
     public class SpecialDirectories
     {
         /// <summary>
@@ -35,7 +36,7 @@ namespace XtrmAddons.Net.Application.Serializable.Elements
 
 
     /// <summary>
-    /// Enumerator of application special directories.
+    /// Enumerator XtrmAddons Net Application Serializable Elements XML Specials Directories Name.
     /// </summary>
     [Serializable]
     public enum SpecialDirectoriesName
@@ -67,10 +68,35 @@ namespace XtrmAddons.Net.Application.Serializable.Elements
 
 
     /// <summary>
-    /// Class XtrmAddons Net Application Serializable Elements Specials Directories Extensions.
+    /// Class XtrmAddons Net Application Serializable Elements XML Specials Directories Name Extensions.
     /// </summary>
     public static class SpecialDirectoriesExtensions
     {
+        /// <summary>
+        /// Method to get Special Directories Enumerator string name.
+        /// </summary>
+        /// <param name="sdn">A Special Directories Name.</param>
+        /// <returns>The special Directories Name string.</returns>
+        public static string Name(this SpecialDirectoriesName sdn)
+        {
+            switch (sdn)
+            {
+                case SpecialDirectoriesName.Cache:
+                    return "Cache";
+
+                case SpecialDirectoriesName.Config:
+                    return "Config";
+
+                case SpecialDirectoriesName.Data:
+                    return "Data";
+
+                case SpecialDirectoriesName.Logs:
+                    return "Logs";
+            }
+
+            return null;
+        }
+
         /// <summary>
         /// Method to get Special Directories Enumerator to root directory string.
         /// </summary>
@@ -78,11 +104,11 @@ namespace XtrmAddons.Net.Application.Serializable.Elements
         /// <returns>The root directory Special Directories Name.</returns>
         public static string RootDirectory(this SpecialDirectoriesName sdn)
         {
-            switch(sdn)
+            switch (sdn)
             {
                 case SpecialDirectoriesName.Cache:
                     return "{Cache}";
-                    
+
                 case SpecialDirectoriesName.Config:
                     return "{Config}";
 

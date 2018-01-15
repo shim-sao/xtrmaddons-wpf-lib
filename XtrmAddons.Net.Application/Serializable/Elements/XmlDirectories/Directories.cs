@@ -1,47 +1,39 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Xml.Serialization;
+﻿using System;
+using System.Collections.Generic;
+using XtrmAddons.Net.Application.Serializable.Elements.XmlElementBase;
 
-namespace XtrmAddons.Net.Application.Serializable.Elements
+namespace XtrmAddons.Net.Application.Serializable.Elements.XmlDirectories
 {
     /// <summary>
-    /// Class XtrmAddons Net Application Serializable Elements Directories.
+    /// Class XtrmAddons Net Application Serializable Elements XML Directories.
     /// </summary>
-    public class Directories
+    [Serializable]
+    public class Directories : ElementsBase<Directory>
     {
-        #region Properties
+        #region Constructors
 
         /// <summary>
-        /// Property list of directories elements.
+        /// Class XtrmAddons Net Application Serializable Elements XML Directories Constructor.
         /// </summary>
-        [XmlElement("Directory")]
-        public List<Directory> Elements { get; set; }
+        public Directories(List<Directory> elements = null) : base (elements) { }
 
-        #endregion Properties
+        #endregion
+
 
 
         #region Methods
 
         /// <summary>
-        /// Class XtrmAddons Net Application Serializable Elements Directories constructor.
+        /// Method to update a directory informations in the list.
         /// </summary>
-        public Directories()
+        /// <param name="item">The directory informations to update.</param>
+        public override void Update(Directory item)
         {
-            Elements = new List<Directory>();
+            Set(item.Key, item.RelativePath, item.IsRelative, item.Root, item.Default);
         }
 
         /// <summary>
-        /// Method to get a directory by its Key property.
-        /// </summary>
-        /// <param name="key">A directory Key.</param>
-        /// <returns>A Directory object or null.</returns>
-        public Directory Get(string key)
-        {
-            return Elements.SingleOrDefault(e => e.Key == key);
-        }
-
-        /// <summary>
-        ///  Method to set a directory in the list. Replace database properties if Key property exists.
+        ///  Method to set a directory in the list. Replace directory properties if Key property exists.
         /// </summary>
         /// <param name="key">A directory Key.</param>
         /// <param name="relativePath">The relative or absolute path of the directory.</param>
@@ -51,11 +43,11 @@ namespace XtrmAddons.Net.Application.Serializable.Elements
         /// <returns>A Directory object.</returns>
         public Directory Set(string key, string relativePath, bool isRelative = false, string root = "", bool Default = false)
         {
-            Directory el = Elements.SingleOrDefault(d => d.Key == key);
+            Directory el = Find(key);
 
             if (Default == true)
             {
-                Directory eldef = Elements.SingleOrDefault(d => d.Default == true);
+                Directory eldef = this.Default();
                 if (eldef != null && eldef.Key != null)
                 {
                     eldef.Default = false;
@@ -78,6 +70,6 @@ namespace XtrmAddons.Net.Application.Serializable.Elements
             return el;
         }
 
-        #endregion Methods
+        #endregion
     }
 }

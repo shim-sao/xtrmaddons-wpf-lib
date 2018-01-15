@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2010
+VisualStudioVersion = 15.0.27130.2020
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XtrmAddons.Net.Common", "XtrmAddons.Net.Common\XtrmAddons.Net.Common.csproj", "{1FE7F4B3-4393-4752-88A6-B4B06EA96206}"
 EndProject
@@ -26,6 +26,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XtrmAddons.Net.Picture", "XtrmAddons.Net.Picture\XtrmAddons.Net.Picture.csproj", "{563F8623-42FC-41C4-ACD2-4E9400F8B660}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XtrmAddons.Net.Windows", "XtrmAddons.Net.Windows\XtrmAddons.Net.Windows.csproj", "{EEB21BEF-1037-430D-ABBC-0E34961BD615}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XtrmAddons.Net.Application.Examples", "XtrmAddons.Net.Application.Examples\XtrmAddons.Net.Application.Examples.csproj", "{57D897AD-4872-4DA0-B28C-E49ABE23D2ED}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -81,6 +83,10 @@ Global
 		{EEB21BEF-1037-430D-ABBC-0E34961BD615}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EEB21BEF-1037-430D-ABBC-0E34961BD615}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EEB21BEF-1037-430D-ABBC-0E34961BD615}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57D897AD-4872-4DA0-B28C-E49ABE23D2ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57D897AD-4872-4DA0-B28C-E49ABE23D2ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57D897AD-4872-4DA0-B28C-E49ABE23D2ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57D897AD-4872-4DA0-B28C-E49ABE23D2ED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

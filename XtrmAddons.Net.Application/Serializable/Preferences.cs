@@ -1,5 +1,6 @@
 ﻿using System.Xml.Serialization;
-using XtrmAddons.Net.Application.Serializable.Elements;
+using XtrmAddons.Net.Application.Serializable.Elements.XmlDirectories;
+using XtrmAddons.Net.Application.Serializable.Elements.XmlUiElement;
 
 namespace XtrmAddons.Net.Application.Serializable
 {

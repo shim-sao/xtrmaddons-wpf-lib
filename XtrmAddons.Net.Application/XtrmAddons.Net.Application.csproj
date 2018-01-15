@@ -52,18 +52,21 @@
   <ItemGroup>
     <Compile Include="ApplicationSession.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Serializable\Elements\UiElements.cs" />
-    <Compile Include="Serializable\Elements\Servers.cs" />
-    <Compile Include="Serializable\Elements\Server.cs" />
-    <Compile Include="Serializable\Elements\Databases.cs" />
-    <Compile Include="Serializable\Elements\Database.cs" />
-    <Compile Include="Serializable\Elements\Directory.cs" />
-    <Compile Include="Serializable\Elements\Directories.cs" />
-    <Compile Include="Serializable\Elements\Element.cs" />
-    <Compile Include="Serializable\Elements\UiElement.cs" />
+    <Compile Include="Serializable\Elements\XmlElementBase\ElementsBase.cs" />
+    <Compile Include="Serializable\Elements\XmlUiElement\UiElements.cs" />
+    <Compile Include="Serializable\Elements\XmlServerInfo\ServerInfos.cs" />
+    <Compile Include="Serializable\Elements\XmlServerInfo\ServerInfo.cs" />
+    <Compile Include="Serializable\Elements\XmlDatabases\Databases.cs" />
+    <Compile Include="Serializable\Elements\XmlDatabases\Database.cs" />
+    <Compile Include="Serializable\Elements\XmlDirectories\Directory.cs" />
+    <Compile Include="Serializable\Elements\XmlDirectories\Directories.cs" />
+    <Compile Include="Serializable\Elements\XmlElementBase\ElementBase.cs" />
+    <Compile Include="Serializable\Elements\XmlUiElement\UiElement.cs" />
+    <Compile Include="Serializable\Interfaces\ISerializableElement.cs" />
+    <Compile Include="Serializable\Interfaces\ISerializableElements.cs" />
     <Compile Include="Serializable\Options.cs" />
     <Compile Include="Serializable\Preferences.cs" />
-    <Compile Include="Serializable\Elements\SpecialDirectories.cs" />
+    <Compile Include="Serializable\Elements\XmlDirectories\SpecialDirectories.cs" />
     <Compile Include="ApplicationBase.cs" />
     <Compile Include="Tools\ApplicationTools.cs" />
   </ItemGroup>

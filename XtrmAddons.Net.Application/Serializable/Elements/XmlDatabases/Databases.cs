@@ -1,43 +1,35 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-using System.Xml.Serialization;
+using XtrmAddons.Net.Application.Serializable.Elements.XmlElementBase;
 
-namespace XtrmAddons.Net.Application.Serializable.Elements
+namespace XtrmAddons.Net.Application.Serializable.Elements.XmlDatabases
 {
     /// <summary>
-    /// Class XtrmAddons Net Application Serializable Elements Databases.
+    /// Class XtrmAddons Net Application Serializable Elements XML Databases.
     /// </summary>
-    public class Databases
+    [Serializable]
+    public class Databases : ElementsBase<Database>
     {
-        #region Properties
+        #region Constructors
 
         /// <summary>
-        /// Property list of databases elements.
+        /// Class XtrmAddons Net Application Serializable Elements XML Databases Constructor.
         /// </summary>
-        [XmlElement("Database")]
-        public List<Database> Elements { get; set; }
+        public Databases(List<Database> elements = null) : base(elements) { }
 
-        #endregion Properties
+        #endregion
 
 
         #region Methods
 
         /// <summary>
-        /// Class XtrmAddons Net Application Serializable Elements Databases constructor.
+        /// Method to update a Database informations in the list.
         /// </summary>
-        public Databases()
+        /// <param name="item">The Database to update.</param>
+        public override void Update(Database item)
         {
-            Elements = new List<Database>();
-        }
-
-        /// <summary>
-        /// Method to get a database by its Key property.
-        /// </summary>
-        /// <param name="key">A database Key.</param>
-        /// <returns>A Database object or null.</returns>
-        public Database Get(string key)
-        {
-            return Elements.SingleOrDefault(e => e.Key == key);
+            Set(item.Key, item.Name, item.Type, item.Source, item.Host, item.Port, item.Default, item.UserName, item.Password, item.Comment);
         }
 
         /// <summary>
@@ -87,6 +79,7 @@ namespace XtrmAddons.Net.Application.Serializable.Elements
             return el;
         }
 
-        #endregion Methods
+
+        #endregion
     }
 }

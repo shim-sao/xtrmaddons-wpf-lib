@@ -1,6 +1,7 @@
 ﻿using Microsoft.CSharp.RuntimeBinder;
 using Newtonsoft.Json;
 using System;
+using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using PropertyInfo = System.Reflection.PropertyInfo;
@@ -26,27 +27,34 @@ namespace XtrmAddons.Net.Common.Extensions
         #region Methods
 
         /// <summary>
-        ///  Method to get property value of an object.
+        /// Method to get a value of a property of an object.
         /// </summary>
-        /// <param name="target">Target object.</param>
-        /// <param name="name">A name of a property.</param>
+        /// <param name="obj"></param>
+        /// <param name="propertyName"></param>
+        /// <param name="ignorecase"></param>
         /// <returns></returns>
-        public static object GetProperty(this object target, string name)
+        public static object GetPropertyValue(this object obj, string propertyName, bool ignorecase = false)
         {
+            if(obj == null)
+            {
+                return null;
+            }
+
             try
             {
-                var site = CallSite<Func<CallSite, object, object>>.Create(Binder.GetMember(0, name, target.GetType(), new[] { CSharpArgumentInfo.Create(0, null) }));
-                return site.Target(site, target);
+                PropertyDescriptor prop = TypeDescriptor.GetProperties(obj.GetType()).Find(propertyName, ignorecase);
+
+                if(prop != null)
+                {
+                    return prop.GetValue(obj);
+                }
+
+                throw new ArgumentException(String.Format("Object [{0}] property '{1}' doesn't exists !", obj.GetType(), propertyName));
             }
             catch (Exception e)
             {
-                log.Fatal("OjectExtension get object property. Failed !");
-                log.Fatal(target);
-                log.Fatal(string.Format("string property : {0} ", name));
-                log.Fatal(e.Message);
-                log.Fatal(e.StackTrace);
-
-                throw new InvalidOperationException("OjectExtension get object property. Failed !", e);
+                log.Fatal("OjectExtension.GetPropertyValue Failed !", e);
+                throw new InvalidOperationException("OjectExtension.GetPropertyValue Failed !", e);
             }
         }
 
@@ -57,13 +65,36 @@ namespace XtrmAddons.Net.Common.Extensions
         /// <param name="obj">The object to search in.</param>
         /// <param name="propertyName">A name of a property.</param>
         /// <returns>True if exists and not null otherwise false.</returns>
+        [System.Obsolete("Use HasProperty", true)]
         public static bool HasPropertyOrNull<T>(this T obj, string propertyName) where T : class
         {
-            return obj.GetProperty(propertyName) != null;
+            return obj.GetPropertyValue(propertyName) != null;
         }
 
         /// <summary>
-        /// Method to bind public properties of an objet to another of the same type.
+        /// Method to check if has a property.
+        /// </summary>
+        /// <typeparam name="T">The object Class.</typeparam>
+        /// <param name="obj">The object to search in.</param>
+        /// <param name="propertyName">A name of a property.</param>
+        /// <param name="ignorecase">Ignore sensitive case ?.</param>
+        /// <returns>True if the property exists in this object type otherwise false.</returns>
+        public static bool HasProperty(this object obj, string propertyName, bool ignorecase = false)
+        {
+            try
+            {
+                PropertyDescriptor prop = TypeDescriptor.GetProperties(obj.GetType()).Find(propertyName, ignorecase);
+                return prop != null;
+            }
+            catch (Exception e)
+            {
+                log.Fatal("OjectExtension.HasProperty Failed !", e);
+                throw new InvalidOperationException("OjectExtension.HasProperty Failed !", e);
+            }
+        }
+
+        /// <summary>
+        /// Method to bind public properties of an object to another of the same type.
         /// </summary>
         /// <typeparam name="T">The object class type.</typeparam>
         /// <param name="obj">The object to bind in.</param>
@@ -76,7 +107,9 @@ namespace XtrmAddons.Net.Common.Extensions
             foreach (PropertyInfo prop in props)
             {
                 if (ignore != null && !ignore.Contains(prop.Name))
-                    prop.SetValue(obj, binding.GetProperty(prop.Name));
+                {
+                    prop.SetValue(obj, binding.GetPropertyValue(prop.Name));
+                }
             }
         }
 

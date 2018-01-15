@@ -1,11 +1,11 @@
 ﻿using System.Xml.Serialization;
 
-namespace XtrmAddons.Net.Application.Serializable.Elements
+namespace XtrmAddons.Net.Application.Serializable.Elements.XmlElementBase
 {
     /// <summary>
-    /// Class XtrmAddons Net Application Serializable Elements Element.
+    /// Class XtrmAddons Net Application Serializable Elements XML Element Base.
     /// </summary>
-    public class Element
+    public class ElementBase
     {
         #region Properties
 
@@ -16,21 +16,22 @@ namespace XtrmAddons.Net.Application.Serializable.Elements
         public string Key { get; set; }
 
         /// <summary>
-        /// Property default of the element.
+        /// Property is default of the element.
         /// </summary>
         [XmlAttribute(DataType = "boolean", AttributeName = "Default")]
         public bool Default { get; set; }
 
-        #endregion Properties
+        #endregion
 
 
-        #region Methods
+
+        #region Constructor
 
         /// <summary>
-        /// Class XtrmAddons Net Application Serializable Elements Element constructor.
+        /// Class XtrmAddons Net Application Serializable Elements XML Element Base Constructor.
         /// </summary>
-        public Element() { }
+        public ElementBase() { }
 
-        #endregion Methods
+        #endregion
     }
 }
