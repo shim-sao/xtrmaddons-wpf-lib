@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Xml.Serialization;
 using XtrmAddons.Net.Application.Serializable.Interfaces;
 using XtrmAddons.Net.Common.Extensions;
 
@@ -10,36 +8,26 @@ namespace XtrmAddons.Net.Application.Serializable.Elements.XmlElementBase
     /// <summary>
     /// Class XtrmAddons Net Application Serializable Elements XML Elements Base.
     /// </summary>
-    public abstract class ElementsBase<T> : ISerializableElements<T>
+    public abstract class ElementsBase<T> : List<T>, ISerializableInfo<T>
     {
-        #region Properties
+        #region constructor
 
         /// <summary>
-        /// Property list of elements.
-        /// </summary
-        public virtual List<T> Elements { get; set; }
-
-        #endregion
-
-
-
-        #region Constructor
-
-        /// <summary>
-        /// Class XtrmAddons Net Application Serializable Elements XML Elements Base Constructor.
+        /// Class XtrmAddons Net Application Serializable Elements XML Elements Base.
         /// </summary>
-        public ElementsBase()
-        {
-            Elements = new List<T>();
-        }
+        public ElementsBase() : base() { }
 
         /// <summary>
-        /// Class XtrmAddons Net Application Serializable Elements XML Elements Base Constructor.
+        /// Class XtrmAddons Net Application Serializable Elements XML Elements Base.
         /// </summary>
-        public ElementsBase(List<T> elements)
-        {
-            Elements = elements;
-        }
+        /// <param name="capacity">The initial capacity of the list.</param>
+        public ElementsBase(int capacity) : base(capacity) { }
+
+        /// <summary>
+        /// Class XtrmAddons Net Application Serializable Elements XML Elements Base.
+        /// </summary>
+        /// <param name="collection">Collection whose items are copied to the new list.</param>
+        public ElementsBase(IEnumerable<T> collection) : base(collection) { }
 
         #endregion
 
@@ -48,65 +36,108 @@ namespace XtrmAddons.Net.Application.Serializable.Elements.XmlElementBase
         #region Methods
 
         /// <summary>
-        /// Method to find an element by a property value.
+        /// Method to find an element by its Key property value.
         /// </summary>
-        /// <param name="propertyName">The name of the property to find.</param>
-        /// <param name="value">The value of the property to find.</param>
-        /// <returns>The founded element in the elements list or default element.</returns>
-        public virtual T Find(string propertyName, object value)
+        /// <param name="key">The Key value to search.</param>
+        /// <returns>The founded element otherwise, default value of type T, or null if type T is nullable.</returns>
+        public T FindKey(string key)
         {
-            if (propertyName.IsNullOrWhiteSpace())
+            return Find(x => x.GetPropertyValue("Key").Equals(key));
+        }
+
+        /// <summary>
+        /// Method to find all elements by a Key property value.
+        /// </summary>
+        /// <param name="key">The Key value to search.</param>
+        /// <returns>The founded list of elements otherwise, default empty List.</returns>
+        public List<T> FindKeyAll(string key)
+        {
+            return FindAll(x => x.GetPropertyValue("Key").Equals(key));
+        }
+
+        /// <summary>
+        /// <para>Method to add or update an element by its Key property value.</para>
+        /// <para>Update element with the same Key if is found in the list otherwise, add the element to the list.</para>
+        /// </summary>
+        /// <param name="element">The element to add or update.</param>
+        public void ReplaceKey(T element)
+        {
+            Predicate<T> match = x => x.GetPropertyValue("Key").Equals(element.GetPropertyValue("Key"));
+            
+            if (Find(match) != null)
             {
-                throw new ArgumentNullException("propertyName");
+                Insert(FindIndex(match), element);
             }
-
-            return Elements.SingleOrDefault(e => e.GetPropertyValue(propertyName).Equals(value));
+            else
+            {
+                Add(element);
+            }
         }
 
         /// <summary>
-        /// Method to find an element by its property Key value.
+        /// <para>Method to add or update an element by its Key property value. Also flag it by unique default.</para>
+        /// <para>Update element with the same Key if is found in the list otherwise, add the element to the list.</para>
         /// </summary>
-        /// <param name="value">The value of the property key to find.</param>
-        /// <returns>The founded element in the elements list or default element.</returns>
-        public virtual T Find(object value)
+        /// <param name="element">The element to add or update and flag it by unique default.</param>
+        public void ReplaceKeyDefaultUnique(T element)
         {
-            return Find("Key", value);
+            SetAllDefaultNone();
+            element.SetPropertyValue("Default", true);
+            ReplaceKey(element);
         }
 
         /// <summary>
-        /// Method to find the element flagged to default.
+        /// Method to find the first element found flagged to default.
         /// </summary>
-        /// <returns>The founded element in the elements list or default element.</returns>
-        public virtual T Default()
+        /// <returns>The founded element otherwise, default value of type T, or null if type T is nullable.</returns>
+        public T FindDefault()
         {
-
-            return Find("Default", true);
+            return Find(x => x.GetPropertyValue("Default").Equals(true));
         }
 
         /// <summary>
-        /// Method to add an element in the elements list.
+        /// Method to find all elements found flagged to default.
         /// </summary>
-        /// <param name="element">The element to add in the list of elements.</param>
-        public virtual void Add(T element)
+        /// <returns>The founded elements otherwise, default empty List.</returns>
+        public List<T> FindAllDefault()
         {
-            Elements.Add(element);
+            return FindAll(x => x.GetPropertyValue("Default").Equals(true));
         }
 
         /// <summary>
-        /// Method to remove an element from the elements list.
+        /// Method to add a new unique default element into the list.
         /// </summary>
-        /// <param name="element">The element to remove from the elements list.</param>
-        /// <returns></returns>
-        public virtual void Remove(T element)
+        /// <param name="item">The element to add.</param>
+        public void AddDefaultUnique(T item)
         {
-            Elements.Remove(element);
+            SetAllDefaultNone();
+            item.SetPropertyValue("Default", true);
+            Add(item);
         }
 
         /// <summary>
-        /// Method to update an element in the elements list.
+        /// Method to flag all elements default to false or none.
         /// </summary>
-        /// <param name="element">The element to update.</param>
-        public abstract void Update(T element);
+        public void SetAllDefaultNone()
+        {
+            List<T> defaultElements = FindAllDefault();
+            foreach (T e in defaultElements)
+            {
+                e.SetPropertyValue("Default", false);
+            }
+        }
+
+        /// <summary>
+        /// Method to flag all elements default to true or yes.
+        /// </summary>
+        public void SetAllDefault()
+        {
+            List<T> defaultElements = FindAllDefault();
+            foreach (T e in defaultElements)
+            {
+                e.SetPropertyValue("Default", true);
+            }
+        }
 
         #endregion
     }

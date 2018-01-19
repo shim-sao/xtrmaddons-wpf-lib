@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Xml.Serialization;
 
-namespace XtrmAddons.Net.Application.Serializable.Elements.XmlDirectories
+namespace XtrmAddons.Net.Application.Serializable.Elements.XmlStorage
 {
     /// <summary>
     /// Class XtrmAddons Net Application Serializable Elements XML Specials Directories.

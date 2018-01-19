@@ -3,7 +3,7 @@ using System.IO;
 using System.Threading;
 using System.Xml.Serialization;
 using XtrmAddons.Net.Application.Serializable;
-using XtrmAddons.Net.Application.Serializable.Elements.XmlDirectories;
+using XtrmAddons.Net.Application.Serializable.Elements.XmlStorage;
 using XtrmAddons.Net.Common.Extensions;
 
 namespace XtrmAddons.Net.Application
@@ -59,12 +59,12 @@ namespace XtrmAddons.Net.Application
         #region Properties
 
         /// <summary>
-        /// Property to access to the preferences directories.
+        /// Property to access to the preferences storage informations.
         /// </summary>
-        public static Directories Directories => preferences.Directories;
+        public static StorageOptions Storage => preferences.Storage;
 
         /// <summary>
-        /// Property to access to the application options.
+        /// Property to access to the application options informations.
         /// </summary>
         public static Options Options { get { return options; } }
 

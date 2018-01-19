@@ -1,7 +1,7 @@
 ﻿using System.Xml.Serialization;
-using XtrmAddons.Net.Application.Serializable.Elements.XmlDatabases;
-using XtrmAddons.Net.Application.Serializable.Elements.XmlDirectories;
-using XtrmAddons.Net.Application.Serializable.Elements.XmlServerInfo;
+using XtrmAddons.Net.Application.Serializable.Elements.XmlData;
+using XtrmAddons.Net.Application.Serializable.Elements.XmlRemote;
+using XtrmAddons.Net.Application.Serializable.Elements.XmlStorage;
 
 namespace XtrmAddons.Net.Application.Serializable
 {
@@ -17,19 +17,19 @@ namespace XtrmAddons.Net.Application.Serializable
         /// Property list of databases.
         /// </summary>
         [XmlElement("Databases")]
-        public Databases Databases;
+        public DataOptions Data;
 
         /// <summary>
         /// Property list of directories.
         /// </summary>
-        [XmlElement("Directories")]
-        public Directories Directories;
+        [XmlElement("Storage")]
+        public StorageOptions Storage;
 
         /// <summary>
         /// Property list of servers.
         /// </summary>
-        [XmlElement("Servers")]
-        public ServerInfos Servers;
+        [XmlElement("Remote")]
+        public RemoteOptions Remote;
 
         #endregion
 
@@ -42,9 +42,9 @@ namespace XtrmAddons.Net.Application.Serializable
         /// </summary>
         public Options()
         {
-            Databases = new Databases();
-            Directories = new Directories();
-            Servers = new ServerInfos();
+            Data = new DataOptions();
+            Storage = new StorageOptions();
+            Remote = new RemoteOptions();
         }
 
         #endregion

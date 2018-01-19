@@ -2,10 +2,11 @@
 using System.Xml.Serialization;
 using XtrmAddons.Net.Application.Serializable.Elements.XmlElementBase;
 
-namespace XtrmAddons.Net.Application.Serializable.Elements.XmlDatabases
+namespace XtrmAddons.Net.Application.Serializable.Elements.XmlData
 {
     /// <summary>
-    /// Class XtrmAddons Net Application Serializable Elements XML Database.
+    /// <para>Class XtrmAddons Net Application Serializable Elements XML Database Informations.</para>
+    /// <para>Allows you to set database connection parameters</para>
     /// </summary>
     [Serializable]
     public class Database : ElementBase

@@ -1,5 +1,5 @@
 ﻿using System.Xml.Serialization;
-using XtrmAddons.Net.Application.Serializable.Elements.XmlDirectories;
+using XtrmAddons.Net.Application.Serializable.Elements.XmlStorage;
 using XtrmAddons.Net.Application.Serializable.Elements.XmlUiElement;
 
 namespace XtrmAddons.Net.Application.Serializable
@@ -13,30 +13,31 @@ namespace XtrmAddons.Net.Application.Serializable
         #region Properties
 
         /// <summary>
-        /// Property base directory for application options and directories.
+        /// Property to access to the base directory for application options and directories.
         /// </summary>
         [XmlElement("BaseDirectory")]
         public string BaseDirectory { get; set; }
 
         /// <summary>
-        /// Property language used by the user.
+        /// Property to access to the language used by the user.
         /// </summary>
         [XmlElement("Language")]
         public string Language { get; set; }
 
         /// <summary>
-        /// Property list of directories.
+        /// Property to access to the storage informations like list of directories... used by default by the application.
         /// </summary>
-        [XmlElement("Directories")]
-        public Directories Directories;
+        [XmlElement("Storage")]
+        public StorageOptions Storage;
 
         /// <summary>
-        /// Property list of specials directories used by the application.
+        /// Property to access to the list of specials directories used by default by the application.
         /// </summary>
         [XmlElement("SpecialDirectories")]
         public SpecialDirectories SpecialDirectories;
 
         #endregion
+
 
 
         #region Methods
@@ -47,7 +48,7 @@ namespace XtrmAddons.Net.Application.Serializable
         public Preferences()
         {
             SpecialDirectories = new SpecialDirectories();
-            Directories = new Directories();
+            Storage = new StorageOptions();
         }
 
         #endregion

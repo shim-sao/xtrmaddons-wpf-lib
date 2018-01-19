@@ -4,13 +4,12 @@ using System.Xml.Serialization;
 using XtrmAddons.Net.Application.Serializable.Elements.XmlElementBase;
 using XtrmAddons.Net.Common.Extensions;
 
-namespace XtrmAddons.Net.Application.Serializable.Elements.XmlDirectories
+namespace XtrmAddons.Net.Application.Serializable.Elements.XmlStorage
 {
     /// <summary>
-    /// Class XtrmAddons Net Application Serializable Elements XML Directory.
+    /// Class XtrmAddons Net Application Serializable Elements XML Directory Info.
     /// </summary>
     [Serializable]
-    [XmlRoot(ElementName = "Directory")]
     public class Directory : ElementBase
     {
         #region Properties
@@ -62,7 +61,7 @@ namespace XtrmAddons.Net.Application.Serializable.Elements.XmlDirectories
         #region Methods
 
         /// <summary>
-        /// Class XtrmAddons Net Application Serializable Elements XML Directory Constructor.
+        /// Class XtrmAddons Net Application Serializable Elements XML Directory Info Constructor.
         /// </summary>
         public Directory() : base() { }
 
@@ -71,7 +70,6 @@ namespace XtrmAddons.Net.Application.Serializable.Elements.XmlDirectories
 
 
         #region Methods
-
 
         /// <summary>
         /// Method to get the absolute path of the root of the directory.
