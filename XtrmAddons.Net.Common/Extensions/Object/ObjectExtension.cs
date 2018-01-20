@@ -7,7 +7,8 @@ using PropertyInfo = System.Reflection.PropertyInfo;
 namespace XtrmAddons.Net.Common.Extensions
 {
     /// <summary>
-    /// Class XtrmAddons Net Common Object Extensions.
+    /// <para>Class XtrmAddons Net Common Object Extensions.</para>
+    /// <para>This Class add some methods object by extension.</para>
     /// </summary>
     public static class ObjectExtension
     {
@@ -59,14 +60,13 @@ namespace XtrmAddons.Net.Common.Extensions
         }
 
         /// <summary>
-        /// Method to check if has a property or its set to null.
+        /// Method to check if has a property not null.
         /// </summary>
         /// <typeparam name="T">The object class type.</typeparam>
         /// <param name="obj">The object to search in.</param>
         /// <param name="propertyName">A name of a property.</param>
         /// <returns>True if exists and not null otherwise false.</returns>
-        [System.Obsolete("Use HasProperty", true)]
-        public static bool HasPropertyOrNull<T>(this T obj, string propertyName) where T : class
+        public static bool HasPropertyNotNull<T>(this T obj, string propertyName) where T : class
         {
             return obj.GetPropertyValue(propertyName) != null;
         }
@@ -107,6 +107,26 @@ namespace XtrmAddons.Net.Common.Extensions
             foreach (PropertyInfo prop in props)
             {
                 if (ignore != null && !ignore.Contains(prop.Name))
+                {
+                    prop.SetValue(obj, binding.GetPropertyValue(prop.Name));
+                }
+            }
+        }
+
+        /// <summary>
+        /// Method to bind public properties of an object to another.
+        /// </summary>
+        /// <typeparam name="T">The object class type.</typeparam>
+        /// <param name="obj">The object to bind in.</param>
+        /// <param name="binding">The object to bind</param>
+        /// <param name="ignore">An array of properties to ignore.</param>
+        public static void Bind<T>(this T obj, object binding, string[] ignore = null) where T : class
+        {
+            PropertyInfo[] props = binding.GetType().GetProperties();
+
+            foreach (PropertyInfo prop in props)
+            {
+                if (obj.HasProperty(prop.Name) && ignore != null && !ignore.Contains(prop.Name))
                 {
                     prop.SetValue(obj, binding.GetPropertyValue(prop.Name));
                 }
