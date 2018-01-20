@@ -1,15 +1,13 @@
-﻿using Microsoft.CSharp.RuntimeBinder;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System;
 using System.ComponentModel;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using PropertyInfo = System.Reflection.PropertyInfo;
 
 namespace XtrmAddons.Net.Common.Extensions
 {
     /// <summary>
-    /// Class XtrmAddons Object Extensions.
+    /// Class XtrmAddons Net Common Object Extensions.
     /// </summary>
     public static class ObjectExtension
     {
