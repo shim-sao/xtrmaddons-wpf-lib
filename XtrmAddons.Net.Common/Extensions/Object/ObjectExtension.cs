@@ -33,7 +33,7 @@ namespace XtrmAddons.Net.Common.Extensions
         /// <returns>The value of the property. Null if object is null otherwise, throw an exception.</returns>
         /// <exception cref="ArgumentException">Occur if the property is not found.</exception>
         /// <exception cref="InvalidOperationException">See inner exception for details.</exception>
-        public static object GetPropertyValue(this object obj, string propertyName, bool ignorecase = false)
+        public static object GetPropertyValue<T>(this T obj, string propertyName, bool ignorecase = false) where T : class
         {
             if(obj == null)
             {
