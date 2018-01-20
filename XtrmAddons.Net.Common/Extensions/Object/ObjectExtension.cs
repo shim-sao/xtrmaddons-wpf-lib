@@ -27,10 +27,12 @@ namespace XtrmAddons.Net.Common.Extensions
         /// <summary>
         /// Method to get a value of a property of an object.
         /// </summary>
-        /// <param name="obj"></param>
-        /// <param name="propertyName"></param>
-        /// <param name="ignorecase"></param>
-        /// <returns></returns>
+        /// <param name="obj">The object to search in.</param>
+        /// <param name="propertyName">The property name to get value.</param>
+        /// <param name="ignorecase">Should ignore property name case ?</param>
+        /// <returns>The value of the property. Null if object is null otherwise, throw an exception.</returns>
+        /// <exception cref="ArgumentException">Occur if the property is not found.</exception>
+        /// <exception cref="InvalidOperationException">See inner exception for details.</exception>
         public static object GetPropertyValue(this object obj, string propertyName, bool ignorecase = false)
         {
             if(obj == null)
