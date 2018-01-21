@@ -143,7 +143,7 @@ namespace XtrmAddons.Net.SQLiteBundle
         /// <summary>
         /// Method to initialize database data.
         /// </summary>
-        protected virtual void InitializeSetting() { }
+        protected void InitializeSetting() { }
         
         #endregion Methods
 

@@ -1,10 +1,12 @@
 ﻿using System;
 using System.IO;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Xml.Serialization;
 using XtrmAddons.Net.Application.Serializable;
 using XtrmAddons.Net.Application.Serializable.Elements.XmlStorage;
 using XtrmAddons.Net.Common.Extensions;
+using XtrmAddons.Net.SystemIO;
 
 namespace XtrmAddons.Net.Application
 {
@@ -450,6 +452,22 @@ namespace XtrmAddons.Net.Application
         {
             System.Xml.XmlAttribute attr = e.Attr;
             Console.WriteLine("Unknown attribute " + attr.Name + "='" + attr.Value + "'");
+        }
+
+        /// <summary>
+        /// <para>Method to copy application configuration files to the user documents directory.</para>
+        /// <para>Always replace user config documents by application default config documents.</para>
+        /// </summary>
+        public static Task CopyConfigFiles(bool Override = false)
+        {
+            return Task.Run(() =>
+            {
+                // Get installed application path.
+                string src = Path.Combine(Environment.CurrentDirectory, "Config");
+
+                // Copy configuration to defined user config directory.
+                SysDirectory.Copy(src, ApplicationBase.ConfigDirectory, Override);
+            });
         }
 
         #endregion
