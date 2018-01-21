@@ -82,7 +82,6 @@ namespace XtrmAddons.Net.Application.Examples
                 {
                     Key = "default",
                     Name = "Server by Default",
-                    Type = ServerType.Server,
                     Default = true,
                     Host = "127.0.0.1",
                     Port = NetworkInformations.GetAvailablePort(6666).ToString(),
@@ -96,7 +95,6 @@ namespace XtrmAddons.Net.Application.Examples
                 {
                     Key = "default",
                     Name = "Server by Default override",
-                    Type = ServerType.Server,
                     Default = true,
                     Host = NetworkInformations.GetLocalHostIp(),
                     Port = NetworkInformations.GetAvailablePort(6666).ToString(),
@@ -110,7 +108,6 @@ namespace XtrmAddons.Net.Application.Examples
             {
                 Key = "AnotherServer",
                 Name = "AnotherServer",
-                Type = ServerType.Server,
                 Default = true,
                 Host = NetworkInformations.GetLocalHostIp(),
                 Port = NetworkInformations.GetAvailablePort(6666).ToString(),
@@ -119,7 +116,23 @@ namespace XtrmAddons.Net.Application.Examples
                 Comment = "Example override default server informations."
             };
 
+
+
+            Client client1 = new Client()
+            {
+                Key = "AnotherServer",
+                Name = "AnotherServer",
+                Default = true,
+                Host = NetworkInformations.GetLocalHostIp(),
+                Port = NetworkInformations.GetAvailablePort(6666).ToString(),
+                UserName = "LoginIfRequired",
+                Password = "PasswordIfRequired",
+                Comment = "Example override default server informations."
+            };
+
+
             ApplicationBase.Options.Remote.Servers.Add(server2);
+            ApplicationBase.Options.Remote.Clients.Add(client1);
 
             // Example : server not found = null
             // server = ApplicationBase.Options.Servers.Find("Host", "123");

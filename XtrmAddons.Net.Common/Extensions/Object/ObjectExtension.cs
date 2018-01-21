@@ -28,15 +28,16 @@ namespace XtrmAddons.Net.Common.Extensions
         /// <summary>
         /// Method to get a value of a property of an object.
         /// </summary>
+        /// <typeparam name="T">The object class type.</typeparam>
         /// <param name="obj">The object to search in.</param>
         /// <param name="propertyName">The property name to get value.</param>
         /// <param name="ignorecase">Should ignore property name case ?</param>
         /// <returns>The value of the property. Null if object is null otherwise, throw an exception.</returns>
         /// <exception cref="ArgumentException">Occur if the property is not found.</exception>
         /// <exception cref="InvalidOperationException">See inner exception for details.</exception>
-        public static object GetPropertyValue<T>(this T obj, string propertyName, bool ignorecase = false) where T : class
+        /*public static object GetPropertyValue<T>(this T obj, string propertyName, bool ignorecase = false) where T : class
         {
-            if(obj == null)
+            if (obj == null)
             {
                 return null;
             }
@@ -45,7 +46,41 @@ namespace XtrmAddons.Net.Common.Extensions
             {
                 PropertyDescriptor prop = TypeDescriptor.GetProperties(obj.GetType()).Find(propertyName, ignorecase);
 
-                if(prop != null)
+                if (prop != null)
+                {
+                    return prop.GetValue(obj);
+                }
+
+                throw new ArgumentException(String.Format("Object [{0}] property '{1}' doesn't exists !", obj.GetType(), propertyName));
+            }
+            catch (Exception e)
+            {
+                log.Fatal("OjectExtension.GetPropertyValue Failed !", e);
+                throw new InvalidOperationException("OjectExtension.GetPropertyValue Failed !", e);
+            }
+        }*/
+
+        /// <summary>
+        /// Method to get a value of a property of an object.
+        /// </summary>
+        /// <param name="obj">The object to search in.</param>
+        /// <param name="propertyName">The property name to get value.</param>
+        /// <param name="ignorecase">Should ignore property name case ?</param>
+        /// <returns>The value of the property. Null if object is null otherwise, throw an exception.</returns>
+        /// <exception cref="ArgumentException">Occur if the property is not found.</exception>
+        /// <exception cref="InvalidOperationException">See inner exception for details.</exception>
+        public static object GetPropertyValue(this object obj, string propertyName, bool ignorecase = false)
+        {
+            if (obj == null)
+            {
+                return null;
+            }
+
+            try
+            {
+                PropertyDescriptor prop = TypeDescriptor.GetProperties(obj.GetType()).Find(propertyName, ignorecase);
+
+                if (prop != null)
                 {
                     return prop.GetValue(obj);
                 }
