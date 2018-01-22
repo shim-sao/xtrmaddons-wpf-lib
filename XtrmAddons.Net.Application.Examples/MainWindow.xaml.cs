@@ -3,6 +3,7 @@ using System.Windows;
 using XtrmAddons.Net.Application.Serializable.Elements.XmlStorage;
 using XtrmAddons.Net.Application.Serializable.Elements.XmlRemote;
 using XtrmAddons.Net.Network;
+using XtrmAddons.Net.Application.Examples.Preferences;
 
 namespace XtrmAddons.Net.Application.Examples
 {
@@ -25,43 +26,22 @@ namespace XtrmAddons.Net.Application.Examples
             ApplicationBase.Start();
 
 
-            InitializeFolders();
+            InitializePreferences();
             InitializeServerInformations();
 
             ApplicationBase.Save();
         }
 
 
-        public void InitializeFolders()
+        public void InitializePreferences()
         {
             // Adding some application folders.
             Console.WriteLine(string.Format("Path to application user documents : {0}", ApplicationBase.UserMyDocumentsDirectory));
-
-            Directory directory1 = new Directory
-            {
-                Key = "cfg.server",
-                RelativePath = "Server",
-                IsRelative = true,
-                Root = SpecialDirectoriesExtensions.RootDirectory(SpecialDirectoriesName.Config)
-            };
-
-            Directory directory2 = new Directory
-            {
-                Key = "cfg.database",
-                RelativePath = "Database",
-                IsRelative = true,
-                Root = SpecialDirectoriesExtensions.RootDirectory(SpecialDirectoriesName.Data)
-            };
-
-            //ApplicationBase.Directories.Set("cfg.server", "Server", true, SpecialDirectoriesExtensions.RootDirectory(SpecialDirectoriesName.Config));
-            //ApplicationBase.Directories.Set("cfg.database", "Database", true, SpecialDirectoriesExtensions.RootDirectory(SpecialDirectoriesName.Config));
-            ApplicationBase.Storage.Directories.Add(directory1);
-            ApplicationBase.Storage.Directories.Add(directory2);
+            PreferencesExample preferences = new PreferencesExample();
 
             // Retrieving application folders absolute path.
             Console.WriteLine("cfg.server = " + ApplicationBase.Storage.Directories.Find(x => x.Key == "cfg.server")?.AbsolutePath);
             Console.WriteLine("cfg.database = " + ApplicationBase.Storage.Directories.Find(x => x.Key == "cfg.database")?.AbsolutePath);
-            //Console.WriteLine("cfg.database = " + ApplicationBase.Directories.Find("cfg.database").AbsolutePath);
         }
 
         /// <summary>

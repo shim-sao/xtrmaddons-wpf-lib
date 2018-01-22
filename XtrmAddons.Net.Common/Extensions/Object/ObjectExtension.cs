@@ -25,40 +25,20 @@ namespace XtrmAddons.Net.Common.Extensions
 
         #region Methods
 
+
         /// <summary>
         /// Method to get a value of a property of an object.
         /// </summary>
-        /// <typeparam name="T">The object class type.</typeparam>
         /// <param name="obj">The object to search in.</param>
         /// <param name="propertyName">The property name to get value.</param>
         /// <param name="ignorecase">Should ignore property name case ?</param>
         /// <returns>The value of the property. Null if object is null otherwise, throw an exception.</returns>
         /// <exception cref="ArgumentException">Occur if the property is not found.</exception>
         /// <exception cref="InvalidOperationException">See inner exception for details.</exception>
-        /*public static object GetPropertyValue<T>(this T obj, string propertyName, bool ignorecase = false) where T : class
+        public static T GetPropertyValue<T>(this object obj, string propertyName, bool ignorecase = false) where T : class
         {
-            if (obj == null)
-            {
-                return null;
-            }
-
-            try
-            {
-                PropertyDescriptor prop = TypeDescriptor.GetProperties(obj.GetType()).Find(propertyName, ignorecase);
-
-                if (prop != null)
-                {
-                    return prop.GetValue(obj);
-                }
-
-                throw new ArgumentException(String.Format("Object [{0}] property '{1}' doesn't exists !", obj.GetType(), propertyName));
-            }
-            catch (Exception e)
-            {
-                log.Fatal("OjectExtension.GetPropertyValue Failed !", e);
-                throw new InvalidOperationException("OjectExtension.GetPropertyValue Failed !", e);
-            }
-        }*/
+            return (T)GetPropertyValue(obj, propertyName, ignorecase);
+        }
 
         /// <summary>
         /// Method to get a value of a property of an object.
@@ -95,15 +75,28 @@ namespace XtrmAddons.Net.Common.Extensions
         }
 
         /// <summary>
-        /// Method to check if has a property not null.
+        /// Method to check if an object has a property not null.
         /// </summary>
         /// <typeparam name="T">The object class type.</typeparam>
         /// <param name="obj">The object to search in.</param>
         /// <param name="propertyName">A name of a property.</param>
-        /// <returns>True if exists and not null otherwise false.</returns>
-        public static bool HasPropertyNotNull<T>(this T obj, string propertyName) where T : class
+        /// <returns>True if the object exists and the object is not null otherwise, false.</returns>
+        public static bool HasPropertyNotNull(this object obj, string propertyName)
         {
             return obj.GetPropertyValue(propertyName) != null;
+        }
+
+        /// <summary>
+        /// Method to check if an object has a property equals to a value object.
+        /// </summary>
+        /// <typeparam name="T">The object class type.</typeparam>
+        /// <param name="obj">The object to search in.</param>
+        /// <param name="propertyName">A name of a property.</param>
+        /// <param name="propertyName">The value to check in equality.</param>
+        /// <returns>True if the object exists and the object is equal to value otherwise, false.</returns>
+        public static bool HasPropertyEquals(this object obj, string propertyName, object value)
+        {
+            return obj.GetPropertyValue(propertyName).Equals(value);
         }
 
         /// <summary>

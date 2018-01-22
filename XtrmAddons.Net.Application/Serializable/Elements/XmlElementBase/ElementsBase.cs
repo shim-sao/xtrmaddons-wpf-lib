@@ -42,7 +42,7 @@ namespace XtrmAddons.Net.Application.Serializable.Elements.XmlElementBase
         /// <returns>The founded element otherwise, default value of type T, or null if type T is nullable.</returns>
         public T FindKey(string key)
         {
-            return Find(x => x.GetPropertyValue("Key").Equals(key));
+            return Find(x => x.HasPropertyEquals("Key", key));
         }
 
         /// <summary>
@@ -52,25 +52,61 @@ namespace XtrmAddons.Net.Application.Serializable.Elements.XmlElementBase
         /// <returns>The founded list of elements otherwise, default empty List.</returns>
         public List<T> FindKeyAll(string key)
         {
-            return FindAll(x => x.GetPropertyValue("Key").Equals(key));
+            return FindAll(x => x.HasPropertyEquals("Key", key));
         }
 
         /// <summary>
         /// <para>Method to add or update an element by its Key property value.</para>
-        /// <para>Update element with the same Key if is found in the list otherwise, add the element to the list.</para>
+        /// <para>Update the first element with the same Key if is found in the list otherwise, add the element to the list.</para>
         /// </summary>
         /// <param name="element">The element to add or update.</param>
         public void ReplaceKey(T element)
         {
-            Predicate<T> match = x => x.GetPropertyValue("Key").Equals(element.GetPropertyValue("Key"));
-            
+            Predicate<T> match = x => x.HasPropertyEquals("Key", element.GetPropertyValue("Key"));
+
             if (Find(match) != null)
             {
-                Insert(FindIndex(match), element);
+                this[FindIndex(match)] = element;
             }
             else
             {
                 Add(element);
+            }
+        }
+
+        /// <summary>
+        /// <para>Method to add or update an element by its Key property value.</para>
+        /// <para>Update the first elemet and remove all others elements with the same Key if at least one element is found in the list otherwise, add the element to the list.</para>
+        /// </summary>
+        /// <param name="element">The element to add or update.</param>
+        public void ReplaceKeyUnique(T element)
+        {
+            string key = element.GetPropertyValue<string>("Key");
+            List<T> items = FindKeyAll(key);
+
+            if(items.Count == 0)
+            {
+                Add(element);
+            }
+            else
+            {
+                Predicate<T> match = x => x.HasPropertyEquals("Key", element.GetPropertyValue("Key"));
+                int index = FindIndex(match);
+
+                if (items.Count > 1)
+                {
+                    int i = 0;
+                    foreach(T item in items)
+                    {
+                        if(i > 0)
+                        {
+                            Remove(item);
+                        }
+                        i++;
+                    }
+                }
+
+                this[index] = element;
             }
         }
 
@@ -92,7 +128,7 @@ namespace XtrmAddons.Net.Application.Serializable.Elements.XmlElementBase
         /// <returns>The founded element otherwise, default value of type T, or null if type T is nullable.</returns>
         public T FindDefault()
         {
-            return Find(x => x.GetPropertyValue("Default").Equals(true));
+            return Find(x => x.HasPropertyEquals("Key", true));
         }
 
         /// <summary>
@@ -101,7 +137,7 @@ namespace XtrmAddons.Net.Application.Serializable.Elements.XmlElementBase
         /// <returns>The founded elements otherwise, default empty List.</returns>
         public List<T> FindAllDefault()
         {
-            return FindAll(x => x.GetPropertyValue("Default").Equals(true));
+            return FindAll(x => x.HasPropertyEquals("Key", true));
         }
 
         /// <summary>
