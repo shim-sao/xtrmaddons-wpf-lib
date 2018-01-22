@@ -453,7 +453,6 @@ namespace XtrmAddons.Net.Application
             System.Xml.XmlAttribute attr = e.Attr;
             Console.WriteLine("Unknown attribute " + attr.Name + "='" + attr.Value + "'");
         }
-ouuoo
 
         /// <summary>
         /// <para>Method to copy application configuration files to the user documents directory.</para>
