@@ -78,17 +78,17 @@ namespace XtrmAddons.Net.Application
         /// <summary>
         /// Property to access to the preferences directory file absolute path.
         /// </summary>
-        private static string FilePreferencesXml => Path.Combine(UserMyDocumentsDirectory, filePreferencesXmlName);
+        public static string FilePreferencesXml => Path.Combine(UserMyDocumentsDirectory, filePreferencesXmlName);
 
         /// <summary>
         /// Property to access to the options directory file absolute path.
         /// </summary>
-        private static string FileOptionsXml => Path.Combine(ConfigDirectory, fileOptionsXmlName);
+        public static string FileOptionsXml => Path.Combine(ConfigDirectory, fileOptionsXmlName);
 
         /// <summary>
         /// Property to access to the user interface directory file absolute path.
         /// </summary>
-        private static string FileUiXml => Path.Combine(ConfigDirectory, fileUiXmlName);
+        public static string FileUiXml => Path.Combine(ConfigDirectory, fileUiXmlName);
 
         /// <summary>
         /// Property to access to the application base directory.
