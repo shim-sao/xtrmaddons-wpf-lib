@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Windows;
-using XtrmAddons.Net.Application.Serializable.Elements.XmlStorage;
+using XtrmAddons.Net.Application.Examples.Preferences;
 using XtrmAddons.Net.Application.Serializable.Elements.XmlRemote;
 using XtrmAddons.Net.Network;
-using XtrmAddons.Net.Application.Examples.Preferences;
 
 namespace XtrmAddons.Net.Application.Examples
 {
@@ -25,6 +24,10 @@ namespace XtrmAddons.Net.Application.Examples
             Console.WriteLine("Starting the application options & parameters. Please wait...");
             ApplicationBase.Start();
 
+            Console.WriteLine("User Application Data = " + ApplicationBase.UserAppDataDirectory);
+            Console.WriteLine("User My Documents = " + ApplicationBase.UserMyDocumentsDirectory);
+            Console.WriteLine("Bin = " + ApplicationBase.BinDirectory);
+            Console.WriteLine("Theme = " + ApplicationBase.ThemeDirectory);
 
             InitializePreferences();
             InitializeServerInformations();

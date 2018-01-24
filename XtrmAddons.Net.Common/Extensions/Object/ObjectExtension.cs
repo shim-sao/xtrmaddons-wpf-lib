@@ -212,7 +212,8 @@ namespace XtrmAddons.Net.Common.Extensions
         /// <param name="obj">The object to set property value.</param>
         /// <param name="propertyName">The property name.</param>
         /// <param name="value">The property value.</param>
-        public static void SetPropertyValue(this object obj, string propertyName, object value)
+        /// <exception cref="InvalidOperationException">Occurs if the property name is not found or if the property is as read only.</exception>
+        public static object SetPropertyValue(this object obj, string propertyName, object value)
         {
             object[] values = new object[] { value };
 
@@ -227,6 +228,12 @@ namespace XtrmAddons.Net.Common.Extensions
             {
                 prop.SetValue(obj, value, null);
             }
+            else
+            {
+                throw new InvalidOperationException("Object property does not exists or property is lock to write.");
+            }
+
+            return value;
         }
 
         /// <summary>

@@ -215,6 +215,26 @@ namespace XtrmAddons.Net.Application
         }
 
         /// <summary>
+        /// <para>Property to access to the application theme directory.</para>
+        /// <para>A new theme directory will be created on the first call if the directory is not found.</para>
+        /// </summary>
+        public static string ThemeDirectory
+        {
+            get => GetSpecialDirectory("Theme", BaseDirectory, SpecialDirectoriesName.Theme.Name());
+            set => SetSpecialDirectory("Theme", value);
+        }
+
+        /// <summary>
+        /// <para>Property to access to the application bin directory.</para>
+        /// <para>A new bin directory will be created on the first call if the directory is not found.</para>
+        /// </summary>
+        public static string BinDirectory
+        {
+            get => GetSpecialDirectory("Bin", UserAppDataDirectory, SpecialDirectoriesName.Bin.Name());
+            set => SetSpecialDirectory("Bin", value);
+        }
+
+        /// <summary>
         /// <para>Property to access to the application logs directory.</para>
         /// <para>A new logs directory will be created on the first call if the directory is not found.</para>
         /// </summary>
@@ -244,35 +264,6 @@ namespace XtrmAddons.Net.Application
         }
 
         /// <summary>
-        /// <para>Property to access to the application theme directory.</para>
-        /// <para>A new theme directory will be created on the first call if the directory is not found.</para>
-        /// </summary>
-        public static string ThemeDirectory
-        {
-            get
-            {
-                if (preferences.SpecialDirectories.Theme.IsNullOrWhiteSpace())
-                {
-                    preferences.SpecialDirectories.Theme = Path.Combine(BaseDirectory, SpecialDirectoriesName.Theme.Name());
-                    if (!System.IO.Directory.Exists(preferences.SpecialDirectories.Theme))
-                    {
-                        System.IO.Directory.CreateDirectory(preferences.SpecialDirectories.Theme);
-                    }
-                }
-                return preferences.SpecialDirectories.Theme;
-            }
-            set
-            {
-                if (!System.IO.Directory.Exists(value))
-                {
-                    System.IO.Directory.CreateDirectory(value);
-                }
-
-                preferences.SpecialDirectories.Theme = value;
-            }
-        }
-
-        /// <summary>
         /// Property to access to the default assets images directory.
         /// </summary>
         public static string AssetsImagesDefaultDirectory
@@ -292,8 +283,15 @@ namespace XtrmAddons.Net.Application
         /// Property to get Window User My Documents path.
         /// </summary>
         /// <returns>The absolute path to Window User My Documents.</returns>
-        public static string UserMyDocumentsDirectory 
+        public static string UserMyDocumentsDirectory
             => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), ApplicationFriendlyName);
+
+        /// <summary>
+        /// Property to get Window User My Documents path.
+        /// </summary>
+        /// <returns>The absolute path to Window User My Documents.</returns>
+        public static string UserAppDataDirectory
+            => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), ApplicationFriendlyName);
 
         /// <summary>
         /// <para>Method to get the application friendly name.</para>
@@ -438,7 +436,7 @@ namespace XtrmAddons.Net.Application
         /// </summary>
         /// <param name="sender">The object sender of the event</param>
         /// <param name="e">XML node event arguments.</param>
-        private static void Serializer_UnknownNode (object sender, XmlNodeEventArgs e)
+        private static void Serializer_UnknownNode(object sender, XmlNodeEventArgs e)
         {
             Console.WriteLine("Unknown Node:" + e.Name + "\t" + e.Text);
         }
@@ -448,7 +446,7 @@ namespace XtrmAddons.Net.Application
         /// </summary>
         /// <param name="sender">The object sender of the event</param>
         /// <param name="e">XML node event arguments.</param>
-        private static void Serializer_UnknownAttribute (object sender, XmlAttributeEventArgs e)
+        private static void Serializer_UnknownAttribute(object sender, XmlAttributeEventArgs e)
         {
             System.Xml.XmlAttribute attr = e.Attr;
             Console.WriteLine("Unknown attribute " + attr.Name + "='" + attr.Value + "'");
@@ -470,6 +468,53 @@ namespace XtrmAddons.Net.Application
             });
         }
 
+        /// <summary>
+        /// <para>Method to get a special directory path from preferences.</para>
+        /// <para>A new directory will be created on the first call if the directory is not found.</para>
+        /// </summary>
+        /// <param name="prefName">The name of the preferences property.</param>
+        /// <param name="root">The root path for the directory.</param>
+        /// <param name="sdName">A special directory name.</param>
+        /// <returns>The absolute path of the special directory.</returns>
+        private static string GetSpecialDirectory(string prefName, string root, string sdName)
+        {
+           string path = preferences.SpecialDirectories.GetPropertyValue<string>(prefName);
+
+            if (path.IsNullOrWhiteSpace())
+            {
+                path = Path.Combine(root, sdName);
+
+                if (!System.IO.Directory.Exists(path))
+                {
+                    System.IO.Directory.CreateDirectory(path);
+                }
+
+                preferences.SpecialDirectories.SetPropertyValue(prefName, path);
+            }
+
+            return path;
+        }
+
+        /// <summary>
+        /// <para>Method to set a special directory path to preferences.</para>
+        /// <para>A new directory will be created on the first call if the directory is not found.</para>
+        /// </summary>
+        /// <param name="prefName">The name of the preferences property.</param>
+        /// <param name="value">The absolute path of the directory.</param>
+        /// <returns>The value pasted or the absolute path of the special directory.</returns>
+        private static string SetSpecialDirectory(string prefName, string value)
+        {
+            Task.Run(() =>
+            {
+                if (!System.IO.Directory.Exists(value))
+                {
+                    System.IO.Directory.CreateDirectory(value);
+                }
+            });
+
+            return (string)preferences.SpecialDirectories.SetPropertyValue(prefName, value);
+        }
+        
         #endregion
     }
 }

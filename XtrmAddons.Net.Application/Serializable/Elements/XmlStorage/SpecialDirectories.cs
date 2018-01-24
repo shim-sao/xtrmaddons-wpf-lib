@@ -10,34 +10,40 @@ namespace XtrmAddons.Net.Application.Serializable.Elements.XmlStorage
     public class SpecialDirectories
     {
         /// <summary>
+        /// Property application bin directory.
+        /// </summary>
+        [XmlAttribute(DataType = "string", AttributeName = "Bin")]
+        public string Bin { get; set; }
+
+        /// <summary>
         /// Property application cache directory.
         /// </summary>
         [XmlAttribute(DataType = "string", AttributeName = "Cache")]
-        public string Cache;
+        public string Cache { get; set; }
 
         /// <summary>
         /// Property application config directory.
         /// </summary>
         [XmlAttribute(DataType = "string", AttributeName = "Config")]
-        public string Config;
+        public string Config { get; set; }
 
         /// <summary>
         /// Property application data directory.
         /// </summary>
         [XmlAttribute(DataType = "string", AttributeName = "Data")]
-        public string Data;
+        public string Data { get; set; }
 
         /// <summary>
         /// Property application logs directory.
         /// </summary>
         [XmlAttribute(DataType = "string", AttributeName = "Logs")]
-        public string Logs;
+        public string Logs { get; set; }
 
         /// <summary>
         /// Property application theme directory.
         /// </summary>
         [XmlAttribute(DataType = "string", AttributeName = "Theme")]
-        public string Theme;
+        public string Theme { get; set; }
     }
 
 
@@ -47,6 +53,12 @@ namespace XtrmAddons.Net.Application.Serializable.Elements.XmlStorage
     [Serializable]
     public enum SpecialDirectoriesName
     {
+        /// <summary>
+        /// Application bin special directory.
+        /// </summary>
+        [XmlEnum(Name = "Bin")]
+        Bin,
+
         /// <summary>
         /// Application cache special directory.
         /// </summary>
@@ -93,6 +105,9 @@ namespace XtrmAddons.Net.Application.Serializable.Elements.XmlStorage
         {
             switch (sdn)
             {
+                case SpecialDirectoriesName.Bin:
+                    return "Bin";
+
                 case SpecialDirectoriesName.Cache:
                     return "Cache";
 
@@ -121,6 +136,9 @@ namespace XtrmAddons.Net.Application.Serializable.Elements.XmlStorage
         {
             switch (sdn)
             {
+                case SpecialDirectoriesName.Bin:
+                    return "{Bin}";
+
                 case SpecialDirectoriesName.Cache:
                     return "{Cache}";
 
