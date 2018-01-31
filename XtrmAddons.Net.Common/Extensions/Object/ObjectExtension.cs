@@ -2,6 +2,7 @@
 using System;
 using System.ComponentModel;
 using System.Linq;
+using System.Reflection;
 using PropertyInfo = System.Reflection.PropertyInfo;
 
 namespace XtrmAddons.Net.Common.Extensions
@@ -241,17 +242,46 @@ namespace XtrmAddons.Net.Common.Extensions
         /// </summary>
         /// <param name="obj">The object to convert to Json.</param>
         /// <returns>Json instance serialization.</returns>
-        public static string ToJson(this object obj)
+        public static string ToJson(this object obj, JsonSerializerSettings serializerSettings = null)
         {
+            serializerSettings = serializerSettings ?? new JsonSerializerSettings
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+                PreserveReferencesHandling = PreserveReferencesHandling.Objects
+            };
+
             return JsonConvert.SerializeObject(
                 obj,
                 Formatting.Indented,
-                new JsonSerializerSettings
-                {
-                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
-                    PreserveReferencesHandling = PreserveReferencesHandling.Objects
-                }
+                serializerSettings
             );
+        }
+
+        /// <summary>
+        /// <para>Method to get a method by name.</para>
+        /// <para>For more parameters, use : Type</para>
+        /// </summary>
+        /// <param name="obj">The object to get the method informations.</param>
+        /// <param name="method">The method name.</param>
+        /// <returns>The object method informations.</returns>
+        public static MethodInfo GetMethod(this object obj, string method)
+        {
+            Type t = obj.GetType();
+            return t.GetMethod(method);
+        }
+
+        /// <summary>
+        /// <para>Method to invoke a method by name and parameters (optional).</para>
+        /// <para>For more parameters, use : Type</para>
+        /// </summary>
+        /// <typeparam name="T">The Type of method returns.</typeparam>
+        /// <param name="obj">The object to get and process the method informations.</param>
+        /// <param name="method">The method name.</param>
+        /// <param name="parameters">A list of method parameters.</param>
+        /// <returns>The result of processed method.</returns>
+        public static T Invoke<T>(this object obj, string method, object[] parameters) where T : class
+        {
+            return (T)GetMethod(obj, method).Invoke(obj, parameters);
         }
 
         #endregion
