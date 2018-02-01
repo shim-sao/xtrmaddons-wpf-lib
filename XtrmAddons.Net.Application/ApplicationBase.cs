@@ -140,24 +140,8 @@ namespace XtrmAddons.Net.Application
         /// </summary>
         public static string CacheDirectory
         {
-            get
-            {
-                if (preferences.SpecialDirectories.Cache.IsNullOrWhiteSpace())
-                {
-                    preferences.SpecialDirectories.Cache = Path.Combine(BaseDirectory, SpecialDirectoriesName.Cache.Name());
-                }
-
-                return preferences.SpecialDirectories.Cache;
-            }
-            set
-            {
-                if (!System.IO.Directory.Exists(value))
-                {
-                    System.IO.Directory.CreateDirectory(value);
-                }
-
-                preferences.SpecialDirectories.Cache = value;
-            }
+            get => GetSpecialDirectory("Cache", BaseDirectory, SpecialDirectoriesName.Cache.Name());
+            set => SetSpecialDirectory("Cache", value);
         }
 
         /// <summary>
@@ -166,23 +150,8 @@ namespace XtrmAddons.Net.Application
         /// </summary>
         public static string ConfigDirectory
         {
-            get
-            {
-                if (preferences.SpecialDirectories.Config.IsNullOrWhiteSpace())
-                {
-                    ConfigDirectory = Path.Combine(BaseDirectory, SpecialDirectoriesName.Config.Name());
-                }
-                return preferences.SpecialDirectories.Config;
-            }
-            set
-            {
-                if (!System.IO.Directory.Exists(value))
-                {
-                    System.IO.Directory.CreateDirectory(value);
-                }
-
-                preferences.SpecialDirectories.Config = value;
-            }
+            get => GetSpecialDirectory("Config", BaseDirectory, SpecialDirectoriesName.Config.Name());
+            set => SetSpecialDirectory("Config", value);
         }
 
         /// <summary>
@@ -191,27 +160,8 @@ namespace XtrmAddons.Net.Application
         /// </summary>
         public static string DataDirectory
         {
-            get
-            {
-                if (preferences.SpecialDirectories.Data.IsNullOrWhiteSpace())
-                {
-                    preferences.SpecialDirectories.Data = Path.Combine(BaseDirectory, SpecialDirectoriesName.Data.Name());
-                    if (!System.IO.Directory.Exists(preferences.SpecialDirectories.Data))
-                    {
-                        System.IO.Directory.CreateDirectory(preferences.SpecialDirectories.Data);
-                    }
-                }
-                return preferences.SpecialDirectories.Data;
-            }
-            set
-            {
-                if (!System.IO.Directory.Exists(value))
-                {
-                    System.IO.Directory.CreateDirectory(value);
-                }
-
-                preferences.SpecialDirectories.Data = value;
-            }
+            get => GetSpecialDirectory("Data", BaseDirectory, SpecialDirectoriesName.Data.Name());
+            set => SetSpecialDirectory("Data", value);
         }
 
         /// <summary>
@@ -240,27 +190,8 @@ namespace XtrmAddons.Net.Application
         /// </summary>
         public static string LogsDirectory
         {
-            get
-            {
-                if (preferences.SpecialDirectories.Logs.IsNullOrWhiteSpace())
-                {
-                    preferences.SpecialDirectories.Logs = Path.Combine(BaseDirectory, SpecialDirectoriesName.Logs.Name());
-                    if (!System.IO.Directory.Exists(preferences.SpecialDirectories.Logs))
-                    {
-                        System.IO.Directory.CreateDirectory(preferences.SpecialDirectories.Logs);
-                    }
-                }
-                return preferences.SpecialDirectories.Logs;
-            }
-            set
-            {
-                if (!System.IO.Directory.Exists(value))
-                {
-                    System.IO.Directory.CreateDirectory(value);
-                }
-
-                preferences.SpecialDirectories.Logs = value;
-            }
+            get => GetSpecialDirectory("Logs", UserAppDataDirectory, SpecialDirectoriesName.Logs.Name());
+            set => SetSpecialDirectory("Logs", value);
         }
 
         /// <summary>

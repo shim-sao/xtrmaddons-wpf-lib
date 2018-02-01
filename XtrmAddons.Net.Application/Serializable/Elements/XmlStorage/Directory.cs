@@ -97,7 +97,44 @@ namespace XtrmAddons.Net.Application.Serializable.Elements.XmlStorage
 
             return Root;
         }
-    }
 
-    #endregion
+        /// <summary>
+        /// Method wrapper to system directory exists.
+        /// </summary>
+        /// <param name="fullName">The full name or path to the directory.</param>
+        /// <returns>True if the directory exists otherwise, false.</returns>
+        public static bool Exists(string fullName)
+        {
+            return System.IO.Directory.Exists(fullName);
+        }
+
+        /// <summary>
+        /// <para>Method to a create directory</para>
+        /// <para>Method wrapper to system directory create directory.</para>
+        /// </summary>
+        /// <param name="fullName">The full name or path to the directory.</param>
+        public static void CreateDirectory(string fullName)
+        {
+            System.IO.Directory.CreateDirectory(fullName);
+        }
+
+        /// <summary>
+        /// Method to the create directory.
+        /// </summary>
+        public void Create()
+        {
+            System.IO.Directory.CreateDirectory(AbsolutePath);
+        }
+
+        /// <summary>
+        /// Method wrapper to system directory create directory.
+        /// </summary>
+        /// <param name="fullName">The full name or path to the directory.</param>
+        public string Combine(string relativePath)
+        {
+            return Path.Combine(AbsolutePath, relativePath);
+        }
+
+        #endregion
+    }
 }

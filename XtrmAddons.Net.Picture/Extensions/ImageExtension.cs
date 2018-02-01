@@ -84,10 +84,11 @@ namespace XtrmAddons.Net.Picture.Extensions
         /// </summary>
         /// <param name="image">The image to resize.</param>
         /// <param name="maxSize">Desired maximum width/height to apply.</param>
+        /// <param name="resizeUp">Resize even if the ime size is lower than maximum size.</param>
         /// <returns>The resized image.</returns>
         /// <exception cref="ArgumentNullException">Occurs when Image reference is null.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Occurs when Image reference is null.</exception>
-        public static Image ResizeRatio(this Image image, int maxSize)
+        public static Image ResizeRatio(this Image image, int maxSize, bool resizeUp = false)
         {
             if (object.ReferenceEquals(image, null))
             {
@@ -105,12 +106,28 @@ namespace XtrmAddons.Net.Picture.Extensions
 
             if (image.Height > image.Width)
             {
-                height = image.Height > maxSize ? maxSize : image.Height;
+                if(resizeUp == false)
+                {
+                    height = image.Height > maxSize ? maxSize : image.Height;
+                }
+                else
+                {
+                    height = maxSize;
+                }
+
                 width = height * ratio;
             }
             else
             {
-                width = image.Width > maxSize ? maxSize : image.Width;
+                if (resizeUp == false)
+                {
+                    width = image.Width > maxSize ? maxSize : image.Width;
+                }
+                else
+                {
+                    width = maxSize;
+                }
+
                 height = width * ratio;
             }
 
@@ -126,12 +143,13 @@ namespace XtrmAddons.Net.Picture.Extensions
         /// </summary>
         /// <param name="image">The image to resize.</param>
         /// <param name="max">Desired maximum width/height to apply.</param>
+        /// <param name="resizeUp">Resize even if the ime size is lower than maximum size.</param>
         /// <returns>The resized image.</returns>
-        public static async Task<Image> ResizeRatioAsync(this Image image, int max)
+        public static async Task<Image> ResizeRatioAsync(this Image image, int max, bool resizeUp = false)
         {
             return await Task.Run(() =>
             {
-                return ResizeRatio(image, max);
+                return ResizeRatio(image, max, resizeUp);
             });
         }
 
