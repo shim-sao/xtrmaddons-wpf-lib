@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Dynamic;
 using System.Globalization;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Web.Script.Serialization;
 
 namespace XtrmAddons.Net.Common.Extensions
 {
@@ -194,6 +197,18 @@ namespace XtrmAddons.Net.Common.Extensions
             {
                 return false;
             }
+        }
+
+        /// <summary>
+        /// Method to deserialize a JSon dictionary to a dynamic object.
+        /// </summary>
+        /// <param name="json">A dictionary in JSon string format.</param>
+        /// <returns>A dynamic object with dictionary property values.</returns>
+        public static ExpandoObject ToExpando(this string json)
+        {
+            JavaScriptSerializer serializer = new JavaScriptSerializer();
+            IDictionary<string, object> dictionary = serializer.Deserialize<IDictionary<string, object>>(json);
+            return dictionary.ToExpando();
         }
 
         #endregion

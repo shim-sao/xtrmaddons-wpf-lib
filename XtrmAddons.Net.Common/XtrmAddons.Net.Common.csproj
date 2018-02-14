@@ -46,6 +46,8 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -57,6 +59,7 @@
   <ItemGroup>
     <Compile Include="Extensions\Byte\ByteExtension.cs" />
     <Compile Include="Extensions\EventHandler\EventHandlerExtension.cs" />
+    <Compile Include="Extensions\IDictionary\IDictionaryExtension.cs" />
     <Compile Include="Extensions\Object\ObjectExtension.cs" />
     <Compile Include="Extensions\Stream\StreamExtension.cs" />
     <Compile Include="Extensions\String\StringExtension.cs" />
