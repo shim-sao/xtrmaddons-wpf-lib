@@ -47,6 +47,12 @@ namespace XtrmAddons.Net.Application.Serializable.Elements.XmlRemote
         [XmlAttribute(DataType = "string", AttributeName = "Comment")]
         public string Comment { get; set; }
 
+        /// <summary>
+        /// Property status of the server.
+        /// </summary>
+        [XmlIgnore]
+        public string Status { get; set; }
+
         #endregion
     }
 }

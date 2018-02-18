@@ -128,7 +128,7 @@ namespace XtrmAddons.Net.Application.Serializable.Elements.XmlElementBase
         /// <returns>The founded element otherwise, default value of type T, or null if type T is nullable.</returns>
         public T FindDefault()
         {
-            return Find(x => x.HasPropertyEquals("Key", true));
+            return Find(x => x.HasPropertyEquals("Default", true));
         }
 
         /// <summary>
