@@ -5,11 +5,69 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         Title="MainWindow"
-        Height="350"
-        Width="525">
+        Height="600"
+        Width="800">
     
     <Grid>
-        
+
+        <StackPanel Margin="10">
+
+            <!-- #region Application Roaming Directories-->
+            <TextBlock Text="Application Roaming Directories" Padding="2" FontSize="16"/>
+            <StackPanel Orientation="Horizontal" Margin="5">
+
+                <TextBlock Text="{}{Application}" Width="200" Padding="2"/>
+                <TextBox x:Name="TextBox_UserApplicationData" Padding="2" MinWidth="540"/>
+
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="5">
+
+                <TextBlock Text="{}{Application}\Bin" Width="200" Padding="2"/>
+                <TextBox x:Name="TextBox_Bin" Padding="2" MinWidth="540" />
+
+            </StackPanel>
+            <!-- #endregion Application Roaming Directories-->
+            
+
+            <!-- #region Application User Directories-->
+            <TextBlock Text="Application User Directories" Padding="2" FontSize="16"/>
+            <StackPanel Orientation="Horizontal" Margin="5">
+
+                <TextBlock Text="{}{MyDocumentsApp}" Width="200" Padding="2"/>
+                <TextBox x:Name="TextBox_UserMyDocuments" Padding="2" MinWidth="540" />
+
+            </StackPanel>
+            <!-- #endregion Application User Directories-->
+            
+            
+            <TextBlock Text="Application Main Sub Directories" Padding="2" FontSize="16"/>
+            <StackPanel Orientation="Horizontal" Margin="5">
+
+                <TextBlock Text="{}{MyDocumentsApp}\Cache" Width="200" Padding="2"/>
+                <TextBox x:Name="TextBox_Cache" Padding="2" MinWidth="540" />
+
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="5">
+
+                <TextBlock Text="{}{MyDocumentsApp}\Config" Width="200" Padding="2"/>
+                <TextBox x:Name="TextBox_Config" Padding="2" MinWidth="540" />
+
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="5">
+
+                <TextBlock Text="{}{MyDocumentsApp}\Data" Width="200" Padding="2"/>
+                <TextBox x:Name="TextBox_Data" Padding="2" MinWidth="540" />
+
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="5">
+
+                <TextBlock Text="{}{MyDocumentsApp}\Theme" Width="200" Padding="2"/>
+                <TextBox x:Name="TextBox_Theme" Padding="2" MinWidth="540" />
+
+            </StackPanel>
+            
+            
+        </StackPanel>
         
     </Grid>
 </Window>
