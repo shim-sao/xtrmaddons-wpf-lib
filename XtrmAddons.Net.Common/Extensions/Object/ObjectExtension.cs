@@ -279,9 +279,30 @@ namespace XtrmAddons.Net.Common.Extensions
         /// <param name="method">The method name.</param>
         /// <param name="parameters">A list of method parameters.</param>
         /// <returns>The result of processed method.</returns>
+        /// <exception cref="ArgumentNullException">Occur if obj or method are null.</exception>
+        /// <exception cref="InvalidOperationException">Occur in others invoke method exceptions.</exception>
         public static T Invoke<T>(this object obj, string method, object[] parameters) where T : class
         {
-            return (T)GetMethod(obj, method).Invoke(obj, parameters);
+            if(obj == null)
+            {
+                log.Fatal("ArgumentNullException : object 'obj' must not be null !");
+                throw new ArgumentNullException("obj");
+            }
+
+            if (method == null)
+            {
+                log.Fatal("ArgumentNullException : string 'method' must not be null !");
+                throw new ArgumentNullException("method");
+            }
+
+            try
+            {
+                return (T)GetMethod(obj, method).Invoke(obj, parameters);
+            }
+            catch(Exception e)
+            {
+                throw new InvalidOperationException("Method invoke failed, see inner exception : " + e.Message, e);
+            }
         }
 
         #endregion

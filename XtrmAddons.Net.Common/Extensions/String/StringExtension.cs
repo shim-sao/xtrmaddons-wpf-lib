@@ -200,7 +200,8 @@ namespace XtrmAddons.Net.Common.Extensions
         }
 
         /// <summary>
-        /// Method to deserialize a JSon dictionary to a dynamic object.
+        /// <para>Method to deserialize a JSon dictionary to a dynamic object.</para>
+        /// <para>The string must be a valid JSon string.</para>
         /// </summary>
         /// <param name="json">A dictionary in JSon string format.</param>
         /// <returns>A dynamic object with dictionary property values.</returns>
