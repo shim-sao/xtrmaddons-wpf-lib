@@ -85,11 +85,13 @@ namespace XtrmAddons.Net.Common.Extensions
         /// <summary>
         /// Method to get type by string name.
         /// </summary>
-        /// <param name="str">A string Class name.</param>
+        /// <param name="str">A string Class name or full assembly Class name.</param>
+        /// <param name="assembly">The assembly of the Class if not directly set on the name. Do not specify for full Class assembly name</param>
         /// <returns>The Type of the string Class name.</returns>
-        public static Type ToType(this string str)
+        public static Type ToType(this string str, string assembly = null)
         {
             var type = Type.GetType(str);
+            str = assembly != null ? assembly + "." + str : str;
             if (type != null) return type;
 
             foreach (var a in AppDomain.CurrentDomain.GetAssemblies())

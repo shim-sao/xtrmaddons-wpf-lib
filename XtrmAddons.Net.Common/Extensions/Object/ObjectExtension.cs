@@ -281,7 +281,7 @@ namespace XtrmAddons.Net.Common.Extensions
         /// <returns>The result of processed method.</returns>
         /// <exception cref="ArgumentNullException">Occur if obj or method are null.</exception>
         /// <exception cref="InvalidOperationException">Occur in others invoke method exceptions.</exception>
-        public static T Invoke<T>(this object obj, string method, object[] parameters) where T : class
+        public static T InvokeMethod<T>(this object obj, string method, object[] parameters) where T : class
         {
             if(obj == null)
             {
