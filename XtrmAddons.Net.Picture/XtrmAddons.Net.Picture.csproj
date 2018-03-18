@@ -58,7 +58,13 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\SHFileInfo.cs" />
+    <Compile Include="Classes\ExtractLargeIconFromFile\ShellEx.cs" />
+    <Compile Include="Classes\ExtractLargeIconFromFile\Shell\IImageList.cs" />
+    <Compile Include="Classes\ExtractLargeIconFromFile\Shell\IMAGEINFO.cs" />
+    <Compile Include="Classes\ExtractLargeIconFromFile\Shell\IMAGELISTDRAWPARAMS.cs" />
+    <Compile Include="Classes\ExtractLargeIconFromFile\Shell\POINT.cs" />
+    <Compile Include="Classes\ExtractLargeIconFromFile\Shell\RECT.cs" />
+    <Compile Include="Classes\ExtractLargeIconFromFile\Shell\SHFILEINFO.cs" />
     <Compile Include="Extensions\BitmapImageExtension.cs" />
     <Compile Include="Extensions\BitmapExtension.cs" />
     <Compile Include="Extensions\ImageExtension.cs" />

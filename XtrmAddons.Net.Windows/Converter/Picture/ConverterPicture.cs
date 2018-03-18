@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Globalization;
+using System.IO;
+using System.Linq;
 using System.Windows.Data;
 using System.Windows.Media.Imaging;
 using XtrmAddons.Net.Picture;
+using XtrmAddons.Net.Picture.Extensions;
+using XtrmAddons.Net.Picture.ExtractLargeIconFromFile;
 
 namespace XtrmAddons.Net.Windows.Converter.Picture
 {
@@ -11,6 +15,22 @@ namespace XtrmAddons.Net.Windows.Converter.Picture
     /// </summary>
     public class ConverterPictureBase : IValueConverter
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        public static string[] Extensions { get; set; } = { ".jpg", ".jpeg", ".png", ".bmp", ".tiff" };
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static int Width { get; set; } = 512;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static ShellEx.IconSizeEnum IconSize { get; set; } = ShellEx.IconSizeEnum.ExtraLargeIcon;
+
+
         /// <summary>
         /// Method to convert string path of the picture into bitmap image. 
         /// </summary>
@@ -23,24 +43,26 @@ namespace XtrmAddons.Net.Windows.Converter.Picture
         {
             // The value parameter is the data from the source object.
             string filename = (string)value;
-            int width = 512;
+            string ext = Path.GetExtension(filename);
+            BitmapImage bmp = null;
 
-            if (parameter != null)
+            try
             {
-                width = int.Parse((string)parameter);
-            }
-
-            BitmapImage bmp = PictureMemoryCache.Set(filename, width, false);
-
-            if (bmp == null)
-            {
-                /*if (string.IsNullOrWhiteSpace(filename))
+                if (Extensions.Contains(ext))
                 {
-                    var a = MainSettings.Application.Settings;
-                    filename = MainSettings.Settings["assets.images.default.picture"];
-                    bmp = PictureMemoryCache.Set(filename, width);
-                }*/
+                    if (parameter != null)
+                    {
+                        Width = int.Parse((string)parameter);
+                    }
+
+                    bmp = PictureMemoryCache.Set(filename, Width, false);
+                }
+                else
+                {
+                    bmp = ShellEx.GetBitmapFromFilePath(filename, IconSize).ToBitmapImage();
+                }
             }
+            catch { }
 
             return bmp;
         }

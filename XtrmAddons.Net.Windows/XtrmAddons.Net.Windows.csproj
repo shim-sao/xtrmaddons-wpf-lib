@@ -42,6 +42,7 @@
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml" />
     <Reference Include="WindowsBase" />
@@ -49,6 +50,7 @@
   <ItemGroup>
     <Compile Include="Controls\Extensions\TreeViewItemExtensions.cs" />
     <Compile Include="Converter\Boolean\ConverterVisibility.cs" />
+    <Compile Include="Converter\Picture\ConverterExtractLargeIconFromFile.cs" />
     <Compile Include="Converter\Picture\ConverterPicture.cs" />
     <Compile Include="Converter\Size\ConverterResponsiveFontSize.cs" />
     <Compile Include="Converter\Size\ConverterResponsiveListViewItem.cs" />

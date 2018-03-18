@@ -297,7 +297,8 @@ namespace XtrmAddons.Net.Common.Extensions
 
             try
             {
-                return (T)GetMethod(obj, method).Invoke(obj, parameters);
+                MethodInfo mi = obj.GetMethod(method);
+                return (T)mi.Invoke(obj, parameters);
             }
             catch(Exception e)
             {
