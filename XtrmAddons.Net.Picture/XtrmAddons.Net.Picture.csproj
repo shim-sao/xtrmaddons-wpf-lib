@@ -65,6 +65,7 @@
     <Compile Include="Classes\ExtractLargeIconFromFile\Shell\POINT.cs" />
     <Compile Include="Classes\ExtractLargeIconFromFile\Shell\RECT.cs" />
     <Compile Include="Classes\ExtractLargeIconFromFile\Shell\SHFILEINFO.cs" />
+    <Compile Include="Classes\Win32Icon.cs" />
     <Compile Include="Extensions\BitmapImageExtension.cs" />
     <Compile Include="Extensions\BitmapExtension.cs" />
     <Compile Include="Extensions\ImageExtension.cs" />
