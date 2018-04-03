@@ -6,7 +6,7 @@ namespace XtrmAddons.Net.Application.Serializable
     /// <summary>
     /// Class XtrmAddons Net Application Serializable User Interface.
     /// </summary>
-    [XmlRootAttribute("UserInterface", Namespace = "http://www.xtrmaddons.com/", IsNullable = false)]
+    [XmlRoot("UserInterface", Namespace = "http://www.xtrmaddons.com/", IsNullable = false)]
     public class UserInterface
     {
         #region Properties

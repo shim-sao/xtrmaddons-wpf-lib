@@ -25,6 +25,12 @@ namespace XtrmAddons.Net.Application.Serializable.Elements.XmlUiElement
         public string Value { get; set; }
 
         /// <summary>
+        /// Property data type of UI element.
+        /// </summary>
+        [XmlAttribute(DataType = "string", AttributeName = "DataType")]
+        public string ValueDataType { get; set; }
+
+        /// <summary>
         /// Property is UI element visible ?
         /// </summary>
         [XmlAttribute(DataType = "boolean", AttributeName = "IsVisible")]
@@ -36,11 +42,13 @@ namespace XtrmAddons.Net.Application.Serializable.Elements.XmlUiElement
         [XmlAttribute(DataType = "boolean", AttributeName = "IsEnable")]
         public bool IsEnabled { get; set; }
 
-        /// <summary>
-        /// Property data type of UI element.
-        /// </summary>
-        [XmlAttribute(DataType = "string", AttributeName = "DataType")]
-        public string DataType { get; set; }
+        #endregion
+
+
+
+        #region Constructors
+
+
 
         #endregion
     }

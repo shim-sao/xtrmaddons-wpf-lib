@@ -10,16 +10,29 @@ namespace XtrmAddons.Net.Application.Examples
     public partial class App : System.Windows.Application
     {
         /// <summary>
+        /// Variable logger.
+        /// </summary>
+        private static readonly log4net.ILog log =
+            log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
+        /// <summary>
+        /// <para>Property to define if the application must be reset on start.</para>
+        /// <para>Used as tool for quick development.</para>
+        /// </summary>
+        private bool Reset = false;
+
+        /// <summary>
         /// Class XtrmAddons Net Application Examples Application Constructor.
         /// </summary>
         public App()
         {
-            // Reset example : delete user my documents application folder.
-            if(System.IO.Directory.Exists(ApplicationBase.UserMyDocumentsDirectory))
-            {
-                System.IO.Directory.Delete(ApplicationBase.UserMyDocumentsDirectory, true);
-            }
+            // Required in case of not logging.
+            // log4net.Config.XmlConfigurator.Configure();
+            log.Error("Testing log4net. Done !");
 
+            // Reset application : delete user my documents application folder.
+            App_Reset();
+            
             // Starting the application
             // The application loads options & parameters from files.
             // Create default files if not exists
@@ -32,6 +45,22 @@ namespace XtrmAddons.Net.Application.Examples
 
             // Add automatic application saving before application closing.
             Exit += App_Exit;
+        }
+
+        /// <summary>
+        /// <para>Method to reset the application.</para>
+        /// <para>Reset application : delete user my documents application folder.</para>
+        /// </summary>
+        private void App_Reset()
+        {
+            if (Reset && System.IO.Directory.Exists(ApplicationBase.UserMyDocumentsDirectory))
+            {
+                Trace.WriteLine("-------------------------------------------------------------------------------------------------------");
+                Trace.WriteLine("Deleting the application options & parameters. Please wait...");
+                System.IO.Directory.Delete(ApplicationBase.UserMyDocumentsDirectory, true);
+                Trace.WriteLine(ApplicationBase.UserMyDocumentsDirectory + " deleted !");
+                Trace.WriteLine("-------------------------------------------------------------------------------------------------------");
+            }
         }
 
         /// <summary>
@@ -62,6 +91,7 @@ namespace XtrmAddons.Net.Application.Examples
             Trace.WriteLine("Cache = " + ApplicationBase.CacheDirectory);
             Trace.WriteLine("Config = " + ApplicationBase.ConfigDirectory);
             Trace.WriteLine("Data = " + ApplicationBase.DataDirectory);
+            Trace.WriteLine("Logs = " + ApplicationBase.LogsDirectory);
             Trace.WriteLine("Theme = " + ApplicationBase.ThemeDirectory);
         }
 

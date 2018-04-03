@@ -4,7 +4,7 @@ using System.Windows.Input;
 namespace XtrmAddons.Net.Windows.Controls.Extensions
 {
     /// <summary>
-    /// Class XtrmAddons Windows Controls List View Extensions
+    /// Class XtrmAddons Windows Controls List View Extensions.
     /// </summary>
     public static class ListViewExtensions
     {

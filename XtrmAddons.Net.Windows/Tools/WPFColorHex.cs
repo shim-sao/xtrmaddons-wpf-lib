@@ -10,13 +10,13 @@ namespace XtrmAddons.Net.Windows.Tools
         /// <summary>
         /// Method to convert hexadecimal color to brush.
         /// </summary>
-        /// <param name="color">hexadecimal color. ex: #000000</param>
+        /// <param name="hexadecimal">hexadecimal color. ex: #000000</param>
         /// <returns>Brush that corresponding to color else null on bad format string.</returns>
-        public static Brush ColorToBrush(string color)
+        public static Brush ColorToBrush(string hexadecimal)
         {
-            if (color.Length == 7)
+            if (hexadecimal.Length == 7)
             {
-                return (SolidColorBrush)(new BrushConverter().ConvertFrom(color));
+                return (SolidColorBrush)(new BrushConverter().ConvertFrom(hexadecimal));
             }
             else
             {

@@ -128,15 +128,24 @@ namespace XtrmAddons.Net.Picture
             // Initialize bitmap image.
             BitmapImage src = new BitmapImage();
 
-            if(string.IsNullOrWhiteSpace(filename))
-            {
-                log.Error("PictureMemoryCache try to Get BitmapImage but filename of the picture is empty.");
-                return src;
-            }
-
             // Try to create bitmap image from picture.
             try
             {
+                if (string.IsNullOrWhiteSpace(filename))
+                {
+                    throw new ArgumentNullException(nameof(filename));
+                }
+
+                if (!Path.IsPathRooted(filename))
+                {
+                    filename = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, filename);
+                }
+
+                if (!File.Exists(filename))
+                {
+                    throw new FileNotFoundException(filename);
+                }
+
                 src.BeginInit();
                 src.CacheOption = BitmapCacheOption.OnLoad;
                 src.CreateOptions = BitmapCreateOptions.IgnoreImageCache | BitmapCreateOptions.PreservePixelFormat;
@@ -155,6 +164,7 @@ namespace XtrmAddons.Net.Picture
             // Just log error but generate no new exception.
             catch(Exception e)
             {
+                log.Error("filename = " + filename);
                 log.Error("PictureMemoryCache try to create bitmap image but operation failed !", e);
             }
 
