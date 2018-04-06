@@ -40,6 +40,12 @@ namespace XtrmAddons.Net.Application.Serializable.Elements.XmlStorage
         public string Logs { get; set; }
 
         /// <summary>
+        /// Property application plugin directory.
+        /// </summary>
+        [XmlAttribute(DataType = "string", AttributeName = "Plugin")]
+        public string Plugin { get; set; }
+
+        /// <summary>
         /// Property application theme directory.
         /// </summary>
         [XmlAttribute(DataType = "string", AttributeName = "Theme")]
@@ -84,6 +90,12 @@ namespace XtrmAddons.Net.Application.Serializable.Elements.XmlStorage
         Logs,
 
         /// <summary>
+        /// Application plugin special directory.
+        /// </summary>
+        [XmlEnum(Name = "Plugin")]
+        Plugin,
+
+        /// <summary>
         /// Application logs special directory.
         /// </summary>
         [XmlEnum(Name = "Theme")]
@@ -120,6 +132,9 @@ namespace XtrmAddons.Net.Application.Serializable.Elements.XmlStorage
                 case SpecialDirectoriesName.Logs:
                     return "Logs";
 
+                case SpecialDirectoriesName.Plugin:
+                    return "Plugin";
+
                 case SpecialDirectoriesName.Theme:
                     return "Theme";
             }
@@ -149,7 +164,10 @@ namespace XtrmAddons.Net.Application.Serializable.Elements.XmlStorage
                     return "{Data}";
 
                 case SpecialDirectoriesName.Logs:
-                    return "{Logs}"; ;
+                    return "{Logs}"; ;;
+
+                case SpecialDirectoriesName.Plugin:
+                    return "{Plugin}"; ;
 
                 case SpecialDirectoriesName.Theme:
                     return "{Theme}";

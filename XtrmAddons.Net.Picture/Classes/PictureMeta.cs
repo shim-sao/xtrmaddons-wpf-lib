@@ -52,9 +52,9 @@ namespace XtrmAddons.Net.Picture
         /// <exception cref="FileFormatException">Occurs when loading meta data failed.</exception>
         private void Initialize()
         {
-            if (!string.IsNullOrEmpty(Filename.Replace(" ", "")))
+            if (string.IsNullOrEmpty(Filename.Replace(" ", "")))
             {
-                throw new ArgumentNullException("Invalid argument Picture file name. Filename must be not null or empty or whitespace.");
+                throw new ArgumentNullException(string.Format("Invalid argument Picture file name [{0}]. Filename must be not null or empty or whitespace.", Filename));
             }
 
             try

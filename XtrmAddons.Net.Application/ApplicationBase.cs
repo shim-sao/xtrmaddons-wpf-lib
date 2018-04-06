@@ -185,6 +185,16 @@ namespace XtrmAddons.Net.Application
         }
 
         /// <summary>
+        /// <para>Property to access to the application plugin directory.</para>
+        /// <para>A new plugin directory will be created on the first call if the directory is not found.</para>
+        /// </summary>
+        public static string PluginDirectory
+        {
+            get => GetSpecialDirectory("Plugin", UserAppDataDirectory, SpecialDirectoriesName.Plugin.Name());
+            set => SetSpecialDirectory("Plugin", value);
+        }
+
+        /// <summary>
         /// <para>Property to access to the application logs directory.</para>
         /// <para>A new logs directory will be created on the first call if the directory is not found.</para>
         /// </summary>
