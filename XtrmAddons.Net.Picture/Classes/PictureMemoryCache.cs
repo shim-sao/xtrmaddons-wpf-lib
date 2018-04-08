@@ -76,16 +76,7 @@ namespace XtrmAddons.Net.Picture
                 return null;
             }
 
-            // Check if picture exists in cache.
-            if (MemCache == null)
-            {
-                // Create cache options.
-                MemoryCacheOptions mco = new MemoryCacheOptions();
-                mco.ExpirationScanFrequency = ExpirationScanFrequency;
-
-                // Create cache dictionary instance.
-                MemCache = new MemoryCache(mco);
-            }
+            InitializeCacheOptions();
 
             // Initialize bitmap image.
             BitmapImage bmp;
@@ -115,6 +106,25 @@ namespace XtrmAddons.Net.Picture
             }
 
             return bmp;
+        }
+
+        /// <summary>
+        /// Method to initialize memory cache with options...
+        /// </summary>
+        private static void InitializeCacheOptions()
+        {
+            // Check if picture exists in cache.
+            if (MemCache == null)
+            {
+                // Create cache options.
+                MemoryCacheOptions mco = new MemoryCacheOptions
+                {
+                    ExpirationScanFrequency = ExpirationScanFrequency
+                };
+
+                // Create cache dictionary instance.
+                MemCache = new MemoryCache(mco);
+            }
         }
 
         /// <summary>
@@ -186,6 +196,18 @@ namespace XtrmAddons.Net.Picture
             }
 
             return new MemoryStream(img);
+        }
+
+        /// <summary>
+        /// Method to reset memory cache.
+        /// </summary>
+        public static void Clear()
+        {
+            if (MemCache != null)
+            {
+                MemCache.Dispose();
+                MemCache = null;
+            }
         }
 
         #endregion
