@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
@@ -296,7 +297,7 @@ namespace XtrmAddons.Net.Application
 
                 ui = new UserInterface();
             }
-            else if (preferences == null)
+            else if (ui == null)
             {
                 ui = Deserialize<UserInterface>(FileUiXml);
             }
@@ -455,7 +456,30 @@ namespace XtrmAddons.Net.Application
 
             return (string)preferences.SpecialDirectories.SetPropertyValue(prefName, value);
         }
-        
+
+        /// <summary>
+        /// Method to trace main application preferences.
+        /// </summary>
+        public static void Debug()
+        {
+            Trace.WriteLine("Application Friendly Name = " + ApplicationFriendlyName);
+            Trace.WriteLine("Application Roaming Directory = " + UserAppDataDirectory);
+            Trace.WriteLine("User My Documents Directory = " + UserMyDocumentsDirectory);
+
+            // Displays default application specials directories.
+            Trace.WriteLine("--- Specials Directories ---");
+            Trace.WriteLine("Bin = " + BinDirectory);
+            Trace.WriteLine("Cache = " + CacheDirectory);
+            Trace.WriteLine("Config = " + ConfigDirectory);
+            Trace.WriteLine("Data = " + DataDirectory);
+            Trace.WriteLine("Logs = " + LogsDirectory);
+            Trace.WriteLine("Theme = " + ThemeDirectory);
+
+            // Displays default application language.
+            Trace.WriteLine("--- language ---");
+            Trace.WriteLine("Language = " + Language);
+        }
+
         #endregion
     }
 }

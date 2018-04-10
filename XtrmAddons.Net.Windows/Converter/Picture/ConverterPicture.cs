@@ -18,7 +18,7 @@ namespace XtrmAddons.Net.Windows.Converter.Picture
         /// <summary>
         /// 
         /// </summary>
-        public static string[] Extensions { get; set; } = { ".jpg", ".jpeg", ".png", ".bmp", ".tiff" };
+        public static string[] Extensions { get; set; } = { ".jpg", ".jpeg", ".png", ".bmp", ".tiff", ".gif" };
 
         /// <summary>
         /// 
@@ -48,7 +48,7 @@ namespace XtrmAddons.Net.Windows.Converter.Picture
 
             try
             {
-                if (Extensions.Contains(ext))
+                if (Extensions.Contains(ext.ToLower()))
                 {
                     if (parameter != null)
                     {

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Controls;
 using System.Xml.Serialization;
 using XtrmAddons.Net.Application.Serializable.Elements.XmlElementBase;
 
@@ -42,12 +43,46 @@ namespace XtrmAddons.Net.Application.Serializable.Elements.XmlUiElement
         [XmlAttribute(DataType = "boolean", AttributeName = "IsEnable")]
         public bool IsEnabled { get; set; }
 
+        /// <summary>
+        /// Property is UI element enabled ?
+        /// </summary>
+        [XmlAttribute(DataType = "boolean", AttributeName = "IsChecked")]
+        public bool IsChecked { get; set; }
+
         #endregion
 
 
 
         #region Constructors
 
+        /// <summary>
+        /// Class XtrmAddons Net Application Serializable Elements XML UI Element Constructor.
+        /// </summary>
+        public UiElement() { }
+
+        /// <summary>
+        /// Class XtrmAddons Net Application Serializable Elements XML UI Element Constructor.
+        /// </summary>
+        public UiElement(MenuItem fe)
+        {
+            Key = fe.Uid;
+            Name = fe.Name;
+            IsVisible = fe.IsVisible;
+            IsEnabled = fe.IsEnabled; ;
+            IsChecked = fe.IsChecked;
+        }
+
+        /// <summary>
+        /// Class XtrmAddons Net Application Serializable Elements XML UI Element Constructor.
+        /// </summary>
+        public UiElement(CheckBox fe)
+        {
+            Key = fe.Uid;
+            Name = fe.Name;
+            IsVisible = fe.IsVisible;
+            IsEnabled = fe.IsEnabled;
+            IsChecked = fe.IsChecked ?? false;
+        }
 
 
         #endregion
