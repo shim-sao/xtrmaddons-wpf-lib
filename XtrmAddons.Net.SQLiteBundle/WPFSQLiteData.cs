@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Data;
 using System.Data.SQLite;
+using System.Globalization;
 using System.IO;
 using XtrmAddons.Net.Application.Tools;
 
@@ -8,7 +10,7 @@ namespace XtrmAddons.Net.SQLiteBundle
     /// <summary>
     /// Class XtrmAddons Net SQLite Bundle using System.Data.SQLite.
     /// </summary>
-    public class WPFSQLiteData : IDisposable
+    public class WpfSQLiteData : IDisposable
     {
         #region Variables
 
@@ -43,10 +45,15 @@ namespace XtrmAddons.Net.SQLiteBundle
         /// <summary>
         /// XtrmAddons Common WPF SQLite Data constructor.
         /// </summary>
+        public WpfSQLiteData() { }
+
+        /// <summary>
+        /// XtrmAddons Common WPF SQLite Data constructor.
+        /// </summary>
         /// <param name="database">The database file name.</param>
         /// <param name="createFile">Create file if not exists ?</param>
         /// <param name="scheme">The path to the database scheme.</param>
-        public WPFSQLiteData(string database, bool createFile = false, string scheme = "")
+        public WpfSQLiteData(string database, bool createFile = false, string scheme = "")
         {
             this.database = database;
             CreateConnection(database, createFile, scheme);
@@ -58,6 +65,8 @@ namespace XtrmAddons.Net.SQLiteBundle
         /// <param name="database">The database file name (full path).</param>
         /// <param name="createFile">Create file if not exists ?</param>
         /// <param name="scheme">The path to the database scheme.</param>
+        /// <exception cref="FileNotFoundException"></exception>
+        /// <exception cref="Exception"></exception>
         public void CreateConnection(string database, bool createFile = false, string scheme = "")
         {
             try
@@ -80,17 +89,17 @@ namespace XtrmAddons.Net.SQLiteBundle
             }
             catch (FileNotFoundException e)
             {
-                log.Fatal(string.Format("Filename : {0}", database));
-                log.Fatal(string.Format("Cannot connect to database : {0}", e.Message));
-                log.Fatal(e.StackTrace);
-                throw new Exception("Cannot connect to database : " + database, e);
+                string message = string.Format(CultureInfo.InvariantCulture, "Failed to connect to the database : {0}", database);
+                log.Fatal(string.Format(message));
+                log.Fatal(e);
+                throw new FileNotFoundException(message, e);
             }
             catch (SQLiteException e)
             {
-                log.Fatal(string.Format("Filename : {0}", database));
-                log.Fatal(string.Format("Cannot connect to database : {0}", e.Message));
-                log.Fatal(e.StackTrace);
-                throw new Exception("Cannot connect to database : " + database, e);
+                string message = string.Format(CultureInfo.InvariantCulture, "Failed to connect to the database : {0}", database);
+                log.Fatal(string.Format(message));
+                log.Fatal(e);
+                throw new Exception(message, e);
             }
         }
 
@@ -108,6 +117,8 @@ namespace XtrmAddons.Net.SQLiteBundle
         /// Method to create a new database base on a file of scheme.
         /// </summary>
         /// <param name="scheme">An application relative path to the database scheme to create.</param>
+        /// <exception cref="SQLiteException"></exception>
+        /// <exception cref="Exception"></exception>
         protected void CreateDatabase(string scheme)
         {
             string query = "";
@@ -119,24 +130,25 @@ namespace XtrmAddons.Net.SQLiteBundle
             }
             catch(Exception e)
             {
-                log.Fatal(string.Format("Filename : {0}", scheme));
-                log.Fatal(string.Format("Cannot scheme not found : {0}", e.Message));
-                log.Fatal(e.StackTrace);
-                throw new FileNotFoundException("Database scheme not found : " + scheme, e);
+                string message = string.Format(CultureInfo.InvariantCulture, "Database file scheme not found : {0}", scheme);
+                log.Fatal(string.Format(message));
+                log.Fatal(e);
+                throw new FileNotFoundException(message, e);
             }
 
             try
             {
                 SQLiteCommand command = Db.CreateCommand();
-                command.CommandText = query;
+                command.Parameters.Add("@Text", DbType.String).Value = query;
+                command.CommandText = "@Text";
                 command.ExecuteNonQuery();
             }
             catch (SQLiteException e)
             {
-                log.Fatal(string.Format("Filename : {0}", scheme));
-                log.Fatal(string.Format("Cannot create database scheme : {0}", e.Message));
-                log.Fatal(e.StackTrace);
-                throw new SQLiteException("Cannot create database scheme : " + scheme, e);
+                string message = string.Format(CultureInfo.InvariantCulture, "Failed to create database scheme : {0}", scheme);
+                log.Fatal(string.Format(message));
+                log.Fatal(e);
+                throw new SQLiteException(message, e);
             }
         }
 
@@ -145,7 +157,8 @@ namespace XtrmAddons.Net.SQLiteBundle
         /// </summary>
         protected void InitializeSetting() { }
         
-        #endregion Methods
+        #endregion
+
 
 
         #region IDisposable Support

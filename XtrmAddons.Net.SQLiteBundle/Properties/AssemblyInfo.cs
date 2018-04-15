@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // l'ensemble d'attributs suivant. Changez les valeurs de ces attributs pour modifier les informations
 // associées à un assembly.
 [assembly: AssemblyTitle("XtrmAddons.Net.SQLiteBundle")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Common assembly for SQLite management for XtrmAddons applications.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("www.xtrmaddons.com")]
 [assembly: AssemblyProduct("XtrmAddons.Net.SQLiteBundle")]
-[assembly: AssemblyCopyright("Copyright ©  2017 - 2018")]
+[assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("XtrmAddons")]
 [assembly: AssemblyCulture("")]
 
@@ -31,5 +31,5 @@ using System.Runtime.InteropServices;
 // Vous pouvez spécifier toutes les valeurs ou indiquer les numéros de build et de révision par défaut
 // en utilisant '*', comme indiqué ci-dessous :
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.18051.1040")]
-[assembly: AssemblyFileVersion("1.0.18051.1040")]
+[assembly: AssemblyVersion("1.0.18105.1444")]
+[assembly: AssemblyFileVersion("1.0.18105.1444")]
