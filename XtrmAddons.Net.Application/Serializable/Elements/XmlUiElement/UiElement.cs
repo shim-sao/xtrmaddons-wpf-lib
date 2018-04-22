@@ -68,7 +68,7 @@ namespace XtrmAddons.Net.Application.Serializable.Elements.XmlUiElement
             Key = fe.Uid;
             Name = fe.Name;
             IsVisible = fe.IsVisible;
-            IsEnabled = fe.IsEnabled; ;
+            IsEnabled = fe.IsEnabled;
             IsChecked = fe.IsChecked;
         }
 
@@ -84,7 +84,19 @@ namespace XtrmAddons.Net.Application.Serializable.Elements.XmlUiElement
             IsChecked = fe.IsChecked ?? false;
         }
 
-
+        /// <summary>
+        /// Class XtrmAddons Net Application Serializable Elements XML UI Element Constructor.
+        /// </summary>
+        public UiElement(ComboBox fe)
+        {
+            Key = fe.Uid;
+            Name = fe.Name;
+            IsVisible = fe.IsVisible;
+            IsEnabled = fe.IsEnabled;
+            ValueDataType = "index";
+            Value = fe.SelectedIndex.ToString();
+        }
+        
         #endregion
     }
 }
