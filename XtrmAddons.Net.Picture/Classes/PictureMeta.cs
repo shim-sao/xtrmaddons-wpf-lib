@@ -83,6 +83,7 @@ namespace XtrmAddons.Net.Picture
                     Data.PixelHeight = frame.PixelHeight;
                     Data.PixelWidth = frame.PixelWidth;
                     Data.Filename = Filename;
+                    Data.Length = fs.Length;
                 }
             }
             catch(Exception e)
