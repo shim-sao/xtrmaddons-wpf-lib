@@ -3,11 +3,11 @@ using XtrmAddons.Net.Application.Serializable.Elements.XmlElementBase;
 
 namespace XtrmAddons.Net.Application.Serializable.Elements.XmlUiElement
 {
+    /// <summary>
+    /// Class XtrmAddons Net Application Serializable Elements XML Ui Elements List.
+    /// </summary>
     public class UiElements : ElementsBase<UiElement>
     {
-        /// <summary>
-        /// Class XtrmAddons Net Application Serializable Elements XML Ui Elements List.
-        /// </summary>
         #region Constructors
 
         /// <summary>

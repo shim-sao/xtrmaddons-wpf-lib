@@ -129,7 +129,7 @@ namespace XtrmAddons.Net.Application.Serializable.Elements.XmlStorage
         /// <summary>
         /// Method wrapper to system directory create directory.
         /// </summary>
-        /// <param name="fullName">The full name or path to the directory.</param>
+        /// <param name="relativePath">The full name or path to the directory.</param>
         public string Combine(string relativePath)
         {
             return Path.Combine(AbsolutePath, relativePath);

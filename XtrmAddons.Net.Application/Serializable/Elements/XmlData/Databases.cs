@@ -3,11 +3,11 @@ using XtrmAddons.Net.Application.Serializable.Elements.XmlElementBase;
 
 namespace XtrmAddons.Net.Application.Serializable.Elements.XmlData
 {
+    /// <summary>
+    /// Class XtrmAddons Net Application Serializable Elements XML Databases List.
+    /// </summary>
     public class Databases : ElementsBase<Database>
     {
-        /// <summary>
-        /// Class XtrmAddons Net Application Serializable Elements XML Databases List.
-        /// </summary>
         #region Constructors
 
         /// <summary>

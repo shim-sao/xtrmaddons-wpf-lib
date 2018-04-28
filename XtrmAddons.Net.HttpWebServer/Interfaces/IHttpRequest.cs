@@ -25,7 +25,7 @@ namespace XtrmAddons.Net.HttpWebServer.Interfaces
         string _POST { get; }
 
         /// <summary>
-        /// Accessors to the GET & POST combined parameters.
+        /// Accessors to the GET and POST combined parameters.
         /// </summary>
         NameValueCollection _REQUEST { get; }
 

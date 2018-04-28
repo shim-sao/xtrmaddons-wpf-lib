@@ -14,9 +14,9 @@ namespace XtrmAddons.Net.SystemIO
         /// <summary>
         /// Method to create data file; fail if exists.
         /// </summary>
-        /// <param name="fullFilePath">The full path name of the file.</param>
+        /// <param name="filename">The full path name of the file.</param>
         /// <param name="content">The content to add or append in the file.</param>
-        /// <param name="filename">Append or create new file content.</param>
+        /// <param name="append">Append or create new file content.</param>
         public static void Create(string filename, string content, bool append = false)
         {
             using (StreamWriter writer = new StreamWriter(filename, append))
@@ -28,9 +28,9 @@ namespace XtrmAddons.Net.SystemIO
         /// <summary>
         /// Method to create data file; fail if exists.
         /// </summary>
-        /// <param name="fullFilePath">The full path name of the file.</param>
+        /// <param name="filename">The full path name of the file.</param>
         /// <param name="content">The content to add or append in the file.</param>
-        /// <param name="filename">Append or create new file content.</param>
+        /// <param name="append">Append or create new file content.</param>
         public static async void CreateAsync(string filename, string content, bool append = false)
         {
             await Task.Run(() =>
@@ -42,7 +42,7 @@ namespace XtrmAddons.Net.SystemIO
         /// <summary>
         /// Method to check if a file exists.
         /// </summary>
-        /// <param name="path">The full path name of the file.</param>
+        /// <param name="filename">The full path name of the file.</param>
         /// <returns>True if the file exists, otherwise false.</returns>
         public static Task<bool> ExistsAsync(string filename)
         {

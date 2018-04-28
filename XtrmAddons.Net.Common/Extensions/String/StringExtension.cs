@@ -141,6 +141,7 @@ namespace XtrmAddons.Net.Common.Extensions
         /// Method to remove all white space of a string.
         /// </summary>
         /// <param name="str">The string to remove white spaces.</param>
+        /// <param name="regexPattern">Regex pattern for custom clean string.</param>
         /// <returns>The string with all white spaces removed.</returns>
         public static string Sanitize(this string str, string regexPattern = @"[?&^$#@!()+,:;<>’\'*]")
         {

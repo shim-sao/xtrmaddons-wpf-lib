@@ -11,6 +11,7 @@ namespace XtrmAddons.Net.Common.Extensions
         /// Method to convert bytes to string with default encoding as UTF8.
         /// </summary>
         /// <param name="source">The bytes array.</param>
+        /// <param name="encoding">The encoding characters.</param>
         /// <returns>A string encoding UTF8 by default.</returns>
         public static string ConvertByteToString(this byte[] source, Encoding encoding = null)
         {

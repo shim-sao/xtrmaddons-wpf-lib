@@ -3,11 +3,11 @@ using XtrmAddons.Net.Application.Serializable.Elements.XmlElementBase;
 
 namespace XtrmAddons.Net.Application.Serializable.Elements.XmlRemote
 {
+    /// <summary>
+    /// Class XtrmAddons Net Application Serializable Elements XML Clients List.
+    /// </summary>
     public class Clients : ElementsBase<Client>
     {
-        /// <summary>
-        /// Class XtrmAddons Net Application Serializable Elements XML Clients List.
-        /// </summary>
         #region Constructors
 
         /// <summary>

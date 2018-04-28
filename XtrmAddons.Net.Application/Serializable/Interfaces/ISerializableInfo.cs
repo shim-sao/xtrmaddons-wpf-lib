@@ -43,7 +43,7 @@ namespace XtrmAddons.Net.Application.Serializable.Interfaces
         /// <summary>
         /// Method to add a new unique default element into the list.
         /// </summary>
-        /// <param name="item">The element to add.</param>
+        /// <param name="element">The element to add.</param>
         /// <param name="field">The name of the field to find. [Default] by default.</param>
         void AddDefaultUnique(T element, string field = "Default");
 

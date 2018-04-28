@@ -4,6 +4,7 @@ using System.Data.SQLite;
 using System.Globalization;
 using System.IO;
 using XtrmAddons.Net.Application.Tools;
+using XtrmAddons.Net.Common.Extensions;
 
 namespace XtrmAddons.Net.SQLiteBundle
 {
@@ -62,7 +63,7 @@ namespace XtrmAddons.Net.SQLiteBundle
         /// <summary>
         /// Method to create and to connect to a SQLite database.
         /// </summary>
-        /// <param name="database">The database file name (full path).</param>
+        /// <param name="database">The database file name (full path to the file).</param>
         /// <param name="createFile">Create file if not exists ?</param>
         /// <param name="scheme">The path to the database scheme.</param>
         /// <exception cref="FileNotFoundException"></exception>
@@ -71,35 +72,37 @@ namespace XtrmAddons.Net.SQLiteBundle
         {
             try
             {
-                if(createFile)
+                log.Debug("WPFSQLiteData Connecting to database : Data Source=" + database + ";Version=3;");
+
+                bool IsNew = false;
+                if (createFile || !File.Exists(database))
                 {
                     CreateFile(database);
+                    IsNew = true;
                 }
-
-                log.Debug("WPFSQLiteData Connecting : Data Source=" + database + ";Version=3;");
-
+                
                 Db = new SQLiteConnection("Data Source=" + database + ";Version=3;");
                 Db.Open();
 
-                if (createFile)
+                if (IsNew && !scheme.IsNullOrWhiteSpace())
                 {
                     CreateDatabase(scheme);
                     InitializeSetting();
                 }
             }
+
             catch (FileNotFoundException e)
             {
                 string message = string.Format(CultureInfo.InvariantCulture, "Failed to connect to the database : {0}", database);
                 log.Fatal(string.Format(message));
-                log.Fatal(e);
                 throw new FileNotFoundException(message, e);
             }
+
             catch (SQLiteException e)
             {
                 string message = string.Format(CultureInfo.InvariantCulture, "Failed to connect to the database : {0}", database);
                 log.Fatal(string.Format(message));
-                log.Fatal(e);
-                throw new Exception(message, e);
+                throw new SQLiteException(message, e);
             }
         }
 
@@ -131,8 +134,7 @@ namespace XtrmAddons.Net.SQLiteBundle
             catch(Exception e)
             {
                 string message = string.Format(CultureInfo.InvariantCulture, "Database file scheme not found : {0}", scheme);
-                log.Fatal(string.Format(message));
-                log.Fatal(e);
+                log.Fatal(message);
                 throw new FileNotFoundException(message, e);
             }
 
@@ -146,8 +148,7 @@ namespace XtrmAddons.Net.SQLiteBundle
             catch (SQLiteException e)
             {
                 string message = string.Format(CultureInfo.InvariantCulture, "Failed to create database scheme : {0}", scheme);
-                log.Fatal(string.Format(message));
-                log.Fatal(e);
+                log.Fatal(message);
                 throw new SQLiteException(message, e);
             }
         }
@@ -167,6 +168,10 @@ namespace XtrmAddons.Net.SQLiteBundle
         /// </summary>
         private bool disposedValue = false;
 
+        /// <summary>
+        /// Method to dispose object and its managed dependencies.
+        /// </summary>
+        /// <param name="disposing"></param>
         protected virtual void Dispose(bool disposing)
         {
             if (!disposedValue)
@@ -190,7 +195,10 @@ namespace XtrmAddons.Net.SQLiteBundle
         //   Dispose(false);
         // }
 
-        // Ce code est ajouté pour implémenter correctement le modèle supprimable.
+        /// <summary>
+        /// <para>Method to dispose object and its managed dependencies.</para>
+        /// <para>Ce code est ajouté pour implémenter correctement le modèle supprimable.</para>
+        /// </summary>
         public void Dispose()
         {
             // Ne modifiez pas ce code. Placez le code de nettoyage dans Dispose(bool disposing) ci-dessus.

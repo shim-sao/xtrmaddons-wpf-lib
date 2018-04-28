@@ -306,7 +306,10 @@ namespace XtrmAddons.Net.HttpWebServer
         //   Dispose(false);
         // }
 
-        // Ce code est ajouté pour implémenter correctement le modèle supprimable.
+        /// <summary>
+        /// <para>Method to dispose object and its managed dependencies.</para>
+        /// <para>Ce code est ajouté pour implémenter correctement le modèle supprimable.</para>
+        /// </summary>
         public void Dispose()
         {
             // Ne modifiez pas ce code. Placez le code de nettoyage dans Dispose(bool disposing) ci-dessus.

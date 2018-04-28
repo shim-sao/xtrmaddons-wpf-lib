@@ -48,8 +48,6 @@ namespace XtrmAddons.Net.HttpWebServer.Responses
         /// <summary>
         /// Class XtrmAddons Net Http Web Server Response Data Constructor.
         /// </summary>
-        /// <param name="data">The content of the document.</param>
-        /// <param name="contentType">The MimeType.</param>
         /// <param name="rawUrl">The Uri of the document.</param>
         public WebServerResponseData(string rawUrl)
         {
@@ -138,6 +136,7 @@ namespace XtrmAddons.Net.HttpWebServer.Responses
         /// Method to serve direct file.
         /// </summary>
         /// <param name="rawUrl">The rawUrl of the file.</param>
+        /// <param name="root">The root directory of the file.</param>
         /// <exception cref="FileNotFoundException"></exception>
         public void ServeFile(string rawUrl = "", string root = "")
         {

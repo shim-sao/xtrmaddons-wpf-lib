@@ -147,7 +147,8 @@ namespace XtrmAddons.Net.Application.Serializable.Elements.XmlElementBase
         /// <para>Update element with the same Key if is found in the list otherwise, add the element to the list.</para>
         /// </summary>
         /// <param name="element">The element to add or update and flag it by unique default.</param>
-        /// <param name="field">The name of the field to find. [Default] by default.</param>
+        /// <param name="field1">The name of the field to find. [Key] by default.</param>
+        /// <param name="field2">The name of the field to set to default. [Default] by default.</param>
         public void ReplaceKeyDefaultUnique(T element, string field1 = "Key", string field2 = "Default")
         {
             SetAllDefaultNone(field2);

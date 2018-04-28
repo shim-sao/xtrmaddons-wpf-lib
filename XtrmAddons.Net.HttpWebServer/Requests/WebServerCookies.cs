@@ -83,11 +83,11 @@ namespace XtrmAddons.Net.HttpWebServer.Requests
         {
             Application.SetCookie(uri, cookie);
         }
-        
+
         /// <summary>
         /// Method to set Session Id cookie.
         /// </summary>
-        /// <param name="uri">The uri string of the cookie</param>
+        /// <param name="value">The uri string of the cookie</param>
         public void SetSessionId(string value)
         {
             Set(new Uri(@_prefix + "sid"), "sid="+ value);

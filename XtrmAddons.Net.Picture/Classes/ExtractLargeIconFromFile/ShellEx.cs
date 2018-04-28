@@ -7,6 +7,9 @@ using System.Runtime.InteropServices;
 /// </summary>
 namespace XtrmAddons.Net.Picture.ExtractLargeIconFromFile
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class ShellEx
     {
         private const int SHGFI_SMALLICON = 0x1;
@@ -15,6 +18,9 @@ namespace XtrmAddons.Net.Picture.ExtractLargeIconFromFile
         private const int SHIL_EXTRALARGE = 0x2;
         private const int WM_CLOSE = 0x0010;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public enum IconSizeEnum
         {
             SmallIcon16 = SHGFI_SMALLICON,

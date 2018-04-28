@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>XtrmAddons.Net.SQLiteBundle</RootNamespace>
     <AssemblyName>XtrmAddons.Net.SQLiteBundle</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
@@ -21,6 +21,7 @@
     <AssemblyVersionSettings>None.None.DateStamp.TimeStamp</AssemblyVersionSettings>
     <AssemblyFileVersionSettings>None.None.DateStamp.TimeStamp</AssemblyFileVersionSettings>
     <AssemblyInfoVersionSettings>None.None.DateStamp.TimeStamp</AssemblyInfoVersionSettings>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -41,6 +42,7 @@
     <WarningLevel>4</WarningLevel>
     <RunCodeAnalysis>true</RunCodeAnalysis>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <DocumentationFile>bin\Release\XtrmAddons.Net.SQLiteBundle.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="EntityFramework" Version="6.2.0" />
@@ -84,6 +86,10 @@
     <ProjectReference Include="..\XtrmAddons.Net.Application\XtrmAddons.Net.Application.csproj">
       <Project>{dc9ceff7-1aef-480f-81f6-4cdf4019fc82}</Project>
       <Name>XtrmAddons.Net.Application</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\XtrmAddons.Net.Common\XtrmAddons.Net.Common.csproj">
+      <Project>{1FE7F4B3-4393-4752-88A6-B4B06EA96206}</Project>
+      <Name>XtrmAddons.Net.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

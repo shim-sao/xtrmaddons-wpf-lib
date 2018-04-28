@@ -4,6 +4,9 @@ using System.Xml;
 
 namespace XtrmAddons.Net.Xml
 {
+    /// <summary>
+    /// Class XtrmAddons Net Xml Manager.
+    /// </summary>
     public class XMLManager
     {
         /// <summary>

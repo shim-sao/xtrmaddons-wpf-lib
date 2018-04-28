@@ -78,7 +78,6 @@ namespace XtrmAddons.Net.Common.Extensions
         /// <summary>
         /// Method to check if an object has a property not null.
         /// </summary>
-        /// <typeparam name="T">The object class type.</typeparam>
         /// <param name="obj">The object to search in.</param>
         /// <param name="propertyName">A name of a property.</param>
         /// <returns>True if the object exists and the object is not null otherwise, false.</returns>
@@ -90,10 +89,9 @@ namespace XtrmAddons.Net.Common.Extensions
         /// <summary>
         /// Method to check if an object has a property equals to a value object.
         /// </summary>
-        /// <typeparam name="T">The object class type.</typeparam>
         /// <param name="obj">The object to search in.</param>
         /// <param name="propertyName">A name of a property.</param>
-        /// <param name="propertyName">The value to check in equality.</param>
+        /// <param name="value">The value to check in equality.</param>
         /// <returns>True if the object exists and the object is equal to value otherwise, false.</returns>
         public static bool HasPropertyEquals(this object obj, string propertyName, object value)
         {
@@ -103,7 +101,6 @@ namespace XtrmAddons.Net.Common.Extensions
         /// <summary>
         /// Method to check if has a property.
         /// </summary>
-        /// <typeparam name="T">The object Class.</typeparam>
         /// <param name="obj">The object to search in.</param>
         /// <param name="propertyName">A name of a property.</param>
         /// <param name="ignorecase">Ignore sensitive case ?.</param>
@@ -241,6 +238,7 @@ namespace XtrmAddons.Net.Common.Extensions
         /// Method to get instance to Json string format.
         /// </summary>
         /// <param name="obj">The object to convert to Json.</param>
+        /// <param name="serializerSettings">The Json serializer settings.</param>
         /// <returns>Json instance serialization.</returns>
         public static string ToJson(this object obj, JsonSerializerSettings serializerSettings = null)
         {

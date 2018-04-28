@@ -1,5 +1,8 @@
 ﻿namespace XtrmAddons.Net.Application.Serializable.Elements.XmlRemote
 {
+    /// <summary>
+    /// Class XtrmAddons Net Application Serializable Elements XML Remote Options.
+    /// </summary>
     public class RemoteOptions
     {
         #region Properties
