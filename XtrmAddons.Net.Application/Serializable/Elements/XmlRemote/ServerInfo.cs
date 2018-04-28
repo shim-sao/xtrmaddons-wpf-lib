@@ -36,6 +36,12 @@ namespace XtrmAddons.Net.Application.Serializable.Elements.XmlRemote
         public string UserName { get; set; }
 
         /// <summary>
+        /// Property email for server connexion.
+        /// </summary>
+        [XmlAttribute(DataType = "string", AttributeName = "Email")]
+        public string Email { get; set; }
+
+        /// <summary>
         /// Property password for server connexion.
         /// </summary>
         [XmlAttribute(DataType = "string", AttributeName = "Password")]

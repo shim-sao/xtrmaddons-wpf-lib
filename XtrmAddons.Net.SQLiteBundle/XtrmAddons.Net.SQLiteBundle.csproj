@@ -27,7 +27,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;CODE_ANALYSIS</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -35,7 +35,8 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>
+    </DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <RunCodeAnalysis>true</RunCodeAnalysis>
@@ -44,21 +45,21 @@
   <ItemGroup>
     <PackageReference Include="EntityFramework" Version="6.2.0" />
     <PackageReference Include="log4net" Version="2.0.8" />
-    <PackageReference Include="Microsoft.Data.Sqlite.Core" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Data.Sqlite.Core" Version="2.0.1" />
     <PackageReference Include="SQLite.Net.Async-PCL" Version="3.1.1" />
     <PackageReference Include="SQLite.Net.Core-PCL" Version="3.1.1" />
     <PackageReference Include="SQLite.Net.DateTimeOffset" Version="1.2.0" />
     <PackageReference Include="SQLite.Net-PCL" Version="3.1.1" />
-    <PackageReference Include="SQLitePCLRaw.bundle_green" Version="1.1.9" />
-    <PackageReference Include="SQLitePCLRaw.core" Version="1.1.9" />
-    <PackageReference Include="SQLitePCLRaw.lib.e_sqlite3.linux" Version="1.1.9" />
-    <PackageReference Include="SQLitePCLRaw.lib.e_sqlite3.osx" Version="1.1.9" />
-    <PackageReference Include="SQLitePCLRaw.lib.e_sqlite3.v110_xp" Version="1.1.9" />
-    <PackageReference Include="SQLitePCLRaw.provider.e_sqlite3.net45" Version="1.1.9" />
-    <PackageReference Include="System.Data.SQLite" Version="1.0.107" />
-    <PackageReference Include="System.Data.SQLite.Core" Version="1.0.107" />
-    <PackageReference Include="System.Data.SQLite.EF6" Version="1.0.107" />
-    <PackageReference Include="System.Data.SQLite.Linq" Version="1.0.107" />
+    <PackageReference Include="SQLitePCLRaw.bundle_green" Version="1.1.10" />
+    <PackageReference Include="SQLitePCLRaw.core" Version="1.1.10" />
+    <PackageReference Include="SQLitePCLRaw.lib.e_sqlite3.linux" Version="1.1.10" />
+    <PackageReference Include="SQLitePCLRaw.lib.e_sqlite3.osx" Version="1.1.10" />
+    <PackageReference Include="SQLitePCLRaw.lib.e_sqlite3.v110_xp" Version="1.1.10" />
+    <PackageReference Include="SQLitePCLRaw.provider.e_sqlite3.net45" Version="1.1.10" />
+    <PackageReference Include="System.Data.SQLite" Version="1.0.108" />
+    <PackageReference Include="System.Data.SQLite.Core" Version="1.0.108" />
+    <PackageReference Include="System.Data.SQLite.EF6" Version="1.0.108" />
+    <PackageReference Include="System.Data.SQLite.Linq" Version="1.0.108" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
