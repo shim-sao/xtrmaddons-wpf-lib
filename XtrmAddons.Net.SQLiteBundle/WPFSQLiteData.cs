@@ -3,6 +3,7 @@ using System.Data;
 using System.Data.SQLite;
 using System.Globalization;
 using System.IO;
+using System.Transactions;
 using XtrmAddons.Net.Application.Tools;
 using XtrmAddons.Net.Common.Extensions;
 
@@ -70,21 +71,21 @@ namespace XtrmAddons.Net.SQLiteBundle
         /// <exception cref="Exception"></exception>
         public void CreateConnection(string database, bool createFile = false, string scheme = "")
         {
+            log.Info("WPFSQLiteData Connecting to database : Data Source=" + database + ";Version=3;");
+
             try
             {
-                log.Debug("WPFSQLiteData Connecting to database : Data Source=" + database + ";Version=3;");
-
-                bool IsNew = false;
-                if (createFile || !File.Exists(database))
+                if (createFile)
                 {
                     CreateFile(database);
-                    IsNew = true;
                 }
-                
+
+                log.Debug("WPFSQLiteData Connecting : Data Source=" + database + ";Version=3;");
+
                 Db = new SQLiteConnection("Data Source=" + database + ";Version=3;");
                 Db.Open();
 
-                if (IsNew && !scheme.IsNullOrWhiteSpace())
+                if (createFile)
                 {
                     CreateDatabase(scheme);
                     InitializeSetting();
@@ -124,6 +125,8 @@ namespace XtrmAddons.Net.SQLiteBundle
         /// <exception cref="Exception"></exception>
         protected void CreateDatabase(string scheme)
         {
+            log.Info(string.Format(CultureInfo.InvariantCulture, "Creating Database scheme : {0}", scheme));
+
             string query = "";
             string path = Path.Combine(Environment.CurrentDirectory, scheme);
 
@@ -134,23 +137,33 @@ namespace XtrmAddons.Net.SQLiteBundle
             catch(Exception e)
             {
                 string message = string.Format(CultureInfo.InvariantCulture, "Database file scheme not found : {0}", scheme);
-                log.Fatal(message);
+                log.Error(message);
                 throw new FileNotFoundException(message, e);
             }
 
             try
-            {
-                SQLiteCommand command = Db.CreateCommand();
-                command.Parameters.Add("@Text", DbType.String).Value = query;
-                command.CommandText = "@Text";
-                command.ExecuteNonQuery();
+            { 
+                // Create sheme with transaction for big query.
+                using (TransactionScope tran = new TransactionScope())
+                {
+                    SQLiteCommand command = Db.CreateCommand();
+
+                    // Not supported by DLL
+                    //command.Parameters.Add("@Text", DbType.String).Value = query;
+                    //command.CommandText = "@Text";
+
+                    command.CommandText = @query;
+                    command.ExecuteNonQuery();
+                }
             }
             catch (SQLiteException e)
             {
                 string message = string.Format(CultureInfo.InvariantCulture, "Failed to create database scheme : {0}", scheme);
-                log.Fatal(message);
+                log.Error(message);
                 throw new SQLiteException(message, e);
             }
+
+            log.Info("Creating Database scheme done.");
         }
 
         /// <summary>
@@ -197,7 +210,7 @@ namespace XtrmAddons.Net.SQLiteBundle
 
         /// <summary>
         /// <para>Method to dispose object and its managed dependencies.</para>
-        /// <para>Ce code est ajouté pour implémenter correctement le modèle supprimable.</para>
+        /// <para>This code is added to correctly implement the deleteable template.</para>
         /// </summary>
         public void Dispose()
         {
