@@ -10,25 +10,14 @@ namespace XtrmAddons.Net.Common.Extensions
     /// </summary>
     public static class IDictionaryExtension
     {
-        #region Variables
-
-        /// <summary>
-        /// Variable logger.
-        /// </summary>
-        private static readonly log4net.ILog log =
-            log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-
-        #endregion
-
-
         #region Methods
 
         /// <summary>
-        /// Extension method that turns a dictionary of string and object to an ExpandoObject
-        /// <see cref="http://theburningmonk.com/2011/05/idictionarystring-object-to-expandoobject-extension-method/"/>
+        /// Extension method that turns a dictionary of string and object to an ExpandoObject.
         /// </summary>
-        /// <param name="dictionary"></param>
-        /// <returns></returns>
+        /// <remarks>http://theburningmonk.com/2011/05/idictionarystring-object-to-expandoobject-extension-method/</remarks>
+        /// <param name="dictionary">The IDictionary to bind.</param>
+        /// <returns>An ExpandoObject with dictionary data as properties.</returns>
         public static ExpandoObject ToExpando(this IDictionary<string, object> dictionary)
         {
             var expando = new ExpandoObject();
