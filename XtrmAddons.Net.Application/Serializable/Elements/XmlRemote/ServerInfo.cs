@@ -1,5 +1,4 @@
-﻿using System;
-using System.Xml.Serialization;
+﻿using System.Xml.Serialization;
 using XtrmAddons.Net.Application.Serializable.Elements.XmlElementBase;
 
 namespace XtrmAddons.Net.Application.Serializable.Elements.XmlRemote
@@ -52,6 +51,12 @@ namespace XtrmAddons.Net.Application.Serializable.Elements.XmlRemote
         /// </summary>
         [XmlAttribute(DataType = "string", AttributeName = "Comment")]
         public string Comment { get; set; }
+
+        /// <summary>
+        /// Property to define if server can auto started by the application or required to be started manually.
+        /// </summary>
+        [XmlAttribute(DataType = "boolean", AttributeName = "AutoStart")]
+        public bool AutoStart { get; set; }
 
         /// <summary>
         /// Property status of the server.
