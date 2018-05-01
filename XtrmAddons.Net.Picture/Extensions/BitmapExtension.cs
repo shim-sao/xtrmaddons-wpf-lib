@@ -32,10 +32,8 @@ namespace XtrmAddons.Net.Picture.Extensions
         /// Method to convert a Bitmap to BitmapSource.
         /// </summary>
         /// <param name="bitmap">A Bitmap to convert.</param>
-        /// <remarks>
-        /// Source : https://stackoverflow.com/questions/6484357/converting-bitmapimage-to-bitmap-and-vice-versa
-        /// </remarks>
         /// <returns>A Bitmap Image</returns>
+        /// <see href="https://stackoverflow.com/questions/6484357/converting-bitmapimage-to-bitmap-and-vice-versa">stackoverflow.com</see>
         public static BitmapSource ToBitmapSource(this Bitmap bitmap)
         {
             IntPtr hBitmap = bitmap.GetHbitmap();
@@ -63,10 +61,8 @@ namespace XtrmAddons.Net.Picture.Extensions
         /// Method to convert a Bitmap to BitmapImage.
         /// </summary>
         /// <param name="bitmap">A Bitmap to convert.</param>
-        /// <remarks>
-        /// Source : https://stackoverflow.com/questions/6484357/converting-bitmapimage-to-bitmap-and-vice-versa
-        /// </remarks>
         /// <returns>A BitmapImage</returns>
+        /// <see href="https://stackoverflow.com/questions/6484357/converting-bitmapimage-to-bitmap-and-vice-versa">stackoverflow.com</see>
         public static BitmapImage ToBitmapImage(this Bitmap bitmap)
         {
             using (MemoryStream memory = new MemoryStream())

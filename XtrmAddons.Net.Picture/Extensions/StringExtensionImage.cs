@@ -70,7 +70,7 @@ namespace XtrmAddons.Net.Picture.Extensions
         /// </summary>
         /// <param name="str">An email.</param>
         /// <returns>True if it is a valid email otherwise false.</returns>
-        /// <remarks>https://stackoverflow.com/questions/1365407/c-sharp-code-to-validate-email-address</remarks>
+        /// <see href="https://stackoverflow.com/questions/1365407/c-sharp-code-to-validate-email-address">stackoverflow.com</see>
         public static bool IsValidEmail(this string str)
         {
             try

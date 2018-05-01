@@ -15,9 +15,9 @@ namespace XtrmAddons.Net.Common.Extensions
         /// <summary>
         /// Extension method that turns a dictionary of string and object to an ExpandoObject.
         /// </summary>
-        /// <remarks>http://theburningmonk.com/2011/05/idictionarystring-object-to-expandoobject-extension-method/</remarks>
         /// <param name="dictionary">The IDictionary to bind.</param>
         /// <returns>An ExpandoObject with dictionary data as properties.</returns>
+        /// <see href="http://theburningmonk.com/2011/05/idictionarystring-object-to-expandoobject-extension-method/">theburningmonk.com</see>
         public static ExpandoObject ToExpando(this IDictionary<string, object> dictionary)
         {
             var expando = new ExpandoObject();

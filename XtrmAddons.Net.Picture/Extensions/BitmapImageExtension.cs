@@ -27,10 +27,8 @@ namespace XtrmAddons.Net.Picture.Extensions
         /// Method to convert a BitmapImage to Bitmap.
         /// </summary>
         /// <param name="bitmapImage">A BitmapImage to convert.</param>
-        /// <remarks>
-        /// Source : https://stackoverflow.com/questions/6484357/converting-bitmapimage-to-bitmap-and-vice-versa
-        /// </remarks>
         /// <returns>A Bitmap</returns>
+        /// <see href="https://stackoverflow.com/questions/6484357/converting-bitmapimage-to-bitmap-and-vice-versa">stackoverflow.com</see>
         public static Bitmap ToBitmap(BitmapImage bitmapImage)
         {
             using (MemoryStream outStream = new MemoryStream())
@@ -49,7 +47,7 @@ namespace XtrmAddons.Net.Picture.Extensions
         /// </summary>
         /// <param name="image">A BitmapImage to save.</param>
         /// <param name="filePath">The fullname or path to the image.</param>
-        /// <see cref="https://stackoverflow.com/questions/35804375/how-do-i-save-a-bitmapimage-from-memory-into-a-file-in-wpf-c"/>
+        /// <see href="https://stackoverflow.com/questions/35804375/how-do-i-save-a-bitmapimage-from-memory-into-a-file-in-wpf-c">stackoverflow.com</see>
         public static void Save(this BitmapImage bitmapImage, string filePath, bool? overrride = true)
         {
             if(overrride == true)
