@@ -7,7 +7,7 @@ namespace XtrmAddons.Net.Application.Serializable.Elements.XmlElementBase
     /// Class XtrmAddons Net Application Serializable Elements XML Elements Base Object.
     /// </summary>
     [Serializable]
-    public class ElementBaseObject : ElementBase
+    public class Property : ElementBase
     {
         #region Properties
 
@@ -32,12 +32,12 @@ namespace XtrmAddons.Net.Application.Serializable.Elements.XmlElementBase
         /// <summary>
         /// Class XtrmAddons Net Application Serializable Elements XML Elements Base Object Constructor.
         /// </summary>
-        public ElementBaseObject() { }
+        public Property() { }
 
         /// <summary>
         /// Class XtrmAddons Net Application Serializable Elements XML Elements Base Object Constructor.
         /// </summary>
-        public ElementBaseObject(string Name ="", string Value = "" ) : base() { }
+        public Property(string Name ="", string Value = "" ) : base() { }
         
         #endregion
     }

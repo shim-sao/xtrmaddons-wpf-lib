@@ -5,7 +5,7 @@ namespace XtrmAddons.Net.Application.Serializable.Elements.XmlElementBase
     /// <summary>
     /// Class XtrmAddons Net Application Serializable Elements XML Element Base Objects List.
     /// </summary>
-    public class ElementBaseObjects : ElementsBase<ElementBaseObject>
+    public class ElementBaseObjects : ElementsBase<Property>
     {
         #region Constructors
 
@@ -24,7 +24,7 @@ namespace XtrmAddons.Net.Application.Serializable.Elements.XmlElementBase
         /// Class XtrmAddons Net Application Serializable Elements XML Element Base Objects List.
         /// </summary>
         /// <param name="collection">Collection whose items are copied to the new list.</param>
-        public ElementBaseObjects(IEnumerable<ElementBaseObject> collection) : base(collection) { }
+        public ElementBaseObjects(IEnumerable<Property> collection) : base(collection) { }
 
         #endregion
     }

@@ -16,18 +16,6 @@ namespace XtrmAddons.Net.Application.Serializable.Elements.XmlUiElement
     [Serializable]
     public class UiElement : ElementBase
     {
-        #region Variable
-
-        /// <summary>
-        /// Variable serialized windows control.
-        /// </summary>
-        [NonSerialized]
-        private string objectValue = "";
-
-        #endregion
-
-
-
         #region Properties
 
         /// <summary>
@@ -39,12 +27,9 @@ namespace XtrmAddons.Net.Application.Serializable.Elements.XmlUiElement
         /// <summary>
         /// Property value of the UI element.
         /// </summary>
-        [XmlAttribute(DataType = "string", AttributeName = "Value")]
-        public object Value
-        {
-            get => GetValue();
-            set => objectValue = SetValue(value);
-        }
+        ///[XmlAttribute(DataType = "string", AttributeName = "Value
+        [XmlElement("JsonContext")]
+        public string JsonContext { get; set; }
 
         #endregion
 
@@ -60,23 +45,67 @@ namespace XtrmAddons.Net.Application.Serializable.Elements.XmlUiElement
         /// <summary>
         /// Class XtrmAddons Net Application Serializable Elements XML UI Element Constructor.
         /// </summary>
-        /// <param name="control">A windows control to serialize.</param>
+        /// <param name="ctrl">A windows control to serialize.</param>
         /// <exception cref="ArgumentNullException"/>
-        public UiElement(Control control)
+        public UiElement(Control ctrl)
         {
-            if (control.Uid.IsNullOrWhiteSpace())
+            if (ctrl.Uid.IsNullOrWhiteSpace())
             {
-                throw new ArgumentNullException(nameof(control.Uid));
+                throw new ArgumentNullException(nameof(ctrl.Uid));
             }
 
-            if (control.Name.IsNullOrWhiteSpace())
+            if (ctrl.Name.IsNullOrWhiteSpace())
             {
-                throw new ArgumentNullException(nameof(control.Name));
+                throw new ArgumentNullException(nameof(ctrl.Name));
             }
 
-            Key = control.Uid;
-            Name = control.Name;
-            Value = control;
+            Key = ctrl.Uid;
+            Name = ctrl.Name;
+            JsonContext = new UiControlSerializer(ctrl).ToJson();
+        }
+
+        /// <summary>
+        /// Class XtrmAddons Net Application Serializable Elements XML UI Element Constructor.
+        /// </summary>
+        /// <param name="ctrl">A windows control to serialize.</param>
+        /// <exception cref="ArgumentNullException"/>
+        public UiElement(CheckBox ctrl)
+        {
+            if (ctrl.Uid.IsNullOrWhiteSpace())
+            {
+                throw new ArgumentNullException(nameof(ctrl.Uid));
+            }
+
+            if (ctrl.Name.IsNullOrWhiteSpace())
+            {
+                throw new ArgumentNullException(nameof(ctrl.Name));
+            }
+
+            Key = ctrl.Uid;
+            Name = ctrl.Name;
+            JsonContext = new UiControlSerializer(ctrl).ToJson();
+        }
+
+        /// <summary>
+        /// Class XtrmAddons Net Application Serializable Elements XML UI Element Constructor.
+        /// </summary>
+        /// <param name="ctrl">A windows control to serialize.</param>
+        /// <exception cref="ArgumentNullException"/>
+        public UiElement(MenuItem ctrl)
+        {
+            if (ctrl.Uid.IsNullOrWhiteSpace())
+            {
+                throw new ArgumentNullException(nameof(ctrl.Uid));
+            }
+
+            if (ctrl.Name.IsNullOrWhiteSpace())
+            {
+                throw new ArgumentNullException(nameof(ctrl.Name));
+            }
+
+            Key = ctrl.Uid;
+            Name = ctrl.Name;
+            JsonContext = new UiControlSerializer(ctrl).ToJson();
         }
 
         #endregion
@@ -88,39 +117,61 @@ namespace XtrmAddons.Net.Application.Serializable.Elements.XmlUiElement
         /// <summary>
         /// Method to convert a windows control into a serialized string.
         /// </summary>
-        /// <param name="value">A windows control to serialize.</param>
-        /// <returns>A serialized string.</returns>
-        private static string SetValue(object value)
+        /// <param name="ctrl">A windows control to serialize.</param>
+        /// <returns></returns>
+        public Control ToControl(Control ctrl)
         {
             try
             {
-                return XamlWriter.Save(value);
+                UiControlSerializer ucs = new UiControlSerializer(JsonContext);
+                ucs.ToControl(ctrl);
             }
             catch (Exception e)
             {
                 Trace.WriteLine(e);
             }
 
-            return "";
+            return ctrl;
         }
 
         /// <summary>
-        /// Method to convert a serialized string into a windows control.
+        /// Method to convert a windows control into a serialized string.
         /// </summary>
-        /// <returns>A deserialized windows control. Return null if deserialization fail.</returns>
-        private object GetValue()
+        /// <param name="ctrl">A windows control to serialize.</param>
+        /// <returns></returns>
+        public CheckBox ToControl(CheckBox ctrl)
         {
             try
             {
-                StringReader stringReader = new StringReader(objectValue);
-                XmlReader xmlReader = XmlReader.Create(stringReader);
-                return XamlReader.Load(xmlReader);
+                UiControlSerializer ucs = new UiControlSerializer(JsonContext);
+                ucs.ToControl(ctrl);
             }
             catch (Exception e)
             {
                 Trace.WriteLine(e);
-                return null;
             }
+
+            return ctrl;
+        }
+
+        /// <summary>
+        /// Method to convert a windows control into a serialized string.
+        /// </summary>
+        /// <param name="ctrl">A windows control to serialize.</param>
+        /// <returns></returns>
+        public MenuItem ToControl(MenuItem ctrl)
+        {
+            try
+            {
+                UiControlSerializer ucs = new UiControlSerializer(JsonContext);
+                ucs.ToControl(ctrl);
+            }
+            catch (Exception e)
+            {
+                Trace.WriteLine(e);
+            }
+
+            return ctrl;
         }
 
         #endregion

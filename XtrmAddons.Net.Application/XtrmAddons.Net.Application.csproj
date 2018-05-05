@@ -43,14 +43,19 @@
   <ItemGroup>
     <PackageReference Include="log4net" Version="2.0.8" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.0.0" />
+    <PackageReference Include="WindowsBase">
+      <Version>4.6.1055</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
+    <Reference Include="System.Windows" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml" />
@@ -70,6 +75,7 @@
     <Compile Include="Serializable\Elements\XmlStorage\Directories.cs" />
     <Compile Include="Serializable\Elements\XmlElementBase\ElementsBase.cs" />
     <Compile Include="Serializable\Elements\XmlUiElement\UiElementBase.cs" />
+    <Compile Include="Serializable\Elements\XmlUiElement\UiControlSerializer.cs" />
     <Compile Include="Serializable\Elements\XmlUiElement\UiElements.cs" />
     <Compile Include="Serializable\Elements\XmlData\DataOptions.cs" />
     <Compile Include="Serializable\Elements\XmlData\Database.cs" />

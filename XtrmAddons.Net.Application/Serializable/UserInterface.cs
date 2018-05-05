@@ -1,4 +1,5 @@
 ﻿using System.Xml.Serialization;
+using XtrmAddons.Net.Application.Serializable.Elements.XmlElementBase;
 using XtrmAddons.Net.Application.Serializable.Elements.XmlUiElement;
 
 namespace XtrmAddons.Net.Application.Serializable
@@ -10,6 +11,12 @@ namespace XtrmAddons.Net.Application.Serializable
     public class UserInterface
     {
         #region Properties
+
+        /// <summary>
+        /// Property list of UI Elements.
+        /// </summary>
+        [XmlElement("Properties")]
+        public ElementBaseObjects Parameters;
 
         /// <summary>
         /// Property list of UI Elements.
@@ -29,6 +36,7 @@ namespace XtrmAddons.Net.Application.Serializable
         public UserInterface()
         {
             Controls = new UiElements();
+            Parameters = new ElementBaseObjects();
         }
 
         #endregion
