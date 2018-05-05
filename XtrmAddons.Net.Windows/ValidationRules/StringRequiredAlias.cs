@@ -4,10 +4,10 @@ using XtrmAddons.Net.Common.Extensions;
 namespace XtrmAddons.Net.Windows.ValidationRules
 {
     /// <summary>
-    /// <para>Class XtrmAddons Net Windows Validation Rule String Required.</para>
-    /// <para>Check if a string is not null, empty or whitespace.</para>
+    /// <para>Class XtrmAddons Net Windows Validation Rule String Required Alias.</para>
+    /// <para>Check if a formated string as alias is not null, empty or whitespace.</para>
     /// </summary>
-    public class StringRequired : ValidationRule
+    public class StringRequiredAlias : ValidationRule
     {
         /// <summary>
         /// Method to validate rule to apply to the object.
@@ -18,6 +18,7 @@ namespace XtrmAddons.Net.Windows.ValidationRules
         public override ValidationResult Validate(object value, System.Globalization.CultureInfo cultureInfo)
         {
             string str = value as string;
+            str = str.Sanitize().RemoveDiacritics().ToLower();
 
             if (str.IsNotNullOrWhiteSpace())
             {

@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Data;
 using System.Data.SQLite;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.IO;
 using System.Transactions;
@@ -87,7 +87,7 @@ namespace XtrmAddons.Net.SQLiteBundle
 
                 if (createFile)
                 {
-                    CreateDatabase(scheme);
+                    RunFile(Db, scheme);
                     InitializeSetting();
                 }
             }
@@ -123,6 +123,8 @@ namespace XtrmAddons.Net.SQLiteBundle
         /// <param name="scheme">An application relative path to the database scheme to create.</param>
         /// <exception cref="SQLiteException"></exception>
         /// <exception cref="Exception"></exception>
+        [Obsolete("Use RunFile(string scheme, string root = '')")]
+        [SuppressMessage("Microsoft.Security", "CA2100", Justification = "Do not to fix it !", Scope = "Not supported by DLL")]
         protected void CreateDatabase(string scheme)
         {
             log.Info(string.Format(CultureInfo.InvariantCulture, "Creating Database scheme : {0}", scheme));
@@ -164,6 +166,69 @@ namespace XtrmAddons.Net.SQLiteBundle
             }
 
             log.Info("Creating Database scheme done.");
+        }
+
+        /// <summary>
+        /// Method to run a query base on a file of schema.
+        /// </summary>
+        /// <param name="db">The SQLite Connection to the database.</param>
+        /// <param name="scheme">An application relative path to the database schema to create.</param>
+        /// <param name="root">An optional root for the file.</param>
+        /// <exception cref="SQLiteException"></exception>
+        /// <exception cref="Exception"></exception>
+        [SuppressMessage("Microsoft.Security", "CA2100", Justification = "Do not to fix it !", Scope = "Not supported by DLL")]
+        public static void RunFile(SQLiteConnection db, string scheme, string root = "")
+        {
+            log.Info(string.Format(CultureInfo.InvariantCulture, "Creating Database schema : {0}", scheme));
+
+            string query = "";
+
+            if (!Path.IsPathRooted(scheme))
+            {
+                if(root.IsNullOrWhiteSpace())
+                {
+                    scheme = Path.Combine(Environment.CurrentDirectory, scheme);
+                }
+                else
+                {
+                    scheme = Path.Combine(root, scheme);
+                }
+            }
+
+            try
+            {
+                query = File.ReadAllText(scheme);
+            }
+            catch(Exception e)
+            {
+                string message = string.Format(CultureInfo.InvariantCulture, "Database file schema not found : {0}", scheme);
+                log.Error(message);
+                throw new FileNotFoundException(message, e);
+            }
+
+            try
+            { 
+                // Create sheme with transaction for big query.
+                using (TransactionScope tran = new TransactionScope())
+                {
+                    SQLiteCommand command = db.CreateCommand();
+
+                    // Not supported by DLL
+                    //command.Parameters.Add("@Text", DbType.String).Value = query;
+                    //command.CommandText = "@Text";
+                    
+                    command.CommandText = @query;
+                    command.ExecuteNonQuery();
+                }
+            }
+            catch (SQLiteException e)
+            {
+                string message = string.Format(CultureInfo.InvariantCulture, "Failed to create database schema : {0}", scheme);
+                log.Error(message);
+                throw new SQLiteException(message, e);
+            }
+
+            log.Info("Creating Database schema done.");
         }
 
         /// <summary>
