@@ -222,7 +222,7 @@ namespace XtrmAddons.Net.Common.Extensions
         /// <param name="str">The string to encrypt.</param>
         /// <returns>An encrypted string in MD5 format.</returns>
         /// <see href="https://www.junian.net/2014/07/password-encryption-using-md5-hash.html"/>
-        public static string MD5Hash(string str)
+        public static string MD5Hash(this string str)
         {
             MD5 md5 = new MD5CryptoServiceProvider();
 
