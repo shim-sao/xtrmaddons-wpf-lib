@@ -192,15 +192,7 @@ namespace XtrmAddons.Net.Common.Extensions
         /// <see href="https://stackoverflow.com/questions/1365407/c-sharp-code-to-validate-email-address">stackoverflow.com</see>
         public static bool IsValidEmail(this string str)
         {
-            try
-            {
-                var addr = new System.Net.Mail.MailAddress(str);
-                return addr.Address == str;
-            }
-            catch
-            {
-                return false;
-            }
+            return Regex.IsMatch(str, @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
         }
 
         /// <summary>
