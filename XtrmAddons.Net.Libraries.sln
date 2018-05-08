@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XtrmAddons.Net.Windows", "X
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XtrmAddons.Net.Application.Examples", "XtrmAddons.Net.Application.Examples\XtrmAddons.Net.Application.Examples.csproj", "{57D897AD-4872-4DA0-B28C-E49ABE23D2ED}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XtrmAddons.Net.Test", "XtrmAddons.Net.Test\XtrmAddons.Net.Test.csproj", "{CD68A53C-2EA8-48CF-A3F8-98A515F6D800}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +89,10 @@ Global
 		{57D897AD-4872-4DA0-B28C-E49ABE23D2ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{57D897AD-4872-4DA0-B28C-E49ABE23D2ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{57D897AD-4872-4DA0-B28C-E49ABE23D2ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD68A53C-2EA8-48CF-A3F8-98A515F6D800}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD68A53C-2EA8-48CF-A3F8-98A515F6D800}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD68A53C-2EA8-48CF-A3F8-98A515F6D800}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD68A53C-2EA8-48CF-A3F8-98A515F6D800}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

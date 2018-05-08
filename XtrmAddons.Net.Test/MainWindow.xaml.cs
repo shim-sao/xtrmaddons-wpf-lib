@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using XtrmAddons.Net.Test.Common;
 
 namespace XtrmAddons.Net.Test
 {
@@ -23,6 +24,12 @@ namespace XtrmAddons.Net.Test
         public MainWindow()
         {
             InitializeComponent();
+            Tests();
+        }
+
+        public void Tests()
+        {
+            ObjectsTests.ObjectBind();
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using PropertyInfo = System.Reflection.PropertyInfo;
@@ -109,13 +110,19 @@ namespace XtrmAddons.Net.Common.Extensions
         {
             try
             {
+                Trace.WriteLine("HasProperty obj.GetType() = " + obj.GetType());
+                Trace.WriteLine("HasProperty propertyName = " + propertyName);
+
                 PropertyDescriptor prop = TypeDescriptor.GetProperties(obj.GetType()).Find(propertyName, ignorecase);
+
+                Trace.WriteLine("HasProperty prop = " + prop);
+
                 return prop != null;
             }
             catch (Exception e)
             {
-                log.Fatal("OjectExtension.HasProperty Failed !", e);
-                throw new InvalidOperationException("OjectExtension.HasProperty Failed !", e);
+                log.Fatal("OjectExtension.HasProperty() Failed !", e);
+                throw new InvalidOperationException("OjectExtension.HasProperty Failed() !", e);
             }
         }
 
@@ -129,12 +136,15 @@ namespace XtrmAddons.Net.Common.Extensions
         public static void Bind<T>(this T obj, T binding, string[] ignore = null) where T : class
         {
             PropertyInfo[] props = obj.GetType().GetProperties();
-
+            
             foreach (PropertyInfo prop in props)
             {
-                if (ignore != null && !ignore.Contains(prop.Name))
+                if (ignore == null || !ignore.Contains(prop.Name))
                 {
-                    prop.SetValue(obj, binding.GetPropertyValue(prop.Name));
+                    if (prop.CanWrite)
+                    {
+                        prop.SetValue(obj, binding.GetPropertyValue(prop.Name));
+                    }
                 }
             }
         }
@@ -152,9 +162,12 @@ namespace XtrmAddons.Net.Common.Extensions
 
             foreach (PropertyInfo prop in props)
             {
-                if (obj.HasProperty(prop.Name) && ignore != null && !ignore.Contains(prop.Name))
+                if (obj.HasProperty(prop.Name) && (ignore == null || !ignore.Contains(prop.Name)))
                 {
-                    prop.SetValue(obj, binding.GetPropertyValue(prop.Name));
+                    if (prop.CanWrite)
+                    {
+                        prop.SetValue(obj, binding.GetPropertyValue(prop.Name));
+                    }
                 }
             }
         }
