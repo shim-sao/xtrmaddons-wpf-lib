@@ -10,7 +10,7 @@ namespace XtrmAddons.Net.Application.Serializable.Elements.XmlElementBase
     /// </summary>
     public class ElementBase : INotifyPropertyChanged
     {
-        #region Properties
+        #region Variables
 
         /// <summary>
         /// Variable unique Key of the element.
