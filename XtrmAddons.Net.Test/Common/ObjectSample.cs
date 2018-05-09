@@ -23,7 +23,6 @@ namespace XtrmAddons.Net.Test.Common
 
         public void OutputValues()
         {
-            this.GetHashCode();
             Trace.WriteLine(GetHashCode() + " ---------------------------------------------------------------");
             Trace.WriteLine("Public_Property_Int_Null = " + Public_Property_Int_Null);
             Trace.WriteLine("Public_Property_Int = " + Public_Property_Int);
