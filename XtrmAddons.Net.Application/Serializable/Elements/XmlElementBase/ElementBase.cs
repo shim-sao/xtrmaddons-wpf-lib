@@ -16,13 +16,13 @@ namespace XtrmAddons.Net.Application.Serializable.Elements.XmlElementBase
         /// Variable unique Key of the element.
         /// </summary>
         [XmlIgnore]
-        public string key = "";
+        private string key = "";
 
         /// <summary>
         /// Variable is default of the element.
         /// </summary>
         [XmlIgnore]
-        public bool isDefault = false;
+        private bool isDefault = false;
 
         #endregion
 
