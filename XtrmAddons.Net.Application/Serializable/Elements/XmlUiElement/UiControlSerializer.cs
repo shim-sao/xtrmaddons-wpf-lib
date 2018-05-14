@@ -56,7 +56,6 @@ namespace XtrmAddons.Net.Application.Serializable.Elements.XmlUiElement
             Properties.Add("Visibility", ctrl.Visibility);
             Properties.Add("IsEnabled", ctrl.IsEnabled);
             Properties.Add("IsChecked", ctrl.IsChecked);
-            Properties.Add("IsCheckable", ctrl.);
         }
 
         /// <summary>
@@ -93,7 +92,11 @@ namespace XtrmAddons.Net.Application.Serializable.Elements.XmlUiElement
             return JsonConvert.SerializeObject
             (
                 Properties,
+#if DEBUG
                 Formatting.Indented,
+#else
+                Formatting.None,
+#endif
                 new JsonSerializerSettings
                 {
                     ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
@@ -164,6 +167,6 @@ namespace XtrmAddons.Net.Application.Serializable.Elements.XmlUiElement
             return ctrl;
         }
 
-        #endregion
+#endregion
     }
 }

@@ -56,6 +56,12 @@ namespace XtrmAddons.Net.Application.Serializable.Elements.XmlData
         public string Password { get; set; }
 
         /// <summary>
+        /// Property to access to the version of the database.
+        /// </summary>
+        [XmlAttribute(DataType = "string", AttributeName = "Version")]
+        public string Version { get; set; }
+
+        /// <summary>
         /// Property comment on the database.
         /// </summary>
         [XmlAttribute(DataType = "string", AttributeName = "Comment")]

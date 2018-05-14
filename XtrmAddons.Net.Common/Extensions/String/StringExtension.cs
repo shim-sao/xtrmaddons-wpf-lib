@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Dynamic;
 using System.Globalization;
+using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Web.Script.Serialization;
@@ -191,15 +192,7 @@ namespace XtrmAddons.Net.Common.Extensions
         /// <see href="https://stackoverflow.com/questions/1365407/c-sharp-code-to-validate-email-address">stackoverflow.com</see>
         public static bool IsValidEmail(this string str)
         {
-            try
-            {
-                var addr = new System.Net.Mail.MailAddress(str);
-                return addr.Address == str;
-            }
-            catch
-            {
-                return false;
-            }
+            return Regex.IsMatch(str, @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
         }
 
         /// <summary>
@@ -213,6 +206,33 @@ namespace XtrmAddons.Net.Common.Extensions
             JavaScriptSerializer serializer = new JavaScriptSerializer();
             IDictionary<string, object> dictionary = serializer.Deserialize<IDictionary<string, object>>(json);
             return dictionary.ToExpando();
+        }
+
+        /// <summary>
+        /// Method to encrypt a string like password to MD5.
+        /// </summary>
+        /// <param name="str">The string to encrypt.</param>
+        /// <returns>An encrypted string in MD5 format.</returns>
+        /// <see href="https://www.junian.net/2014/07/password-encryption-using-md5-hash.html"/>
+        public static string MD5Hash(this string str)
+        {
+            MD5 md5 = new MD5CryptoServiceProvider();
+
+            //compute hash from the bytes of text
+            md5.ComputeHash(ASCIIEncoding.ASCII.GetBytes(str));
+
+            //get hash result after compute it
+            byte[] result = md5.Hash;
+
+            StringBuilder strBuilder = new StringBuilder();
+            for (int i = 0; i < result.Length; i++)
+            {
+                //change it into 2 hexadecimal digits
+                //for each byte
+                strBuilder.Append(result[i].ToString("x2"));
+            }
+
+            return strBuilder.ToString();
         }
 
         #endregion

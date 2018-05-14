@@ -395,19 +395,31 @@ namespace XtrmAddons.Net.Application
         }
 
         /// <summary>
-        /// <para>Method to copy application configuration files to the user documents directory.</para>
+        /// <para>Method to copy application configuration files to the user documents directory Asynchronously.</para>
         /// <para>Always replace user config documents by application default config documents.</para>
         /// </summary>
-        public static Task CopyConfigFiles(bool Override = false)
+        /// <param name="Override">Defines if copy should override existing files.</param>
+        /// <returns>A ansynchronus Task.</returns>
+        public static Task CopyConfigFilesAsync(bool Override = false)
         {
             return Task.Run(() =>
             {
-                // Get installed application path.
-                string src = Path.Combine(Environment.CurrentDirectory, "Config");
-
-                // Copy configuration to defined user config directory.
-                SysDirectory.Copy(src, ApplicationBase.ConfigDirectory, Override);
+                CopyConfigFiles(Override);
             });
+        }
+
+        /// <summary>
+        /// <para>Method to copy application configuration files to the user documents directory.</para>
+        /// <para>Always replace user config documents by application default config documents.</para>
+        /// </summary>
+        /// <param name="Override">Defines if copy should override existing files.</param>
+        public static void CopyConfigFiles(bool Override = false)
+        {
+            // Get installed application path.
+            string src = Path.Combine(Environment.CurrentDirectory, "Config");
+
+            // Copy configuration to defined user config directory.
+            SysDirectory.Copy(src, ConfigDirectory, Override);
         }
 
         /// <summary>
