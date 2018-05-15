@@ -67,6 +67,7 @@
     <Compile Include="Extensions\Exception\Exception.cs" />
     <Compile Include="Extensions\IDictionary\IDictionaryExtension.cs" />
     <Compile Include="Extensions\Object\ObjectExtension.cs" />
+    <Compile Include="Extensions\ObservableCollection\ObservableCollection.cs" />
     <Compile Include="Extensions\ResourceDictionary\ResourceDictionary.cs" />
     <Compile Include="Extensions\Stream\StreamExtension.cs" />
     <Compile Include="Extensions\String\StringExtension.cs" />
