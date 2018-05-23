@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Xml.Serialization;
@@ -8,6 +9,7 @@ namespace XtrmAddons.Net.Application.Serializable.Elements.XmlElementBase
     /// <summary>
     /// Class XtrmAddons Net Application Serializable Elements XML Element Base.
     /// </summary>
+    [JsonObject(MemberSerialization.OptIn)]
     public class ElementBase : INotifyPropertyChanged
     {
         #region Variables
@@ -33,10 +35,11 @@ namespace XtrmAddons.Net.Application.Serializable.Elements.XmlElementBase
         /// <summary>
         /// Property to access to the unique Key of the element.
         /// </summary>
-        [XmlAttribute(DataType="string", AttributeName="Key")]
+        [XmlAttribute(DataType = "string", AttributeName = "Key")]
+        [JsonProperty]
         public string Key
         {
-            get { return key; }
+            get => key;
             set
             {
                 if (value != key)
@@ -54,7 +57,7 @@ namespace XtrmAddons.Net.Application.Serializable.Elements.XmlElementBase
         [Obsolete("Use IsDefault instead to be pertinent.")]
         public bool Default
         {
-            get { return isDefault; }
+            get => isDefault;
             set
             {
                 if (value != isDefault)
@@ -69,9 +72,10 @@ namespace XtrmAddons.Net.Application.Serializable.Elements.XmlElementBase
         /// Property to check it i thes default element.
         /// </summary>
         [XmlAttribute(DataType = "boolean", AttributeName = "Default")]
+        [JsonProperty]
         public bool IsDefault
         {
-            get { return isDefault; }
+            get => isDefault;
             set
             {
                 if (value != isDefault)
