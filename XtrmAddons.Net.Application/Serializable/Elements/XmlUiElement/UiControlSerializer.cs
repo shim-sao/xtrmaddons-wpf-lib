@@ -138,7 +138,7 @@ namespace XtrmAddons.Net.Application.Serializable.Elements.XmlUiElement
             FromJson(str);
             ctrl.Visibility = (Visibility)Properties["Visibility"];
             ctrl.IsEnabled = (bool)Properties["IsEnabled"];
-            ctrl.IsChecked = (bool)Properties["IsChecked"];
+            ctrl.IsChecked = (bool?)Properties["IsChecked"];
 
             return ctrl;
         }
@@ -167,6 +167,6 @@ namespace XtrmAddons.Net.Application.Serializable.Elements.XmlUiElement
             return ctrl;
         }
 
-#endregion
+        #endregion
     }
 }
