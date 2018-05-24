@@ -37,17 +37,17 @@ namespace XtrmAddons.Net.Application
         /// <summary>
         /// Constant preferences XML file name. 
         /// </summary>
-        private const string filePreferencesJsonName = "preferences.json";
+        private const string jsonFilePreferencesName = "preferences.json";
 
         /// <summary>
         /// Constant options XML file name.
         /// </summary>
-        private const string fileOptionsJsonName = "options.json";
+        private const string jsonFileOptionsName = "options.json";
 
         /// <summary>
         /// Constant user interface XML file name.
         /// </summary>
-        private const string fileUiJsonName = "ui.json";
+        private const string jsonFileUiName = "ui.json";
 
         #endregion
 
@@ -116,19 +116,19 @@ namespace XtrmAddons.Net.Application
         /// Property to access to the preferences Json file absolute path.
         /// </summary>
         public static string JsonFilePreferences 
-            => Path.Combine(UserMyDocumentsDirectory, filePreferencesJsonName);
+            => Path.Combine(UserMyDocumentsDirectory, jsonFilePreferencesName);
 
         /// <summary>
         /// Property to access to the options directory file absolute path.
         /// </summary>
         public static string JsonFileOptions
-            => Path.Combine(ConfigDirectory, fileOptionsJsonName);
+            => Path.Combine(ConfigDirectory, jsonFileOptionsName);
 
         /// <summary>
         /// Property to access to the user interface directory file absolute path.
         /// </summary>
         public static string JsonFileUi
-            => Path.Combine(ConfigDirectory, fileUiJsonName);
+            => Path.Combine(ConfigDirectory, jsonFileUiName);
 
         /// <summary>
         /// Property to access to the application base directory.
