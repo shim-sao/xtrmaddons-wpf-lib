@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 
 namespace XtrmAddons.Net.Application.Serializable.Elements.XmlData
 {
@@ -6,6 +7,7 @@ namespace XtrmAddons.Net.Application.Serializable.Elements.XmlData
     /// Class XtrmAddons Net Application Serializable Elements XML Data Options.
     /// </summary>
     [Serializable]
+    [JsonObject(MemberSerialization.OptIn)]
     public class DataOptions
     {
         #region Properties
@@ -13,6 +15,7 @@ namespace XtrmAddons.Net.Application.Serializable.Elements.XmlData
         /// <summary>
         /// Property to access to the list of databases informations.
         /// </summary>
+        [JsonProperty(PropertyName = "Databases")]
         public Databases Databases { get; set; }
 
         #endregion
