@@ -17,6 +17,42 @@ namespace XtrmAddons.Net.Application
     /// </summary>
     public static class ApplicationBase
     {
+        #region Constants
+
+        /// <summary>
+        /// Constant preferences XML file name. 
+        /// </summary>
+        private const string filePreferencesXmlName = "preferences.xml";
+
+        /// <summary>
+        /// Constant options XML file name.
+        /// </summary>
+        private const string fileOptionsXmlName = "options.xml";
+
+        /// <summary>
+        /// Constant user interface XML file name.
+        /// </summary>
+        private const string fileUiXmlName = "ui.xml";
+
+        /// <summary>
+        /// Constant preferences XML file name. 
+        /// </summary>
+        private const string filePreferencesJsonName = "preferences.json";
+
+        /// <summary>
+        /// Constant options XML file name.
+        /// </summary>
+        private const string fileOptionsJsonName = "options.json";
+
+        /// <summary>
+        /// Constant user interface XML file name.
+        /// </summary>
+        private const string fileUiJsonName = "ui.json";
+
+        #endregion
+
+
+
         #region Variables
 
         /// <summary>
@@ -39,21 +75,6 @@ namespace XtrmAddons.Net.Application
         /// Variable application serializable user interface.
         /// </summary>
         private static UserInterface ui;
-
-        /// <summary>
-        /// Constant preferences XML file name. 
-        /// </summary>
-        private const string filePreferencesXmlName = "preferences.xml";
-
-        /// <summary>
-        /// Constant options XML file name.
-        /// </summary>
-        private const string fileOptionsXmlName = "options.xml";
-
-        /// <summary>
-        /// Constant user interface XML file name.
-        /// </summary>
-        private const string fileUiXmlName = "ui.xml";
 
         #endregion
 
