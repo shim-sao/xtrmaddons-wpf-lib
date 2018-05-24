@@ -1,4 +1,6 @@
-﻿using System.Xml.Serialization;
+﻿using Newtonsoft.Json;
+using System;
+using System.Xml.Serialization;
 using XtrmAddons.Net.Application.Serializable.Elements.XmlElementBase;
 
 namespace XtrmAddons.Net.Application.Serializable.Elements.XmlRemote
@@ -6,7 +8,9 @@ namespace XtrmAddons.Net.Application.Serializable.Elements.XmlRemote
     /// <summary>
     /// Class XtrmAddons Net Application Serializable Elements XML Server Informations.
     /// </summary>
-    public class ServerInfo : ElementBase
+    [Serializable]
+    [JsonObject(MemberSerialization.OptIn)]
+    public class RemoteInfo : ElementBase
     {
         #region Variables
 
@@ -74,6 +78,7 @@ namespace XtrmAddons.Net.Application.Serializable.Elements.XmlRemote
         /// Property to access to the name of the server.
         /// </summary>
         [XmlAttribute(DataType = "string", AttributeName = "Name")]
+        [JsonProperty(PropertyName = "Name")]
         public string Name
         {
             get { return name; }
@@ -91,6 +96,7 @@ namespace XtrmAddons.Net.Application.Serializable.Elements.XmlRemote
         /// Property to access to the host name or IP address of the server.
         /// </summary>
         [XmlAttribute(DataType = "string", AttributeName = "Host")]
+        [JsonProperty(PropertyName = "Host")]
         public string Host
         {
             get { return host; }
@@ -108,6 +114,7 @@ namespace XtrmAddons.Net.Application.Serializable.Elements.XmlRemote
         /// Property to access to the port of the server.
         /// </summary>
         [XmlAttribute(DataType = "string", AttributeName = "Port")]
+        [JsonProperty(PropertyName = "Port")]
         public string Port
         {
             get { return port; }
@@ -125,6 +132,7 @@ namespace XtrmAddons.Net.Application.Serializable.Elements.XmlRemote
         /// Property to access to the user name for server connexion.
         /// </summary>
         [XmlAttribute(DataType = "string", AttributeName = "UserName")]
+        [JsonProperty(PropertyName = "UserName")]
         public string UserName
         {
             get { return userName; }
@@ -142,6 +150,7 @@ namespace XtrmAddons.Net.Application.Serializable.Elements.XmlRemote
         /// Property to access to the email for server connexion.
         /// </summary>
         [XmlAttribute(DataType = "string", AttributeName = "Email")]
+        [JsonProperty(PropertyName = "Email")]
         public string Email
         {
             get { return email; }
@@ -159,6 +168,7 @@ namespace XtrmAddons.Net.Application.Serializable.Elements.XmlRemote
         /// Property to access to the password for server connexion.
         /// </summary>
         [XmlAttribute(DataType = "string", AttributeName = "Password")]
+        [JsonProperty(PropertyName = "Password")]
         public string Password
         {
             get { return password; }
@@ -176,6 +186,7 @@ namespace XtrmAddons.Net.Application.Serializable.Elements.XmlRemote
         /// Property to access to the comment about the server.
         /// </summary>
         [XmlAttribute(DataType = "string", AttributeName = "Comment")]
+        [JsonProperty(PropertyName = "Comment")]
         public string Comment
         {
             get { return comment; }
@@ -193,6 +204,7 @@ namespace XtrmAddons.Net.Application.Serializable.Elements.XmlRemote
         /// Property to check if the server can auto started by the application or required to be started manually.
         /// </summary>
         [XmlAttribute(DataType = "boolean", AttributeName = "AutoStart")]
+        [JsonProperty(PropertyName = "AutoStart")]
         public bool AutoStart
         {
             get { return autoStart; }

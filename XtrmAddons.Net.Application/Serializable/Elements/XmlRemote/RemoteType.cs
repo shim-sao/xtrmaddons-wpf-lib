@@ -7,7 +7,7 @@ namespace XtrmAddons.Net.Application.Serializable.Elements.XmlRemote
     /// Enumerator XtrmAddons Net Application Serializable Elements XML Server Informations Types.
     /// </summary>
     [Serializable]
-    public enum ServerType
+    public enum RemoteType
     {
         /// <summary>
         /// Server type for server provider parameters.
