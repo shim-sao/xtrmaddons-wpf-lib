@@ -5,6 +5,7 @@ namespace XtrmAddons.Net.Application.Serializable.Elements.XmlRemote
     /// <summary>
     /// Class XtrmAddons Net Application Serializable Elements XML Remote Options.
     /// </summary>
+    [Serializable]
     [JsonObject(MemberSerialization.OptIn)]
     public class RemoteOptions
     {

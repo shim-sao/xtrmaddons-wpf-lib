@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 
 namespace XtrmAddons.Net.Application.Serializable.Elements.XmlStorage
 {
@@ -6,6 +7,7 @@ namespace XtrmAddons.Net.Application.Serializable.Elements.XmlStorage
     /// Class XtrmAddons Net Application Serializable Elements XML Storage Options.
     /// </summary>
     [Serializable]
+    [JsonObject(MemberSerialization.OptIn)]
     public class StorageOptions
     {
         #region Properties
@@ -13,6 +15,7 @@ namespace XtrmAddons.Net.Application.Serializable.Elements.XmlStorage
         /// <summary>
         /// Property to access to the list of directories informations.
         /// </summary>
+        [JsonProperty(PropertyName = "Directories")]
         public Directories Directories { get; set; }
 
         #endregion

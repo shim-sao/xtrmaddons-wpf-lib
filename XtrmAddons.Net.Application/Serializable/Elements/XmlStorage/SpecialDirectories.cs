@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Xml.Serialization;
 
 namespace XtrmAddons.Net.Application.Serializable.Elements.XmlStorage
@@ -7,48 +8,56 @@ namespace XtrmAddons.Net.Application.Serializable.Elements.XmlStorage
     /// Class XtrmAddons Net Application Serializable Elements XML Specials Directories.
     /// </summary>
     [Serializable]
+    [JsonObject(MemberSerialization.OptIn)]
     public class SpecialDirectories
     {
         /// <summary>
         /// Property application bin directory.
         /// </summary>
         [XmlAttribute(DataType = "string", AttributeName = "Bin")]
+        [JsonProperty(PropertyName = "Bin")]
         public string Bin { get; set; }
 
         /// <summary>
         /// Property application cache directory.
         /// </summary>
         [XmlAttribute(DataType = "string", AttributeName = "Cache")]
+        [JsonProperty(PropertyName = "Cache")]
         public string Cache { get; set; }
 
         /// <summary>
         /// Property application config directory.
         /// </summary>
         [XmlAttribute(DataType = "string", AttributeName = "Config")]
+        [JsonProperty(PropertyName = "Config")]
         public string Config { get; set; }
 
         /// <summary>
         /// Property application data directory.
         /// </summary>
         [XmlAttribute(DataType = "string", AttributeName = "Data")]
+        [JsonProperty(PropertyName = "Data")]
         public string Data { get; set; }
 
         /// <summary>
         /// Property application logs directory.
         /// </summary>
         [XmlAttribute(DataType = "string", AttributeName = "Logs")]
+        [JsonProperty(PropertyName = "Logs")]
         public string Logs { get; set; }
 
         /// <summary>
         /// Property application plugin directory.
         /// </summary>
         [XmlAttribute(DataType = "string", AttributeName = "Plugin")]
+        [JsonProperty(PropertyName = "Plugin")]
         public string Plugin { get; set; }
 
         /// <summary>
         /// Property application theme directory.
         /// </summary>
         [XmlAttribute(DataType = "string", AttributeName = "Theme")]
+        [JsonProperty(PropertyName = "Theme")]
         public string Theme { get; set; }
     }
 

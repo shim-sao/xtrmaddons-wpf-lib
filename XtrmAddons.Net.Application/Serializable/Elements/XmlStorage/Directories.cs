@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Xml.Serialization;
+﻿using Newtonsoft.Json;
+using System.Collections.Generic;
 using XtrmAddons.Net.Application.Serializable.Elements.XmlElementBase;
 
 namespace XtrmAddons.Net.Application.Serializable.Elements.XmlStorage
@@ -7,6 +7,7 @@ namespace XtrmAddons.Net.Application.Serializable.Elements.XmlStorage
     /// <summary>
     /// Class XtrmAddons Net Application Serializable Elements XML Directories List.
     /// </summary>
+    [JsonObject(MemberSerialization.OptIn)]
     public class Directories : ElementsBase<Directory>
     {
         #region Constructors

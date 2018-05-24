@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.IO;
 using System.Xml.Serialization;
 using XtrmAddons.Net.Application.Serializable.Elements.XmlElementBase;
@@ -10,6 +11,7 @@ namespace XtrmAddons.Net.Application.Serializable.Elements.XmlStorage
     /// Class XtrmAddons Net Application Serializable Elements XML Directory Info.
     /// </summary>
     [Serializable]
+    [JsonObject(MemberSerialization.OptIn)]
     public class Directory : ElementBase
     {
         #region Properties
@@ -18,18 +20,21 @@ namespace XtrmAddons.Net.Application.Serializable.Elements.XmlStorage
         /// Property relative path of the directory.
         /// </summary>
         [XmlAttribute(DataType = "string", AttributeName = "Value")]
+        [JsonProperty(PropertyName = "Value")]
         public string RelativePath { get; set; }
 
         /// <summary>
         /// Property defines if path of the directory is relative or absolute path.
         /// </summary>
-        [XmlAttribute(DataType="boolean", AttributeName= "IsRelative")]
+        [XmlAttribute(DataType = "boolean", AttributeName = "IsRelative")]
+        [JsonProperty(PropertyName = "IsRelative")]
         public bool IsRelative { get; set; }
 
         /// <summary>
         /// Property root path of the directory if is define to relative path.
         /// </summary>
         [XmlAttribute(DataType = "string", AttributeName = "Root")]
+        [JsonProperty(PropertyName = "Root")]
         public string Root { get; set; }
 
         /// <summary>
@@ -58,7 +63,7 @@ namespace XtrmAddons.Net.Application.Serializable.Elements.XmlStorage
 
 
 
-        #region Methods
+        #region Constructors
 
         /// <summary>
         /// Class XtrmAddons Net Application Serializable Elements XML Directory Info Constructor.
