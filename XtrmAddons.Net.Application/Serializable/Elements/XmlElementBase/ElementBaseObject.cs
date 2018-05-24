@@ -17,14 +17,14 @@ namespace XtrmAddons.Net.Application.Serializable.Elements.XmlElementBase
         /// Property name of the object or property.
         /// </summary>
         [XmlAttribute(DataType = "string", AttributeName = "Name")]
-        [JsonProperty]
+        [JsonProperty(PropertyName = "Name")]
         public string Name { get; set; }
 
         /// <summary>
         /// Property value of the object or property.
         /// </summary>
         [XmlAttribute(DataType = "string", AttributeName = "Value")]
-        [JsonProperty]
+        [JsonProperty(PropertyName = "Value")]
         public string Value { get; set; }
 
         #endregion

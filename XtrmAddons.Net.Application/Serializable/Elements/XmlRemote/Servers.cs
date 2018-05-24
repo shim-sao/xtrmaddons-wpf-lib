@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Newtonsoft.Json;
+using System.Collections.Generic;
 using XtrmAddons.Net.Application.Serializable.Elements.XmlElementBase;
 
 namespace XtrmAddons.Net.Application.Serializable.Elements.XmlRemote
@@ -6,6 +7,7 @@ namespace XtrmAddons.Net.Application.Serializable.Elements.XmlRemote
     /// <summary>
     /// Class XtrmAddons Net Application Serializable Elements XML Servers List.
     /// </summary>
+    [JsonObject(MemberSerialization.OptIn)]
     public class Servers : ElementsBase<Server>
     {
         #region Constructors

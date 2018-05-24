@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace XtrmAddons.Net.Application.Serializable.Elements.XmlElementBase
 {
     /// <summary>
     /// Class XtrmAddons Net Application Serializable Elements XML Element Base Objects List.
     /// </summary>
+    [JsonObject(MemberSerialization.OptIn)]
     public class ElementBaseObjects : ElementsBase<Property>
     {
         #region Constructors

@@ -36,7 +36,7 @@ namespace XtrmAddons.Net.Application.Serializable.Elements.XmlElementBase
         /// Property to access to the unique Key of the element.
         /// </summary>
         [XmlAttribute(DataType = "string", AttributeName = "Key")]
-        [JsonProperty]
+        [JsonProperty(PropertyName = "Key")]
         public string Key
         {
             get => key;
@@ -54,7 +54,7 @@ namespace XtrmAddons.Net.Application.Serializable.Elements.XmlElementBase
         /// Property to check it i thes default element.
         /// </summary>
         [XmlIgnore]
-        [Obsolete("Use IsDefault instead to be pertinent.")]
+        [Obsolete("Use IsDefault instead to be pertinent. Will be removed.")]
         public bool Default
         {
             get => isDefault;
@@ -72,7 +72,7 @@ namespace XtrmAddons.Net.Application.Serializable.Elements.XmlElementBase
         /// Property to check it i thes default element.
         /// </summary>
         [XmlAttribute(DataType = "boolean", AttributeName = "Default")]
-        [JsonProperty]
+        [JsonProperty(PropertyName = "IsDefault")]
         public bool IsDefault
         {
             get => isDefault;

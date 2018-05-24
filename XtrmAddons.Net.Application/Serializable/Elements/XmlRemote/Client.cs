@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Xml.Serialization;
 
 namespace XtrmAddons.Net.Application.Serializable.Elements.XmlRemote
@@ -7,12 +8,14 @@ namespace XtrmAddons.Net.Application.Serializable.Elements.XmlRemote
     /// Class XtrmAddons Net Application Serializable Elements XML Server Informations.
     /// </summary>
     [Serializable]
-    public class Client : ServerInfo
+    [JsonObject(MemberSerialization.OptIn)]
+    public class Client : RemoteInfo
     {
         /// <summary>
         /// Property type of server.
         /// </summary>
         [XmlAttribute(AttributeName = "Type")]
-        public ServerType Type { get; } = ServerType.Server;
+        [JsonProperty(PropertyName = "Type")]
+        public RemoteType Type { get; } = RemoteType.Client;
     }
 }
