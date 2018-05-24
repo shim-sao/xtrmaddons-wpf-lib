@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System;
 
 namespace XtrmAddons.Net.Application.Serializable.Elements.XmlRemote
 {
