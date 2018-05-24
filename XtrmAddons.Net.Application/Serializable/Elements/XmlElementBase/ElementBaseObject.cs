@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Xml.Serialization;
 
 namespace XtrmAddons.Net.Application.Serializable.Elements.XmlElementBase
@@ -7,6 +8,7 @@ namespace XtrmAddons.Net.Application.Serializable.Elements.XmlElementBase
     /// Class XtrmAddons Net Application Serializable Elements XML Elements Base Object.
     /// </summary>
     [Serializable]
+    [JsonObject(MemberSerialization.OptIn)]
     public class Property : ElementBase
     {
         #region Properties
@@ -15,12 +17,14 @@ namespace XtrmAddons.Net.Application.Serializable.Elements.XmlElementBase
         /// Property name of the object or property.
         /// </summary>
         [XmlAttribute(DataType = "string", AttributeName = "Name")]
+        [JsonProperty]
         public string Name { get; set; }
 
         /// <summary>
         /// Property value of the object or property.
         /// </summary>
         [XmlAttribute(DataType = "string", AttributeName = "Value")]
+        [JsonProperty]
         public string Value { get; set; }
 
         #endregion
