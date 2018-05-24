@@ -113,6 +113,24 @@ namespace XtrmAddons.Net.Application
         public static string FileUiXml => Path.Combine(ConfigDirectory, fileUiXmlName);
 
         /// <summary>
+        /// Property to access to the preferences Json file absolute path.
+        /// </summary>
+        public static string JsonFilePreferences 
+            => Path.Combine(UserMyDocumentsDirectory, filePreferencesJsonName);
+
+        /// <summary>
+        /// Property to access to the options directory file absolute path.
+        /// </summary>
+        public static string JsonFileOptions
+            => Path.Combine(ConfigDirectory, fileOptionsJsonName);
+
+        /// <summary>
+        /// Property to access to the user interface directory file absolute path.
+        /// </summary>
+        public static string JsonFileUi
+            => Path.Combine(ConfigDirectory, fileUiJsonName);
+
+        /// <summary>
         /// Property to access to the application base directory.
         /// </summary>
         public static string BaseDirectory
