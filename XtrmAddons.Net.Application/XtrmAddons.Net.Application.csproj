@@ -70,11 +70,12 @@
     <Compile Include="Serializable\Elements\XmlElementBase\ElementBaseObjects.cs" />
     <Compile Include="Serializable\Elements\XmlRemote\RemoteOptions.cs" />
     <Compile Include="Serializable\Elements\XmlRemote\Client.cs" />
-    <Compile Include="Serializable\Elements\XmlRemote\ServerInfo.cs" />
+    <Compile Include="Serializable\Elements\XmlRemote\RemoteInfo.cs" />
     <Compile Include="Serializable\Elements\XmlRemote\Server.cs" />
     <Compile Include="Serializable\Elements\XmlRemote\Clients.cs" />
     <Compile Include="Serializable\Elements\XmlRemote\Servers.cs" />
-    <Compile Include="Serializable\Elements\XmlRemote\ServerType.cs" />
+    <Compile Include="Serializable\Elements\XmlRemote\RemoteType.cs" />
+    <Compile Include="Serializable\Elements\XmlRemote\RemoteTypeExtensions.cs" />
     <Compile Include="Serializable\Elements\XmlStorage\Directories.cs" />
     <Compile Include="Serializable\Elements\XmlElementBase\ElementsBase.cs" />
     <Compile Include="Serializable\Elements\XmlUiElement\UiElementBase.cs" />
