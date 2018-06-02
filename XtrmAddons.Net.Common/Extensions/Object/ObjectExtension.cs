@@ -258,7 +258,7 @@ namespace XtrmAddons.Net.Common.Extensions
             serializerSettings = serializerSettings ?? new JsonSerializerSettings
             {
                 ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
-                PreserveReferencesHandling = PreserveReferencesHandling.Objects
+                PreserveReferencesHandling = PreserveReferencesHandling.None
             };
 
             return JsonConvert.SerializeObject(
