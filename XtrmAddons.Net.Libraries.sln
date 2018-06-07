@@ -15,8 +15,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XtrmAddons.Net.Network", "X
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XtrmAddons.Net.SQLiteBundle", "XtrmAddons.Net.SQLiteBundle\XtrmAddons.Net.SQLiteBundle.csproj", "{855F1F21-2FA4-42CE-AD35-F2C7D244649B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XtrmAddons.Net.Application", "XtrmAddons.Net.Application\XtrmAddons.Net.Application.csproj", "{DC9CEFF7-1AEF-480F-81F6-4CDF4019FC82}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XtrmAddons.Net.SystemIO", "XtrmAddons.Net.SystemIO\XtrmAddons.Net.SystemIO.csproj", "{BE7BCD08-A522-46B2-B3E9-1F1442D7A071}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XtrmAddons.Net.NotifyIcons", "XtrmAddons.Net.NotifyIcon\XtrmAddons.Net.NotifyIcons.csproj", "{D5B48FE5-5F28-4E6B-BA87-6DACF5078042}"
@@ -26,8 +24,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XtrmAddons.Net.Picture", "XtrmAddons.Net.Picture\XtrmAddons.Net.Picture.csproj", "{563F8623-42FC-41C4-ACD2-4E9400F8B660}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XtrmAddons.Net.Windows", "XtrmAddons.Net.Windows\XtrmAddons.Net.Windows.csproj", "{EEB21BEF-1037-430D-ABBC-0E34961BD615}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XtrmAddons.Net.Application.Examples", "XtrmAddons.Net.Application.Examples\XtrmAddons.Net.Application.Examples.csproj", "{57D897AD-4872-4DA0-B28C-E49ABE23D2ED}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XtrmAddons.Net.Test", "XtrmAddons.Net.Test\XtrmAddons.Net.Test.csproj", "{CD68A53C-2EA8-48CF-A3F8-98A515F6D800}"
 EndProject
@@ -61,10 +57,6 @@ Global
 		{855F1F21-2FA4-42CE-AD35-F2C7D244649B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{855F1F21-2FA4-42CE-AD35-F2C7D244649B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{855F1F21-2FA4-42CE-AD35-F2C7D244649B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DC9CEFF7-1AEF-480F-81F6-4CDF4019FC82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DC9CEFF7-1AEF-480F-81F6-4CDF4019FC82}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DC9CEFF7-1AEF-480F-81F6-4CDF4019FC82}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DC9CEFF7-1AEF-480F-81F6-4CDF4019FC82}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BE7BCD08-A522-46B2-B3E9-1F1442D7A071}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BE7BCD08-A522-46B2-B3E9-1F1442D7A071}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BE7BCD08-A522-46B2-B3E9-1F1442D7A071}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -85,10 +77,6 @@ Global
 		{EEB21BEF-1037-430D-ABBC-0E34961BD615}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EEB21BEF-1037-430D-ABBC-0E34961BD615}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EEB21BEF-1037-430D-ABBC-0E34961BD615}.Release|Any CPU.Build.0 = Release|Any CPU
-		{57D897AD-4872-4DA0-B28C-E49ABE23D2ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{57D897AD-4872-4DA0-B28C-E49ABE23D2ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{57D897AD-4872-4DA0-B28C-E49ABE23D2ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{57D897AD-4872-4DA0-B28C-E49ABE23D2ED}.Release|Any CPU.Build.0 = Release|Any CPU
 		{CD68A53C-2EA8-48CF-A3F8-98A515F6D800}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{CD68A53C-2EA8-48CF-A3F8-98A515F6D800}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CD68A53C-2EA8-48CF-A3F8-98A515F6D800}.Release|Any CPU.ActiveCfg = Release|Any CPU
