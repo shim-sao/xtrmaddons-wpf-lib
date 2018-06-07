@@ -29,6 +29,7 @@
     <DefineConstants>TRACE;DEBUG;CODE_ANALYSIS</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -40,6 +41,7 @@
     <WarningLevel>4</WarningLevel>
     <RunCodeAnalysis>false</RunCodeAnalysis>
     <DocumentationFile>..\packages\XtrmAddons\Release\XtrmAddons.Net.Common.xml</DocumentationFile>
+    <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="log4net" Version="2.0.8" />
@@ -63,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Extensions\Byte\ByteExtension.cs" />
+    <Compile Include="Extensions\Dispatcher\DispatcherExtension.cs" />
     <Compile Include="Extensions\EventHandler\EventHandlerExtension.cs" />
     <Compile Include="Extensions\Exception\Exception.cs" />
     <Compile Include="Extensions\IDictionary\IDictionaryExtension.cs" />
@@ -73,6 +76,7 @@
     <Compile Include="Extensions\String\StringExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
