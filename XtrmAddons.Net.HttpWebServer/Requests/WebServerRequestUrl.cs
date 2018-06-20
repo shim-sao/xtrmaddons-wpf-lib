@@ -23,17 +23,17 @@ namespace XtrmAddons.Net.HttpWebServer.Requests
         /// <summary>
         /// Variable HTTP listener context.
         /// </summary>
-        private readonly HttpListenerContext _ctx;
+        private readonly HttpListenerContext httpListener;
 
         /// <summary>
         /// Variable Uri desired names/values collection.
         /// </summary>
-        private NameValueCollection _uri = new NameValueCollection();
+        private NameValueCollection uri = new NameValueCollection();
 
         /// <summary>
         /// Variable Uri additional parameters desired names/values collection.
         /// </summary>
-        private string[] _uriParams;
+        private string[] uriParams;
 
         #endregion
 
@@ -44,57 +44,68 @@ namespace XtrmAddons.Net.HttpWebServer.Requests
         /// <summary>
         /// Property to access to the Host URL.
         /// </summary>
-        public string Host => _uri["Host"];
+        public string Host => uri["Host"];
 
         /// <summary>
         /// Property to access to the Host URL.
         /// </summary>
-        public string Port => _uri["Port"];
+        public string Port => uri["Port"];
 
         /// <summary>
         /// Property to access to the absolute URL.
         /// </summary>
-        public string AbsoluteUrl => _uri["AbsoluteUrl"];
+        public string AbsoluteUrl => uri["AbsoluteUrl"];
 
         /// <summary>
         /// Property to access to the relative URL.
         /// </summary>
-        public string RelativeUrl => _uri["RelativeUrl"];
+        public string RelativeUrl => uri["RelativeUrl"];
 
         /// <summary>
         /// Property to access to the request type.
         /// </summary>
-        public string RequestType => _uri["RequestType"];
+        public string RequestType => uri["RequestType"];
 
         /// <summary>
         /// Property to access to the method name.
         /// </summary>
-        public string ComponentName => _uri["ComponentName"];
+        public string ComponentName => uri["ComponentName"];
 
         /// <summary>
         /// Property to access to the method name.
         /// </summary>
-        public string MethodName => _uri["MethodName"];
+        public string MethodName => uri["MethodName"];
 
         /// <summary>
         /// Property to access to the additional URL parameters.
         /// </summary>
-        public string[] Params => _uriParams;
+        public string[] Params
+        {
+            get
+            {
+                if(uriParams == null)
+                {
+                    uriParams = InitializeUriParameters();
+                }
+
+                return uriParams;
+            }
+        }
 
         /// <summary>
         /// Property to access to  the additional URL parameters.
         /// </summary>
-        public NameValueCollection QueryString => _ctx.Request.QueryString;
+        public NameValueCollection QueryString => httpListener.Request.QueryString;
 
         /// <summary>
         /// Property to access to the relative URL.
         /// </summary>
-        public string Extension => Path.GetExtension(_uri["RelativeUrl"]);
+        public string Extension => Path.GetExtension(uri["RelativeUrl"]);
 
         /// <summary>
         /// Property to access to cookies collection.
         /// </summary>
-        public CookieCollection Cookies => _ctx.Request.Cookies;
+        public CookieCollection Cookies => httpListener.Request.Cookies;
 
         #endregion
 
@@ -105,10 +116,10 @@ namespace XtrmAddons.Net.HttpWebServer.Requests
         /// <summary>
         /// Class XtrmAddons Net Http Web Server Url.
         /// </summary>
-        /// <param name="ctx">A Http listener context.</param>
-        public WebServerRequestUrl(HttpListenerContext ctx)
+        /// <param name="connection">A Http listener context.</param>
+        public WebServerRequestUrl(HttpListenerContext connection)
         {
-            _ctx = ctx;
+            httpListener = connection;
             Initialize();
         }
 
@@ -124,15 +135,15 @@ namespace XtrmAddons.Net.HttpWebServer.Requests
         private void Initialize()
         {
             // Uri informations.
-            _uri.Add("Host", _ctx.Request.Url.Host);
-            _uri.Add("Port", _ctx.Request.Url.Port.ToString());
-            _uri.Add("AbsoluteUrl", _ctx.Request.Url.ToString());
-            _uri.Add("RelativeUrl", _ctx.Request.RawUrl);
+            uri.Add("Host", httpListener.Request.Url.Host);
+            uri.Add("Port", httpListener.Request.Url.Port.ToString());
+            uri.Add("AbsoluteUrl", httpListener.Request.Url.ToString());
+            uri.Add("RelativeUrl", httpListener.Request.RawUrl);
 
             // Component informations.
-            _uri.Add("RequestType", _getSegment(1, "Api", true));
-            _uri.Add("ComponentName", _getSegment(2, "Index", true));
-            _uri.Add("MethodName", _getSegment(3, "Index", true));
+            uri.Add("RequestType", GetSegment(1, "Api", true));
+            uri.Add("ComponentName", GetSegment(2, "Index", true));
+            uri.Add("MethodName", GetSegment(3, "Index", true));
 
             // Initialize additional parameters
             InitializeUriParameters();
@@ -141,11 +152,11 @@ namespace XtrmAddons.Net.HttpWebServer.Requests
         /// <summary>
         /// Method to set additional Uri parameters.
         /// </summary>
-        private void InitializeUriParameters()
+        private string[] InitializeUriParameters()
         {
             try
             {
-                _uriParams = _ctx
+                return httpListener
                     .Request
                     .Url
                     .Segments
@@ -156,8 +167,9 @@ namespace XtrmAddons.Net.HttpWebServer.Requests
             }
             catch(Exception e)
             {
-                log.Debug("Cannot initialize parameters Server request url : " + e.Message);
-                throw new ArgumentNullException("Cannot initialize parameters Server request url : " + e.Message, e);
+                InvalidOperationException ex = new InvalidOperationException($"Initializing Server url request parameters : failed !", e);
+                log.Fatal(ex.Output(), ex);
+                throw ex;
             }
         }
 
@@ -168,11 +180,11 @@ namespace XtrmAddons.Net.HttpWebServer.Requests
         /// <param name="init">The default value if the segment doesn't exists.</param>
         /// <param name="ucword">Uppercase first character of the string.</param>
         /// <returns>The segment string.</returns>
-        private string _getSegment(int index, string init = "", bool ucword = false)
+        private string GetSegment(int index, string init = "", bool ucword = false)
         {
             try
             {
-                string []_segments = _ctx.Request.Url.Segments;
+                string []_segments = httpListener.Request.Url.Segments;
 
                 if (index > 0 && _segments.Length > index)
                 {
@@ -188,8 +200,9 @@ namespace XtrmAddons.Net.HttpWebServer.Requests
             }
             catch (Exception e)
             {
-                log.Debug("Cannot create segment : " + e.Message);
-                throw new ArgumentNullException("Cannot create segment : " + e.Message, e);
+                InvalidOperationException ex = new InvalidOperationException($"Creating Server url request segments : failed !", e);
+                log.Fatal(ex.Output(), ex);
+                throw ex;
             }
 
             return init;
