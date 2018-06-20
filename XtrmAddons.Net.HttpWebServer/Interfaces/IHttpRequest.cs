@@ -10,22 +10,22 @@ namespace XtrmAddons.Net.HttpWebServer.Interfaces
         #region Properties
 
         /// <summary>
-        /// Accessors web server request context. 
+        /// Property access to the Http request context. 
         /// </summary>
         string Context { get; }
 
         /// <summary>
-        /// Accessors to the GET parameters.
+        /// Property access to the Http request GET.
         /// </summary>
         NameValueCollection _GET { get; }
 
         /// <summary>
-        /// Accessors to the POST parameters.
+        /// Property access to the Http request POST.
         /// </summary>
-        string _POST { get; }
+        NameValueCollection _POST { get; }
 
         /// <summary>
-        /// Accessors to the GET and POST combined parameters.
+        /// Property access to the Http request GET and POST combined.
         /// </summary>
         NameValueCollection _REQUEST { get; }
 
