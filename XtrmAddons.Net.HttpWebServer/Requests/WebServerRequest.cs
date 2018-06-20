@@ -1,7 +1,10 @@
-﻿using System.Collections.Specialized;
+﻿using System;
+using System.Collections.Specialized;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Reflection;
+using System.Web;
 using XtrmAddons.Net.Common.Extensions;
 using XtrmAddons.Net.HttpWebServer.Interfaces;
 
@@ -33,7 +36,7 @@ namespace XtrmAddons.Net.HttpWebServer.Requests
         /// <summary>
         /// Variable request POST.
         /// </summary>
-        private string post;
+        private NameValueCollection post;
 
         /// <summary>
         /// Variable request GET.
@@ -120,8 +123,8 @@ namespace XtrmAddons.Net.HttpWebServer.Requests
                     isPut = httpListener.Request.HttpMethod == "PUT";
                 }
 
-                return (bool) isPut;
-}
+                return (bool)isPut;
+            }
         }
 
         /// <summary>
@@ -159,11 +162,11 @@ namespace XtrmAddons.Net.HttpWebServer.Requests
         /// <summary>
         /// Property to access to the Http POST parameters.
         /// </summary>
-        public string _POST
+        public NameValueCollection _POST
         {
             get
             {
-                if (post.IsNullOrWhiteSpace())
+                if (post == null)
                 {
                     post = ReadPost();
                 }
@@ -175,7 +178,18 @@ namespace XtrmAddons.Net.HttpWebServer.Requests
         /// <summary>
         /// Property http REQUEST parameters.
         /// </summary>
-        public NameValueCollection _REQUEST => throw new System.NotImplementedException();
+        public NameValueCollection _REQUEST
+        {
+            get
+            {
+                if (request == null)
+                {
+                    request = ReadRequest();
+                } 
+
+                return request;
+            }
+        }
 
         /// <summary>
         /// Property to access to the request input stream.
@@ -219,17 +233,56 @@ namespace XtrmAddons.Net.HttpWebServer.Requests
         /// Method to read POST string.
         /// </summary>
         /// <returns>The POST string otherwise empty string.</returns>
-        private string ReadPost()
+        private NameValueCollection ReadPost()
         {
+            NameValueCollection nc = new NameValueCollection();
+
             if (IsPOST)
             {
-                using (StreamReader reader = new StreamReader(httpListener.Request.InputStream, httpListener.Request.ContentEncoding))
+                try
                 {
-                    return reader.ReadToEnd();
+                    nc = HttpUtility.ParseQueryString(Context);
+                }
+                catch (Exception ex)
+                {
+                    log.Info(ex.Output(), ex);
                 }
             }
 
-            return "";
+            return nc;
+        }
+
+        /// <summary>
+        /// Method to create a combination of GET and POST [Name => Value] collection of the request input stream.
+        /// </summary>
+        /// <returns>A combination of GET and POST [Name => Value] collection.</returns>
+        private NameValueCollection ReadRequest()
+        {
+            NameValueCollection req = new NameValueCollection(_GET);
+
+            if (IsPOST)
+            {
+                try
+                {
+                    foreach (string key in _POST)
+                    {
+                        if (req.AllKeys.Contains(key))
+                        {
+                            req[key] = _POST[key];
+                        }
+                        else
+                        {
+                            req.Add(key, _POST[key]);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    log.Info(ex.Output(), ex);
+                }
+            }
+
+            return req;
         }
 
         /// <summary>
@@ -238,7 +291,7 @@ namespace XtrmAddons.Net.HttpWebServer.Requests
         /// <returns>The input request string.</returns>
         private string ReadInputStream()
         {
-            using (StreamReader streamReader = new StreamReader(httpListener.Request.InputStream))
+            using (StreamReader streamReader = new StreamReader(httpListener.Request.InputStream, httpListener.Request.ContentEncoding))
             {
                 return streamReader.ReadToEnd();
             }
