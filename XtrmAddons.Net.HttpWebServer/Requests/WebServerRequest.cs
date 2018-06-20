@@ -2,6 +2,7 @@
 using System.IO;
 using System.Net;
 using System.Reflection;
+using XtrmAddons.Net.Common.Extensions;
 using XtrmAddons.Net.HttpWebServer.Interfaces;
 
 namespace XtrmAddons.Net.HttpWebServer.Requests
@@ -9,7 +10,7 @@ namespace XtrmAddons.Net.HttpWebServer.Requests
     /// <summary>
     /// Class XtrmAddons Net Http Web Server Request.
     /// </summary>
-     public abstract class WebServerRequest : IHttpRequest
+    public abstract class WebServerRequest : IHttpRequest
     {
         #region Variables
 
@@ -22,12 +23,42 @@ namespace XtrmAddons.Net.HttpWebServer.Requests
         /// <summary>
         /// Variable HTTP listener context.
         /// </summary>
-        private readonly HttpListenerContext _ctx;
+        private readonly HttpListenerContext httpListener;
 
         /// <summary>
-        /// Variable Web Server request URL.
+        /// Variable request POST.
         /// </summary>
-        private readonly WebServerRequestUrl _uri;
+        private string post;
+
+        /// <summary>
+        /// Variable request GET.
+        /// </summary>
+        private NameValueCollection get;
+
+        /// <summary>
+        /// Variable request REQUEST.
+        /// </summary>
+        private NameValueCollection request;
+
+        /// <summary>
+        /// Variable is request method POST.
+        /// </summary>
+        private bool? isPost;
+
+        /// <summary>
+        /// Variable is request method GET.
+        /// </summary>
+        private bool? isGet;
+
+        /// <summary>
+        /// Variable is request method PUT.
+        /// </summary>
+        private bool? isPut;
+
+        /// <summary>
+        /// Variable is request method DELETE.
+        /// </summary>
+        private bool? isDelete;
 
         #endregion
 
@@ -38,37 +69,103 @@ namespace XtrmAddons.Net.HttpWebServer.Requests
         /// <summary>
         /// Property Web Server Request Uri.
         /// </summary>
-        public WebServerRequestUrl Uri => _uri;
+        public WebServerRequestUrl Uri { get; }
 
         /// <summary>
-        /// Property to check if http method is POST.
+        /// Property to check if Http method is POST.
         /// </summary>
-        public bool IsPOST => (_ctx.Request.HttpMethod == "POST");
+        public bool IsPOST
+        {
+            get
+            {
+                if (isPost == null)
+                {
+                    isPost = httpListener.Request.HttpMethod == "POST";
+                }
+
+                return (bool)isPost;
+            }
+        }
 
         /// <summary>
-        /// Property to check if http method is GET.
+        /// Property to check if Http method is GET.
         /// </summary>
-        public bool IsGET => (_ctx.Request.HttpMethod == "GET");
+        public bool IsGET
+        {
+            get
+            {
+                if (isGet == null)
+                {
+                    isGet = httpListener.Request.HttpMethod == "GET";
+                }
+
+                return (bool)isGet;
+            }
+        }
 
         /// <summary>
-        /// Property to check if http method is PUT.
+        /// Property to check if Http method is PUT.
         /// </summary>
-        public bool IsPUT => (_ctx.Request.HttpMethod == "PUT");
+        public bool IsPUT
+        {
+            get
+            {
+                if (isPut == null)
+                {
+                    isPut = httpListener.Request.HttpMethod == "PUT";
+                }
+
+                return (bool) isPut;
+}
+        }
 
         /// <summary>
-        /// Property to check if http method is DELETE.
+        /// Property to check if Http method is DELETE.
         /// </summary>
-        public bool IsDELETE => (_ctx.Request.HttpMethod == "DELETE");
+        public bool IsDELETE
+        {
+            get
+            {
+                if (isDelete == null)
+                {
+                    isDelete = httpListener.Request.HttpMethod == "DELETE";
+                }
+
+                return (bool)isDelete;
+            }
+        }
 
         /// <summary>
-        /// Property http GET parameters.
+        /// Property to access to the Http GET parameters.
         /// </summary>
-        public NameValueCollection _GET => _ctx.Request.QueryString;
+        public NameValueCollection _GET
+        {
+            get
+            {
+                if (get == null)
+                {
+                    get = httpListener.Request.QueryString;
+                }
+
+                return get;
+            }
+        }
 
         /// <summary>
-        /// Property http POST parameters.
+        /// Property to access to the Http POST parameters.
         /// </summary>
-        public string _POST => ReadPost();
+        public string _POST
+        {
+            get
+            {
+                if (post.IsNullOrWhiteSpace())
+                {
+                    post = ReadPost();
+                }
+
+                return post;
+            }
+        }
 
         /// <summary>
         /// Property http REQUEST parameters.
@@ -78,7 +175,7 @@ namespace XtrmAddons.Net.HttpWebServer.Requests
         /// <summary>
         /// Property HTTP listener context.
         /// </summary>
-        public string Context => new StreamReader(_ctx.Request.InputStream).ReadToEnd();
+        public string Context => new StreamReader(httpListener.Request.InputStream).ReadToEnd();
 
         #endregion
 
@@ -89,11 +186,11 @@ namespace XtrmAddons.Net.HttpWebServer.Requests
         /// <summary>
         /// Class XtrmAddons Net Http Web Server Request Constructor.
         /// </summary>
-        /// <param name="ctx"></param>
+        /// <param name="ctx">The Http listerner context (named also connection).</param>
         public WebServerRequest(HttpListenerContext ctx)
         {
-            _ctx = ctx;
-            _uri = new WebServerRequestUrl(ctx);
+            httpListener = ctx;
+            Uri = new WebServerRequestUrl(ctx);
         }
 
         #endregion
@@ -110,7 +207,7 @@ namespace XtrmAddons.Net.HttpWebServer.Requests
         {
             if (IsPOST)
             {
-                using (StreamReader reader = new StreamReader(_ctx.Request.InputStream, _ctx.Request.ContentEncoding))
+                using (StreamReader reader = new StreamReader(httpListener.Request.InputStream, httpListener.Request.ContentEncoding))
                 {
                     return reader.ReadToEnd();
                 }
