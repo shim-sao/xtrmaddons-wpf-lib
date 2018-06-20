@@ -26,6 +26,11 @@ namespace XtrmAddons.Net.HttpWebServer.Requests
         private readonly HttpListenerContext httpListener;
 
         /// <summary>
+        /// Variable intput stream context.
+        /// </summary>
+        private string context;
+
+        /// <summary>
         /// Variable request POST.
         /// </summary>
         private string post;
@@ -173,9 +178,20 @@ namespace XtrmAddons.Net.HttpWebServer.Requests
         public NameValueCollection _REQUEST => throw new System.NotImplementedException();
 
         /// <summary>
-        /// Property HTTP listener context.
+        /// Property to access to the request input stream.
         /// </summary>
-        public string Context => new StreamReader(httpListener.Request.InputStream).ReadToEnd();
+        public string Context
+        {
+            get
+            {
+                if (context == null)
+                {
+                    context = ReadInputStream();
+                }
+
+                return context;
+            }
+        }
 
         #endregion
 
@@ -186,11 +202,11 @@ namespace XtrmAddons.Net.HttpWebServer.Requests
         /// <summary>
         /// Class XtrmAddons Net Http Web Server Request Constructor.
         /// </summary>
-        /// <param name="ctx">The Http listerner context (named also connection).</param>
-        public WebServerRequest(HttpListenerContext ctx)
+        /// <param name="connection">The Http listerner context (named also connection).</param>
+        public WebServerRequest(HttpListenerContext connection)
         {
-            httpListener = ctx;
-            Uri = new WebServerRequestUrl(ctx);
+            httpListener = connection;
+            Uri = new WebServerRequestUrl(connection);
         }
 
         #endregion
@@ -214,6 +230,18 @@ namespace XtrmAddons.Net.HttpWebServer.Requests
             }
 
             return "";
+        }
+
+        /// <summary>
+        /// Method to read the request input stream.
+        /// </summary>
+        /// <returns>The input request string.</returns>
+        private string ReadInputStream()
+        {
+            using (StreamReader streamReader = new StreamReader(httpListener.Request.InputStream))
+            {
+                return streamReader.ReadToEnd();
+            }
         }
 
         #endregion
