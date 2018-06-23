@@ -79,6 +79,7 @@
     <ProjectReference Include="..\XtrmAddons.Net.Common\XtrmAddons.Net.Common.csproj">
       <Project>{1fe7f4b3-4393-4752-88a6-b4b06ea96206}</Project>
       <Name>XtrmAddons.Net.Common</Name>
+      <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
