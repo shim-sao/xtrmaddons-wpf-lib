@@ -74,10 +74,12 @@
     <ProjectReference Include="..\XtrmAddons.Net.Common\XtrmAddons.Net.Common.csproj">
       <Project>{1FE7F4B3-4393-4752-88A6-B4B06EA96206}</Project>
       <Name>XtrmAddons.Net.Common</Name>
+      <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\XtrmAddons.Net.Picture\XtrmAddons.Net.Picture.csproj">
       <Project>{563F8623-42FC-41C4-ACD2-4E9400F8B660}</Project>
       <Name>XtrmAddons.Net.Picture</Name>
+      <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
