@@ -90,17 +90,12 @@ namespace XtrmAddons.Net.Picture.Extensions
         /// <exception cref="ArgumentOutOfRangeException">Occurs when Image reference is null.</exception>
         public static Image ResizeRatio(this Image image, int maxSize, bool resizeUp = false)
         {
-            if (object.ReferenceEquals(image, null))
-            {
-                throw new ArgumentNullException("Image");
-            }
-
             if (maxSize <= 0)
             {
-                throw new ArgumentOutOfRangeException("maxSize must be positive greater than 0.");
+                throw new ArgumentOutOfRangeException($"'{nameof(maxSize)}' must be positive and greater than 0.");
             }
 
-            double ratio = image.Height > image.Width ? (double)image.Width / (double)image.Height : (double)image.Height / (double)image.Width;
+            double ratio = image.Height > image.Width ? image.Width / image.Height : image.Height / image.Width;
             double height = 0;
             double width = 0;
 
