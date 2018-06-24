@@ -71,6 +71,7 @@ namespace XtrmAddons.Net.Picture.Extensions
         /// <param name="str">An email.</param>
         /// <returns>True if it is a valid email otherwise false.</returns>
         /// <see href="https://stackoverflow.com/questions/1365407/c-sharp-code-to-validate-email-address">stackoverflow.com</see>
+        [System.Obsolete("Use : XtrmAddons.Net.Common.Extensions")]
         public static bool IsValidEmail(this string str)
         {
             try
