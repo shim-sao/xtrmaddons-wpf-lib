@@ -86,7 +86,6 @@ namespace XtrmAddons.Net.Picture.Extensions
         /// <param name="maxSize">Desired maximum width/height to apply.</param>
         /// <param name="resizeUp">Resize even if the ime size is lower than maximum size.</param>
         /// <returns>The resized image.</returns>
-        /// <exception cref="ArgumentNullException">Occurs when Image reference is null.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Occurs when Image reference is null.</exception>
         public static Image ResizeRatio(this Image image, int maxSize, bool resizeUp = false)
         {
