@@ -3,6 +3,7 @@ using System;
 using System.IO;
 using System.Net;
 using System.Windows.Media.Imaging;
+using XtrmAddons.Net.Common.Extensions;
 
 namespace XtrmAddons.Net.Picture
 {
@@ -143,7 +144,10 @@ namespace XtrmAddons.Net.Picture
             {
                 if (string.IsNullOrWhiteSpace(filename))
                 {
-                    throw new ArgumentNullException(nameof(filename));
+                    ArgumentNullException e = new ArgumentNullException(nameof(filename));
+                    log.Error(e.Output(), e);
+
+                    return src;
                 }
 
                 if (!Path.IsPathRooted(filename))
@@ -153,7 +157,10 @@ namespace XtrmAddons.Net.Picture
 
                 if (!File.Exists(filename))
                 {
-                    throw new FileNotFoundException(filename);
+                    FileNotFoundException e = new FileNotFoundException(filename);
+                    log.Error(e.Output(), e);
+
+                    return src;
                 }
 
                 src.BeginInit();
@@ -174,8 +181,8 @@ namespace XtrmAddons.Net.Picture
             // Just log error but generate no new exception.
             catch(Exception e)
             {
-                log.Error("filename = " + filename);
                 log.Error("PictureMemoryCache try to create bitmap image but operation failed !", e);
+                log.Error("filename : " + filename);
             }
 
             return src;
