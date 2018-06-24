@@ -6,7 +6,7 @@ namespace XtrmAddons.Net.Picture
     /// <summary>
     /// Class XtrmAddons Net Picture File Dialog Box.
     /// </summary>
-    public class PictureFileDialogBox
+    public static class PictureFileDialogBox
     {
         /// <summary>
         /// Method to open a file dialog box to pick files.
