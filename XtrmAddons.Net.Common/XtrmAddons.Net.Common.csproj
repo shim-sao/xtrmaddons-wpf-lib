@@ -64,6 +64,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\Objects\ObjectBaseNotifier.cs" />
     <Compile Include="Extensions\Byte\ByteExtension.cs" />
     <Compile Include="Extensions\Dispatcher\DispatcherExtension.cs" />
     <Compile Include="Extensions\EventHandler\EventHandlerExtension.cs" />
