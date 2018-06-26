@@ -3,6 +3,7 @@ using System;
 using System.Dynamic;
 using System.IO;
 using System.Windows.Media.Imaging;
+using XtrmAddons.Net.Common.Extensions;
 
 namespace XtrmAddons.Net.Picture
 {
@@ -11,6 +12,17 @@ namespace XtrmAddons.Net.Picture
     /// </summary>
     public class PictureMeta
     {
+        #region Variables
+
+        /// <summary>
+        /// Variable logger.
+        /// </summary>
+        protected static readonly log4net.ILog log =
+            log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
+        #endregion
+
+
         #region Properties
 
         /// <summary>
@@ -22,6 +34,11 @@ namespace XtrmAddons.Net.Picture
         /// Property to acces Picture Meta Data informations.
         /// </summary>
         public dynamic Data { get; } = new ExpandoObject();
+
+        /// <summary>
+        /// Property to acces Picture Meta Data informations.
+        /// </summary>
+        public BitmapMetadata Metadata { get; }
 
         #endregion
 
@@ -52,43 +69,78 @@ namespace XtrmAddons.Net.Picture
         /// <exception cref="FileFormatException">Occurs when loading meta data failed.</exception>
         private void Initialize()
         {
-            if (string.IsNullOrEmpty(Filename.Replace(" ", "")))
+            if (Filename.IsNullOrWhiteSpace())
             {
-                throw new ArgumentNullException(string.Format("Invalid argument Picture file name [{0}]. Filename must be not null or empty or whitespace.", Filename));
+                ArgumentNullException e = new ArgumentNullException($"Invalid argument Picture file name [{Filename}]. Filename must be not null or empty or whitespace.");
+                log.Error(e.Output(), e);
+                throw e;
             }
+
+            Data.Filename = Filename;
+            Data.Comment = "";
+            Data.Copyright = "";
+            Data.DateTaken = "";
+            Data.Rating = 0;
+            Data.Title = "";
+
+            Data.Format = new System.Windows.Media.PixelFormat();
+            Data.Height = 0;
+            Data.Width = 0;
+            Data.PixelHeight = 0;
+            Data.PixelWidth = 0;
+            Data.Length = 0;
 
             try
             {
                 // open a filestream for the file we wish to look at
                 using (Stream fs = File.Open(Filename, FileMode.Open, FileAccess.ReadWrite))
                 {
+                    Data.Length = fs.Length;
+
                     // create a decoder to parse the file
                     BitmapDecoder decoder = BitmapDecoder.Create(fs, BitmapCreateOptions.None, BitmapCacheOption.Default);
+
+                    if(decoder == null || decoder.Frames.Count == 0)
+                    {
+                        log.Error("Creating bipmap decoder : failed ! ");
+                        return;
+                    }
 
                     // grab the bitmap frame, which contains the metadata
                     BitmapFrame frame = decoder.Frames[0];
 
-                    // get the metadata as BitmapMetadata
-                    BitmapMetadata bmp = frame.Metadata as BitmapMetadata;
-
-                    Data.Comment = bmp.Comment;
-                    Data.Copyright = bmp.Copyright;
-                    Data.DateTaken = bmp.DateTaken;
-                    Data.Rating = bmp.Rating;
-                    Data.Title = bmp.Title ?? Path.GetFileName(Filename);
+                    if (frame == null)
+                    {
+                        log.Error("Getting bipmap decoder frame : failed ! ");
+                        return;
+                    }
 
                     Data.Format = frame.Format;
                     Data.Height = frame.Height;
                     Data.Width = frame.Width;
                     Data.PixelHeight = frame.PixelHeight;
                     Data.PixelWidth = frame.PixelWidth;
-                    Data.Filename = Filename;
-                    Data.Length = fs.Length;
+
+                    // get the metadata as BitmapMetadata
+                    BitmapMetadata bmp = frame.Metadata as BitmapMetadata;
+                    
+                    if(bmp == null)
+                    {
+                        log.Error("Getting bipmap metadata : failed ! ");
+                        Data.DateTaken = new FileInfo(Filename).CreationTime.ToString();
+                        return;
+                    }
+
+                    Data.Title = bmp.Title ?? Path.GetFileName(Filename);
+                    Data.DateTaken = bmp.DateTaken;
+                    Data.Copyright = bmp.Copyright;
+                    Data.Comment = bmp.Comment;
+                    Data.Rating = bmp.Rating;
                 }
             }
             catch(Exception e)
             {
-                throw new FileFormatException("Picture initialize meta data informations failed !", e);
+                throw new FileFormatException("initializing picture meta data informations : failed !", e);
             }
         }
 
