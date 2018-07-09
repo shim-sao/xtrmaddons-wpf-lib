@@ -261,6 +261,38 @@ namespace XtrmAddons.Net.SystemIO
             });
         }
 
+        /// <summary>
+        /// Method to check if a Directory or Folder has Permissions.
+        /// </summary>
+        /// <param name="directoryPath">The full path or name of the directory.</param>
+        /// <param name="accessType">The file system rights to check.</param>
+        /// <returns>True if the folder contains access type, otherwise False.</returns>
+        /// <see href="http://technico.qnownow.com/how-to-check-read-or-write-permissions-on-a-folder-in-c/"/>
+        public static bool HasDirectoryPermissions(string directoryPath, FileSystemRights accessType)
+        {
+            bool hasAccess = true;
+            try
+            {
+                AuthorizationRuleCollection collection
+                    = Directory.GetAccessControl(directoryPath)
+                     .GetAccessRules(true, true, typeof(System.Security.Principal.NTAccount));
+
+                foreach (FileSystemAccessRule rule in collection)
+                {
+                    if ((rule.FileSystemRights & accessType) > 0)
+                    {
+                        return hasAccess;
+                    }
+                }
+            }
+            catch
+            {
+                hasAccess = false;
+            }
+
+            return hasAccess;
+        }
+
         #endregion
     }
 }

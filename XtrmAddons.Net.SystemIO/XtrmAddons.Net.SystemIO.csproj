@@ -41,13 +41,26 @@
     <DocumentationFile>..\packages\XtrmAddons\Release\XtrmAddons.Net.SystemIO.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Extensions\DirectoryInfoExtensions.cs" />
     <Compile Include="SysDirectory.cs" />
     <Compile Include="SysFile.cs" />
     <Compile Include="Text\StringWriterUtf8.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\XtrmAddons.Net.Common\XtrmAddons.Net.Common.csproj">
+      <Project>{1FE7F4B3-4393-4752-88A6-B4B06EA96206}</Project>
+      <Name>XtrmAddons.Net.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
