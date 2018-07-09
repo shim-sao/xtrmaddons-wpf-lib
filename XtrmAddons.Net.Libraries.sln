@@ -25,8 +25,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XtrmAddons.Net.Picture", "X
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XtrmAddons.Net.Windows", "XtrmAddons.Net.Windows\XtrmAddons.Net.Windows.csproj", "{EEB21BEF-1037-430D-ABBC-0E34961BD615}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XtrmAddons.Net.Test", "XtrmAddons.Net.Test\XtrmAddons.Net.Test.csproj", "{CD68A53C-2EA8-48CF-A3F8-98A515F6D800}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -77,10 +75,6 @@ Global
 		{EEB21BEF-1037-430D-ABBC-0E34961BD615}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EEB21BEF-1037-430D-ABBC-0E34961BD615}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EEB21BEF-1037-430D-ABBC-0E34961BD615}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CD68A53C-2EA8-48CF-A3F8-98A515F6D800}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CD68A53C-2EA8-48CF-A3F8-98A515F6D800}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CD68A53C-2EA8-48CF-A3F8-98A515F6D800}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CD68A53C-2EA8-48CF-A3F8-98A515F6D800}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
