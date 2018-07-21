@@ -36,7 +36,7 @@ namespace XtrmAddons.Net.Common.Extensions
         {
             if (predicate == null)
             {
-                ArgumentNullException e = new ArgumentNullException($"'{nameof(predicate)}' type of '{typeof(Predicate<T>)}' must not be null.");
+                ArgumentNullException e = new ArgumentNullException($"'{nameof(predicate)}' type of '{typeof(Predicate<T>).Name}' must not be null.");
                 log.Error(e.Output(), e);
                 throw e;
             }
@@ -55,16 +55,44 @@ namespace XtrmAddons.Net.Common.Extensions
         {
             if (match == null)
             {
-                ArgumentNullException e = new ArgumentNullException($"'{nameof(match)}' type of '{typeof(Predicate<T>)}' must not be null.");
+                ArgumentNullException e = new ArgumentNullException($"'{nameof(match)}' type of '{typeof(Predicate<T>).Name}' must not be null.");
                 log.Error(e.Output(), e);
                 throw e;
             }
 
             return collection.Exists(new Predicate<T>(match));
         }
+
+        /// <summary>
+        /// Method to check if an item exists with the predicate paste in argument.
+        /// </summary>
+        /// <typeparam name="T">The type of items in the collection.</typeparam>
+        /// <param name="collection">The collection to search in.</param>
+        /// <param name="item">The value type to find if exists.</param>
+        /// <returns>True if an item or more is found otherwise false.</returns>
+        public static bool Exists<T>(this ObservableCollection<T?> collection, T? item) where T : struct
+        {
+            if(item is null)
+            {
+                return collection.Exists(new Predicate<T?>(x => x == null));
+            }
+            return collection.Exists(new Predicate<T?>(x => x.Equals(item)));
+        }
+
+        /// <summary>
+        /// Method to check if an item exists with the predicate paste in argument.
+        /// </summary>
+        /// <typeparam name="T">The type of items in the collection.</typeparam>
+        /// <param name="collection">The collection to search in.</param>
+        /// <param name="item">The value type to find if exists.</param>
+        /// <returns>True if an item or more is found otherwise false.</returns>
+        public static bool Exists<T>(this ObservableCollection<T> collection, T item) where T : struct
+        {
+            return collection.Exists(new Predicate<T>(x => x.Equals(item)));
+        }
         
         /// <summary>
-        /// Method to add an item to the collection if the item not already exists with the predicate paste in argument.
+        /// Method to add an item into the collection if the item not already exists with the predicate paste in argument.
         /// </summary>
         /// <typeparam name="T">The type of items in the collection.</typeparam>
         /// <param name="collection">The collection to search in and add in.</param>
@@ -100,7 +128,7 @@ namespace XtrmAddons.Net.Common.Extensions
         }
 
         /// <summary>
-        /// Method to add an item to the collection if the item not already exists with the predicate paste in argument.
+        /// Method to add an item into the collection if the item not already exists with the predicate paste in argument.
         /// </summary>
         /// <typeparam name="T">The type of items in the collection.</typeparam>
         /// <param name="collection">The collection to search in and add in.</param>
@@ -111,6 +139,34 @@ namespace XtrmAddons.Net.Common.Extensions
         public static ObservableCollection<T> AddIfNotExists<T>(this ObservableCollection<T> collection, T item, Func<T, bool> match)
         {
             return AddIfNotExists(collection, item, new Predicate<T>(match));
+        }
+
+        /// <summary>
+        /// Method to add a value type into the collection if the value not already exists with the predicate paste in argument.
+        /// </summary>
+        /// <param name="collection">The collection to search in and add in.</param>
+        /// <param name="item">The object to add to the collection.</param>
+        /// <returns>The updated collection.</returns>
+        /// <exception cref="InvalidOperationException">Occurs if the match argument is null.</exception>
+        public static ObservableCollection<T?> AddIfNotExists<T>(this ObservableCollection<T?> collection, T? item) where T : struct
+        {
+            if (item is null)
+            {
+                return AddIfNotExists(collection, item, new Predicate<T?>(x => x == null));
+            }
+            return AddIfNotExists(collection, item, new Predicate<T?>(x => x.Equals(item)));
+        }
+
+        /// <summary>
+        /// Method to add a value type into the collection if the value not already exists with the predicate paste in argument.
+        /// </summary>
+        /// <param name="collection">The collection to search in and add in.</param>
+        /// <param name="item">The object to add to the collection.</param>
+        /// <returns>The updated collection.</returns>
+        /// <exception cref="InvalidOperationException">Occurs if the match argument is null.</exception>
+        public static ObservableCollection<T> AddIfNotExists<T>(this ObservableCollection<T> collection, T item) where T : struct
+        {
+            return AddIfNotExists(collection, item, new Predicate<T>(x => x.Equals(item)));
         }
 
         /// <summary>
