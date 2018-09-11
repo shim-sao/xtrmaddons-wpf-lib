@@ -167,7 +167,20 @@ namespace XtrmAddons.Net.Common.Extensions
                 {
                     if (prop.CanWrite)
                     {
-                        prop.SetValue(obj, binding.GetPropertyValue(prop.Name));
+                        try
+                        {
+                            prop.SetValue(obj, binding.GetPropertyValue(prop.Name), null);
+                        }
+                        catch(Exception e)
+                        {
+                            log.Fatal(e.Output());
+                            log.Debug($"obj Type => {obj?.GetType()}");
+                            log.Debug($"prop Type => {prop?.GetType()}");
+                            log.Debug($"binding Type => {binding?.GetType()}");
+                            log.Debug($"prop.Name => {prop?.Name}");
+                            log.Debug($"binding.GetPropertyValue(prop.Name) => {binding?.GetPropertyValue(prop.Name)}");
+                            throw;
+                        }
                     }
                 }
             }
