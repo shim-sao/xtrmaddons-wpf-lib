@@ -10,7 +10,7 @@ namespace XtrmAddons.Net.Memory
     public static class MemoryManager
     {
         /// <summary>
-        /// <para>Metod to fix memory leak.</para>
+        /// <para>Method to fix memory leak.</para>
         /// <para>Execute this method in a timer or something like that.</para>
         /// </summary>
         public static void fixMemoryLeak()

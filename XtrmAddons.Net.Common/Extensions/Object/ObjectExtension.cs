@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
@@ -67,12 +68,12 @@ namespace XtrmAddons.Net.Common.Extensions
                     return prop.GetValue(obj);
                 }
 
-                throw new ArgumentException(String.Format("Object [{0}] property '{1}' doesn't exists !", obj.GetType(), propertyName));
+                throw new ArgumentException($"Object [{obj.GetType()}] property '{propertyName}' not found !");
             }
             catch (Exception e)
             {
-                log.Fatal("OjectExtension.GetPropertyValue Failed !", e);
-                throw new InvalidOperationException("OjectExtension.GetPropertyValue Failed !", e);
+                log.Debug($"{typeof(ObjectExtension).Name}.{MethodBase.GetCurrentMethod().Name} : '{propertyName}'", e);
+                throw;
             }
         }
 
@@ -166,7 +167,20 @@ namespace XtrmAddons.Net.Common.Extensions
                 {
                     if (prop.CanWrite)
                     {
-                        prop.SetValue(obj, binding.GetPropertyValue(prop.Name));
+                        try
+                        {
+                            prop.SetValue(obj, binding.GetPropertyValue(prop.Name), null);
+                        }
+                        catch(Exception e)
+                        {
+                            log.Fatal(e.Output());
+                            log.Debug($"obj Type => {obj?.GetType()}");
+                            log.Debug($"prop Type => {prop?.GetType()}");
+                            log.Debug($"binding Type => {binding?.GetType()}");
+                            log.Debug($"prop.Name => {prop?.Name}");
+                            log.Debug($"binding.GetPropertyValue(prop.Name) => {binding?.GetPropertyValue(prop.Name)}");
+                            throw;
+                        }
                     }
                 }
             }
@@ -205,7 +219,8 @@ namespace XtrmAddons.Net.Common.Extensions
         }
 
         /// <summary>
-        /// Method to clone with public properties the Object.
+        /// <para>Method to clone with public properties the <see cref="object"/>.</para>
+        /// <para>This method will make copy by reference. Use CloneJson() to make a deep copy without reference.</para>
         /// </summary>
         /// <typeparam name="T">The object class type.</typeparam>
         /// <param name="obj">The object to clone.</param>
@@ -215,6 +230,36 @@ namespace XtrmAddons.Net.Common.Extensions
             T instance = Activator.CreateInstance<T>();
             instance.Bind(obj);
             return instance;
+        }
+
+        /// <summary>
+        /// <para>Method to clone a JSon Serializable <see cref="object"/>.</para>
+        /// <para>This method will make copy of the JSon properties of the object type T.</para>
+        /// </summary>
+        /// <typeparam name="T">The object class type.</typeparam>
+        /// <param name="obj">The object to clone.</param>
+        /// <returns>A new object with cloned JSon Serializable properties.</returns>
+        public static T CloneJson<T>(this T obj) where T : class
+        {
+            try
+            {
+                return JsonConvert.DeserializeObject<T>(JsonConvert.SerializeObject(obj));
+            }
+            catch(Exception e)
+            {
+                log.Error(e.Output(), e);
+            }
+
+            try
+            {
+                return Activator.CreateInstance<T>();
+            }
+            catch(Exception e)
+            {
+                log.Error(e.Output(), e);
+            }
+
+            return null;
         }
 
         /// <summary>
