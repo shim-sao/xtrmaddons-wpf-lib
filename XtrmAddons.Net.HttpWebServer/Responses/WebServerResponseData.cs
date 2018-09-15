@@ -161,6 +161,33 @@ namespace XtrmAddons.Net.HttpWebServer.Responses
         }
 
         /// <summary>
+        /// Method to serve direct file.
+        /// </summary>
+        /// <param name="rawUrl">The rawUrl of the file.</param>
+        /// <param name="root">The root directory of the file.</param>
+        /// <exception cref="FileNotFoundException"></exception>
+        public void ServeFileUnSafe(string rawUrl = "")
+        {
+            if (rawUrl == "")
+            {
+                rawUrl = RawUrl;
+            }
+
+            try
+            {
+                using (FileStream fileStream = new FileStream(rawUrl, FileMode.Open, FileAccess.Read))
+                {
+                    Content = ReadFully(fileStream);
+                }
+                SetContentType(rawUrl);
+            }
+            catch(Exception e)
+            {
+                throw new FileNotFoundException("File not found on public access directory.", e);
+            }
+        }
+
+        /// <summary>
         /// Method to read stream and convert it to byte array.
         /// </summary>
         /// <param name="input"></param>
