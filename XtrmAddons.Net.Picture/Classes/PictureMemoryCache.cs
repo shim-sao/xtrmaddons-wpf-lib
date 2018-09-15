@@ -2,6 +2,7 @@
 using System;
 using System.IO;
 using System.Net;
+using System.Reflection;
 using System.Windows.Media.Imaging;
 using XtrmAddons.Net.Common.Extensions;
 
@@ -54,9 +55,9 @@ namespace XtrmAddons.Net.Picture
         /// <param name="width">The width of the image.</param>
         /// <param name="replace">Force to load and replace picture in memory.</param>
         /// <returns>A Bitmap Image.</returns>
-        public static BitmapImage Get(string filename, int width = 512, bool replace = false)
+        public static BitmapImage Get(string filename, int width = 512, bool replace = false, bool isHttp = false)
         {
-            return Set(filename, width, replace);
+            return Set(filename, width, replace, new TimeSpan(), isHttp);
         }
 
         /// <summary>
@@ -67,7 +68,7 @@ namespace XtrmAddons.Net.Picture
         /// <param name="replace">Force to load and replace picture in memory.</param>
         /// <param name="slidingExpiration">Define the time span sliding expiration..</param>
         /// <returns>A Bitmap Image.</returns>
-        public static BitmapImage Set(string filename, int width = 512, bool replace = false, TimeSpan slidingExpiration = new TimeSpan())
+        public static BitmapImage Set(string filename, int width = 512, bool replace = false, TimeSpan slidingExpiration = new TimeSpan(), bool isHttp = false)
         {
             // Check if filename is empty.
             // Just log error but generate no exception.
@@ -90,7 +91,7 @@ namespace XtrmAddons.Net.Picture
             if (!MemCache.TryGetValue(key, out bmp) || replace)
             {
                 // Load picture.
-                bmp = GetPicture(filename);
+                bmp = GetPicture(filename, width, isHttp);
 
                 // Check if cache expiration is define.
                 if (slidingExpiration.CompareTo(new TimeSpan()) == 0)
@@ -133,8 +134,9 @@ namespace XtrmAddons.Net.Picture
         /// </summary>
         /// <param name="filename">The full path file name of the picture.</param>
         /// <param name="width">The width of the image.</param>
+        /// <param name="isHttp">Is Http filename Url ?.</param>
         /// <returns>A BitmapImage that contain the picture.</returns>
-        public static BitmapImage GetPicture(string filename, int width = 512)
+        public static BitmapImage GetPicture(string filename, int width = 512, bool isHttp = false)
         {
             // Initialize bitmap image.
             BitmapImage src = new BitmapImage();
@@ -142,6 +144,8 @@ namespace XtrmAddons.Net.Picture
             // Try to create bitmap image from picture.
             try
             {
+                log.Debug($"{typeof(PictureMemoryCache).Name}.{MethodBase.GetCurrentMethod().Name} : Creating bitmap image from picture.");
+
                 if (string.IsNullOrWhiteSpace(filename))
                 {
                     ArgumentNullException e = new ArgumentNullException(nameof(filename));
@@ -150,18 +154,20 @@ namespace XtrmAddons.Net.Picture
                     return src;
                 }
 
-                if (!Path.IsPathRooted(filename))
+                if (!Path.IsPathRooted(filename) && !isHttp)
                 {
                     filename = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, filename);
                 }
 
-                if (!File.Exists(filename))
+                if (!File.Exists(filename) && !isHttp)
                 {
-                    FileNotFoundException e = new FileNotFoundException(filename);
+                    FileNotFoundException e = new FileNotFoundException("File not found :", filename);
                     log.Error(e.Output(), e);
 
                     return src;
                 }
+
+                log.Debug($"{typeof(PictureMemoryCache).Name}.{MethodBase.GetCurrentMethod().Name} : {filename}");
 
                 src.BeginInit();
                 src.CacheOption = BitmapCacheOption.OnLoad;
@@ -174,6 +180,7 @@ namespace XtrmAddons.Net.Picture
                 if (!src.IsFrozen && src.CanFreeze)
                 {
                     src.Freeze();
+                    log.Debug($"{typeof(PictureMemoryCache).Name}.{MethodBase.GetCurrentMethod().Name} : Freezing Picture => done.");
                 }
             }
 

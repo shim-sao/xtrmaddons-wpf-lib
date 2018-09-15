@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Windows.Data;
 using System.Windows.Media.Imaging;
+using XtrmAddons.Net.Common.Extensions;
 using XtrmAddons.Net.Picture;
 using XtrmAddons.Net.Picture.Extensions;
 using XtrmAddons.Net.Picture.ExtractLargeIconFromFile;
@@ -15,6 +16,19 @@ namespace XtrmAddons.Net.Windows.Converter.Picture
     /// </summary>
     public class ConverterPictureBase : IValueConverter
     {
+        #region Variables
+        
+        /// <summary>
+        /// Variable logger <see cref="log4net.ILog"/>.
+        /// </summary>
+        private static readonly log4net.ILog log =
+        	log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        
+        #endregion
+
+
+
+
         /// <summary>
         /// 
         /// </summary>
@@ -62,7 +76,10 @@ namespace XtrmAddons.Net.Windows.Converter.Picture
                     bmp = ShellEx.GetBitmapFromFilePath(filename, IconSize).ToBitmapImage();
                 }
             }
-            catch { }
+            catch(Exception e)
+            {
+                log.Debug(e.Output(), e);
+            }
 
             return bmp;
         }
