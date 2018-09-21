@@ -66,6 +66,7 @@
   <ItemGroup>
     <Compile Include="Classes\Objects\ObjectBaseNotifier.cs" />
     <Compile Include="Extensions\Byte\ByteExtension.cs" />
+    <Compile Include="Extensions\Dictionary\DictionaryExtension.cs" />
     <Compile Include="Extensions\Dispatcher\DispatcherExtension.cs" />
     <Compile Include="Extensions\EventHandler\EventHandlerExtension.cs" />
     <Compile Include="Extensions\Exception\Exception.cs" />
