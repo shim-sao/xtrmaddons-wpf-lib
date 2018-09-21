@@ -164,7 +164,6 @@ namespace XtrmAddons.Net.HttpWebServer.Responses
         /// Method to serve direct file.
         /// </summary>
         /// <param name="rawUrl">The rawUrl of the file.</param>
-        /// <param name="root">The root directory of the file.</param>
         /// <exception cref="FileNotFoundException"></exception>
         public void ServeFileUnSafe(string rawUrl = "")
         {
