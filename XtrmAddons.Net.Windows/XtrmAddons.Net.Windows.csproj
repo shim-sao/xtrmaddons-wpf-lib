@@ -53,7 +53,8 @@
   <ItemGroup>
     <Compile Include="Controls\Extensions\TextBoxExtensions.cs" />
     <Compile Include="Controls\Extensions\TreeViewItemExtensions.cs" />
-    <Compile Include="Converter\Boolean\ConverterVisibility.cs" />
+    <Compile Include="Converter\Boolean\ConverterIntToBool.cs" />
+    <Compile Include="Converter\Boolean\ConverterBoolToVisibility.cs" />
     <Compile Include="Converter\Picture\ConverterExtractLargeIconFromDirectory.cs" />
     <Compile Include="Converter\Picture\ConverterExtractLargeIconFromFile.cs" />
     <Compile Include="Converter\Picture\ConverterPicture.cs" />

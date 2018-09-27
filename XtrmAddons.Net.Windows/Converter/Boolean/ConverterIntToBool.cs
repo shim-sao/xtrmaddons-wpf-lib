@@ -6,12 +6,12 @@ using System.Windows.Data;
 namespace XtrmAddons.Net.Windows.Converter.Boolean
 {
     /// <summary>
-    /// <para>Class XtrmAddons Net UI Converter Boolean to visibility.</para>
+    /// <para>Class XtrmAddons Net UI Converter Integer to Boolean.</para>
     /// </summary>
-    public class ConverterVisibility : IValueConverter
+    public class ConverterIntToBool : IValueConverter
     {
         /// <summary>
-        /// Method to convert string path of the picture into bitmap image. 
+        /// Method to convert an integer to boolean. 
         /// </summary>
         /// <param name="value">The binding object path of the picture.</param>
         /// <param name="targetType">The target type for binding.</param>
@@ -20,19 +20,11 @@ namespace XtrmAddons.Net.Windows.Converter.Boolean
         /// <returns>A bitmap image for image binding.</returns>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            // The value parameter is the data from the source object.
-            bool val = (bool)value;
-
-            if (val)
-            {
-                return Visibility.Visible;
-            }
-
-            return Visibility.Hidden;
+            return (int)value != 0;
         }
 
         /// <summary>
-        /// Method to convert bitmap image into string path of the picture. 
+        /// Method to convert back convert an integer to boolean.
         /// </summary>
         /// <param name="value">The binding object path of the picture.</param>
         /// <param name="targetType">The target type for binding.</param>
@@ -41,7 +33,7 @@ namespace XtrmAddons.Net.Windows.Converter.Boolean
         /// <returns>throw Not Implemented Exception.</returns>
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            throw new NotImplementedException();
+            return (bool)value ? 1 : 0;
         }
     }
 }
