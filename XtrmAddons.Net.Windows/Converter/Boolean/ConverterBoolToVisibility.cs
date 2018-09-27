@@ -8,7 +8,7 @@ namespace XtrmAddons.Net.Windows.Converter.Boolean
     /// <summary>
     /// <para>Class XtrmAddons Net UI Converter Boolean to visibility.</para>
     /// </summary>
-    public class ConverterVisibility : IValueConverter
+    public class ConverterBoolToVisibility : IValueConverter
     {
         /// <summary>
         /// Method to convert string path of the picture into bitmap image. 
