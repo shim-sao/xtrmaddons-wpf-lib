@@ -58,10 +58,10 @@
     <PackageReference Include="SQLitePCLRaw.lib.e_sqlite3.osx" Version="1.1.11" />
     <PackageReference Include="SQLitePCLRaw.lib.e_sqlite3.v110_xp" Version="1.1.11" />
     <PackageReference Include="SQLitePCLRaw.provider.e_sqlite3.net45" Version="1.1.11" />
-    <PackageReference Include="System.Data.SQLite" Version="1.0.108" />
-    <PackageReference Include="System.Data.SQLite.Core" Version="1.0.108" />
-    <PackageReference Include="System.Data.SQLite.EF6" Version="1.0.108" />
-    <PackageReference Include="System.Data.SQLite.Linq" Version="1.0.108" />
+    <PackageReference Include="System.Data.SQLite" Version="1.0.109.2" />
+    <PackageReference Include="System.Data.SQLite.Core" Version="1.0.109.2" />
+    <PackageReference Include="System.Data.SQLite.EF6" Version="1.0.109" />
+    <PackageReference Include="System.Data.SQLite.Linq" Version="1.0.109" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
