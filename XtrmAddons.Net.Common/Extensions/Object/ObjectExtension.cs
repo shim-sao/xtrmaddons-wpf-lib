@@ -271,22 +271,32 @@ namespace XtrmAddons.Net.Common.Extensions
         /// <exception cref="InvalidOperationException">Occurs if the property name is not found or if the property is as read only.</exception>
         public static object SetPropertyValue(this object obj, string propertyName, object value)
         {
-            object[] values = new object[] { value };
-
-            PropertyInfo prop = obj.GetType()
-                .GetProperty
-                (
-                    propertyName,
-                    System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance
-                );
-
-            if (prop != null && prop.CanWrite)
+            try
             {
-                prop.SetValue(obj, value, null);
+                object[] values = new object[] { value };
+
+                PropertyInfo prop = obj?.GetType()?
+                    .GetProperty
+                    (
+                        propertyName,
+                        System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance
+                    );
+
+                if (prop != null && prop.CanWrite)
+                {
+                    prop.SetValue(obj, value, null);
+                }
+                else
+                {
+                    log.Error(prop.ToString());
+                    throw new InvalidOperationException("Object property does not exists or property is lock to write.");
+                }
+
             }
-            else
+            catch (Exception ex)
             {
-                throw new InvalidOperationException("Object property does not exists or property is lock to write.");
+                log.Error(ex.Output(), ex);
+                throw;
             }
 
             return value;
