@@ -2,33 +2,73 @@
 using System.IO;
 using System.Runtime.InteropServices;
 
-/// <summary>
-/// https://lluisfranco.com/2014/04/16/extract-extra-large-icon-from-a-file-including-network-paths/
-/// </summary>
 namespace XtrmAddons.Net.Picture.ExtractLargeIconFromFile
 {
     /// <summary>
-    /// 
+    /// Class to extract large icon from file.
+    /// https://lluisfranco.com/2014/04/16/extract-extra-large-icon-from-a-file-including-network-paths/
     /// </summary>
     public class ShellEx
     {
+        /// <summary>
+        /// Small icon 16
+        /// </summary>
         private const int SHGFI_SMALLICON = 0x1;
+
+        /// <summary>
+        /// Medium Icon 32
+        /// </summary>
         private const int SHGFI_LARGEICON = 0x0;
+
+        /// <summary>
+        /// Extra Large Icon
+        /// </summary>
         private const int SHIL_JUMBO = 0x4;
+
+        /// <summary>
+        /// Large Icon 48
+        /// </summary>
         private const int SHIL_EXTRALARGE = 0x2;
-        private const int WM_CLOSE = 0x0010;
 
         /// <summary>
         /// 
         /// </summary>
+        private const int WM_CLOSE = 0x0010;
+
+        /// <summary>
+        /// Icons sizes enumeration.
+        /// </summary>
         public enum IconSizeEnum
         {
+            /// <summary>
+            /// Small icon 16
+            /// </summary>
             SmallIcon16 = SHGFI_SMALLICON,
+
+            /// <summary>
+            /// Medium Icon 32
+            /// </summary>
             MediumIcon32 = SHGFI_LARGEICON,
+            
+            /// <summary>
+            /// Large Icon 48
+            /// </summary>
             LargeIcon48 = SHIL_EXTRALARGE,
+
+            /// <summary>
+            /// Extra Large Icon
+            /// </summary>
             ExtraLargeIcon = SHIL_JUMBO
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="handle"></param>
+        /// <param name="Msg"></param>
+        /// <param name="wParam"></param>
+        /// <param name="lParam"></param>
+        /// <returns></returns>
         [DllImport("user32")]
         private static extern
             IntPtr SendMessage(
