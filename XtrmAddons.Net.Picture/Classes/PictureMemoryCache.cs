@@ -54,6 +54,7 @@ namespace XtrmAddons.Net.Picture
         /// <param name="filename">The full path file name of the picture.</param>
         /// <param name="width">The width of the image.</param>
         /// <param name="replace">Force to load and replace picture in memory.</param>
+        /// <param name="isHttp">Define if immage is an Http request.</param>
         /// <returns>A Bitmap Image.</returns>
         public static BitmapImage Get(string filename, int width = 512, bool replace = false, bool isHttp = false)
         {
